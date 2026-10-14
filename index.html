@@ -1,0 +1,1508 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1A3C8F">
+<meta name="description" content="Carreras después del liceo en Uruguay, test vocacional y becas.">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Orientarte UY</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Figtree:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: app de una pantalla — barra superior, contenido con scroll y barra inferior al alcance del pulgar. Paleta de la bandera: azul de las franjas y oro del Sol de Mayo. Poco texto, chips para escanear, detalles plegables. */
+:root {
+  --bg: #F5F7FC;
+  --surface: #FFFFFF;
+  --line: #E1E6F1;
+  --fg: #0E1B3D;
+  --muted: #4A5677;
+  --faint: #6B7590;
+  --brand: #1A3C8F;
+  --brand-fg: #FFFFFF;
+  --brand-soft: #E6ECF8;
+  --sun: #F2B705;
+  --sun-ink: #6B4E00;
+  --sun-soft: #FFF4CC;
+  --ok: #0F6B45;
+  --ok-soft: #E3F4EC;
+  --heart: #D23C45;
+  --track: #EBEEF5;
+  --warn: #8A4B00;
+  --warn-soft: #FDEBD3;
+  --bad: #A3262E;
+  --bad-soft: #FBE3E4;
+  --font-display: 'Bricolage Grotesque', 'Segoe UI', system-ui, sans-serif;
+  --font-body: 'Figtree', 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0B1226; --surface: #131C36; --line: #24304F; --fg: #ECF0FA; --muted: #A9B3CC; --faint: #8390B0;
+    --brand: #8DAEF5; --brand-fg: #0B1226; --brand-soft: #1D2B52; --sun: #F5C431; --sun-ink: #F5C431; --sun-soft: #2E2814;
+    --ok: #6FD6A4; --ok-soft: #12332A; --heart: #F0707A; --track: #1F2A48; --warn: #F5B26B; --warn-soft: #3A2A14; --bad: #F08A90; --bad-soft: #3B1A1E; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0B1226; --surface: #131C36; --line: #24304F; --fg: #ECF0FA; --muted: #A9B3CC; --faint: #8390B0;
+  --brand: #8DAEF5; --brand-fg: #0B1226; --brand-soft: #1D2B52; --sun: #F5C431; --sun-ink: #F5C431; --sun-soft: #2E2814;
+  --ok: #6FD6A4; --ok-soft: #12332A; --heart: #F0707A; --track: #1F2A48; --warn: #F5B26B; --warn-soft: #3A2A14; --bad: #F08A90; --bad-soft: #3B1A1E; color-scheme: dark;
+}
+html, body { height: 100%; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font-body); font-size: 16px; -webkit-tap-highlight-color: transparent; }
+* { box-sizing: border-box; }
+button { font: inherit; color: inherit; cursor: pointer; }
+button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visible { outline: 3px solid var(--sun); outline-offset: 2px; }
+a { color: var(--brand); }
+h1, h2, h3 { text-wrap: balance; }
+
+.app { height: 100%; display: flex; flex-direction: column; max-width: 560px; margin: 0 auto; background: var(--bg); position: relative; }
+.topbar { flex-shrink: 0; height: 58px; display: flex; align-items: center; gap: 6px; padding: 0 16px; background: var(--surface); border-bottom: 1px solid var(--line); }
+.topbar h2 { margin: 0; font-family: var(--font-display); font-weight: 600; font-size: 18px; }
+.back { width: 44px; height: 44px; margin-left: -10px; border: 0; background: transparent; border-radius: 12px; display: grid; place-items: center; color: var(--brand); }
+.logo { display: flex; align-items: center; gap: 8px; }
+.logo b { font-family: var(--font-display); font-weight: 800; font-size: 21px; letter-spacing: -0.3px; }
+.logo span { font-size: 12px; font-weight: 700; background: var(--brand); color: var(--brand-fg); padding: 3px 7px; border-radius: 6px; }
+
+main { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; }
+.pad { padding: 16px; display: flex; flex-direction: column; gap: 14px; }
+.stack { display: flex; flex-direction: column; gap: 10px; }
+.muted { color: var(--muted); }
+.label { font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.sec-title { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.sec-title h3 { margin: 0; font-family: var(--font-display); font-weight: 600; font-size: 20px; }
+.sec-title button { border: 0; background: transparent; color: var(--brand); font-weight: 600; font-size: 14px; padding: 10px 0; }
+
+/* Inicio */
+.hero { background: #1A3C8F; color: #FFFFFF; padding: 22px 20px 24px; position: relative; overflow: hidden; display: flex; flex-direction: column; gap: 14px; }
+.stripes { position: absolute; right: 0; bottom: 18px; width: 26%; display: flex; flex-direction: column; gap: 11px; opacity: .14; }
+.stripes i { display: block; height: 6px; background: #FFFFFF; }
+.hero h1 { position: relative; margin: 0; font-family: var(--font-display); font-weight: 800; font-size: 31px; line-height: 1.06; max-width: 300px; }
+.hero p { position: relative; margin: -4px 0 0; font-size: 16px; color: #DCE5FA; max-width: 300px; }
+.hero-cta { position: relative; height: 54px; border: 0; border-radius: 16px; background: #F2B705; color: #0E1B3D; font-weight: 800; font-size: 17px; display: flex; align-items: center; justify-content: center; gap: 10px; }
+.hero-search { position: relative; height: 50px; border: 1.5px solid rgba(255,255,255,.35); border-radius: 16px; background: transparent; color: #FFFFFF; display: flex; align-items: center; gap: 10px; padding: 0 16px; font-size: 15px; text-align: left; }
+.profile { border: 0; border-radius: 18px; background: var(--sun-soft); color: var(--fg); padding: 14px 16px; display: flex; align-items: center; gap: 14px; text-align: left; width: 100%; }
+.profile .mini-code { display: flex; gap: 4px; }
+.profile .mini-code b { width: 34px; height: 34px; border-radius: 50%; background: #1A3C8F; color: #FFFFFF; display: grid; place-items: center; font-family: var(--font-display); font-size: 16px; }
+.profile span.t { flex: 1; min-width: 0; }
+.profile strong { display: block; font-size: 15px; }
+.profile small { color: var(--muted); font-size: 13px; }
+.tiles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.tile { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; padding: 14px; border-radius: 18px; background: var(--surface); border: 1px solid var(--line); text-align: left; min-height: 100px; }
+.tile .ic { width: 42px; height: 42px; border-radius: 13px; display: grid; place-items: center; background: var(--brand-soft); color: var(--brand); }
+.tile.alt .ic { background: var(--sun-soft); color: var(--sun-ink); }
+.tile strong { font-size: 15px; line-height: 1.2; }
+.tile small { color: var(--muted); font-size: 13px; margin-top: -6px; }
+.hscroll { display: flex; gap: 8px; overflow-x: auto; margin: 0 -16px; padding: 2px 16px 6px; scrollbar-width: none; }
+.hscroll::-webkit-scrollbar { display: none; }
+.ipill { flex: 0 0 auto; display: flex; align-items: center; gap: 10px; min-height: 52px; padding: 6px 14px 6px 6px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); }
+.ipill small { display: block; font-size: 12px; color: var(--muted); }
+.ipill strong { display: block; font-size: 14px; text-align: left; }
+
+/* Insignias y tarjetas */
+.mini { flex-shrink: 0; min-width: 40px; height: 40px; padding: 0 8px; border-radius: 12px; display: grid; place-items: center; font-weight: 800; font-size: 12px; }
+.pub { background: #1A3C8F; color: #FFFFFF; }
+.priv { background: var(--sun-soft); color: var(--sun-ink); }
+.card { width: 100%; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); padding: 12px 14px; display: flex; flex-direction: column; gap: 10px; text-align: left; }
+.card-head { display: flex; align-items: center; gap: 12px; }
+.card-title { flex: 1; min-width: 0; font-weight: 700; font-size: 15px; line-height: 1.25; }
+.chev { color: var(--faint); flex-shrink: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { font-size: 12px; font-weight: 700; padding: 4px 9px; border-radius: 999px; background: var(--track); color: var(--muted); }
+.chip.ok { background: var(--ok-soft); color: var(--ok); }
+.chip.brand { background: var(--brand-soft); color: var(--brand); }
+.chip.sun { background: var(--sun-soft); color: var(--sun-ink); }
+.chip.warn { background: var(--warn-soft); color: var(--warn); }
+.chip.bad { background: var(--bad-soft); color: var(--bad); }
+.filter.bach { border-color: var(--brand); color: var(--brand); font-weight: 700; }
+.filter.bach[aria-pressed="true"] { background: var(--brand); color: var(--brand-fg); }
+.bach-panel { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 14px; display: flex; flex-direction: column; gap: 10px; max-height: 60vh; overflow-y: auto; }
+.bach-panel .chips { gap: 8px; }
+.ori-group { display: flex; flex-direction: column; gap: 6px; }
+.ori-group small { font-size: 12px; font-weight: 700; color: var(--faint); }
+.bach-panel .chips { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.bach-panel .filter { width: 100%; height: auto; min-height: 42px; padding: 6px 10px; justify-content: center; text-align: center; line-height: 1.2; }
+.bach-actions { display: grid; grid-template-columns: 1fr auto; gap: 8px; }
+.bach-actions .btn { min-height: 46px; font-size: 15px; }
+.bach-actions .btn[disabled] { opacity: .45; cursor: not-allowed; }
+.elig { display: flex; gap: 12px; align-items: center; padding: 12px 14px; border-radius: 16px; font-weight: 700; font-size: 15px; border: 0; width: 100%; text-align: left; }
+.elig small { display: block; font-weight: 500; font-size: 13px; margin-top: 2px; }
+.elig.ok { background: var(--ok-soft); color: var(--ok); }
+.elig.check { background: var(--warn-soft); color: var(--warn); }
+.elig.no { background: var(--bad-soft); color: var(--bad); }
+.elig.na { background: var(--track); color: var(--muted); }
+.elig.ask { background: var(--brand-soft); color: var(--brand); }
+
+/* Buscar */
+.searchbar { position: sticky; top: 0; z-index: 2; background: var(--bg); padding: 12px 16px 6px; display: flex; flex-direction: column; gap: 10px; border-bottom: 1px solid var(--line); }
+.search-wrap { position: relative; }
+.search-wrap svg { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--faint); pointer-events: none; }
+.search { height: 50px; border: 1.5px solid var(--line); border-radius: 14px; padding: 0 14px 0 44px; font: inherit; font-size: 16px; color: var(--fg); background: var(--surface); width: 100%; }
+.search:focus { border-color: var(--brand); outline: none; }
+.filter { flex: 0 0 auto; height: 38px; padding: 0 14px; border-radius: 999px; font-size: 14px; font-weight: 600; border: 1.5px solid var(--line); background: var(--surface); display: inline-flex; align-items: center; gap: 6px; }
+.filter[aria-pressed="true"] { background: var(--brand); color: var(--brand-fg); border-color: var(--brand); }
+.filter.clear { border-style: dashed; color: var(--muted); }
+.count { font-size: 13px; font-weight: 600; color: var(--muted); }
+.empty { text-align: center; padding: 36px 16px; color: var(--muted); display: flex; flex-direction: column; gap: 10px; align-items: center; }
+.empty strong { color: var(--fg); font-size: 17px; }
+
+/* Institución */
+.inst-head { padding: 18px 16px; display: flex; gap: 14px; align-items: center; background: var(--surface); border-bottom: 1px solid var(--line); }
+.inst-head .mini { height: 56px; min-width: 56px; font-size: 14px; border-radius: 16px; }
+.inst-head h1 { margin: 0; font-family: var(--font-display); font-weight: 600; font-size: 20px; line-height: 1.15; }
+
+/* Carrera */
+.c-head { padding: 18px 16px 16px; background: var(--surface); border-bottom: 1px solid var(--line); display: flex; flex-direction: column; gap: 10px; }
+.c-head h1 { margin: 0; font-family: var(--font-display); font-weight: 800; font-size: 26px; line-height: 1.1; }
+.linkbtn { border: 0; background: transparent; padding: 0; color: var(--brand); font-weight: 600; text-align: left; display: inline-flex; align-items: center; gap: 8px; min-height: 32px; }
+.facts3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.fact3 { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 12px 10px; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.fact3 svg { color: var(--brand); }
+.fact3 small { font-size: 12px; color: var(--muted); font-weight: 600; }
+.fact3 strong { font-size: 14px; line-height: 1.25; overflow-wrap: break-word; hyphens: auto; }
+.fact3 strong.na { color: var(--faint); font-weight: 600; font-size: 13px; }
+details.sec { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; }
+details.sec summary { list-style: none; display: flex; align-items: center; gap: 12px; padding: 14px; min-height: 52px; font-weight: 700; cursor: pointer; }
+details.sec summary::-webkit-details-marker { display: none; }
+details.sec summary svg:first-child { color: var(--brand); flex-shrink: 0; }
+details.sec summary span { flex: 1; }
+details.sec summary .down { color: var(--faint); transition: transform .15s; }
+details.sec[open] summary .down { transform: rotate(180deg); }
+.sec-body { padding: 0 14px 14px 46px; line-height: 1.5; color: var(--fg); }
+.sec-body p { margin: 0; }
+.jobs { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.jobs li { display: flex; gap: 10px; align-items: baseline; }
+.jobs li::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--sun); flex-shrink: 0; transform: translateY(-2px); }
+.actionbar { position: sticky; bottom: 0; background: var(--bg); border-top: 1px solid var(--line); padding: 10px 16px; display: grid; grid-template-columns: 1fr auto; gap: 10px; }
+.btn { min-height: 52px; border-radius: 14px; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center; gap: 8px; border: 1.5px solid var(--brand); background: var(--brand); color: var(--brand-fg); width: 100%; padding: 0 16px; text-decoration: none; }
+.btn.ghost { background: transparent; color: var(--brand); }
+.btn.fav-on { background: transparent; color: var(--heart); border-color: var(--heart); }
+.btn.icon { width: 52px; padding: 0; }
+.src { font-size: 12px; color: var(--muted); text-align: center; line-height: 1.5; margin: 0; }
+.credit { margin: 6px 0 0; padding-top: 16px; border-top: 1px solid var(--line); text-align: center; font-size: 12px; color: var(--faint); letter-spacing: .02em; }
+.credit strong { font-weight: 700; color: var(--muted); }
+
+/* Test */
+.types { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.type { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 10px 6px; display: flex; flex-direction: column; align-items: center; gap: 6px; font-weight: 600; font-size: 13px; text-align: center; }
+.type b { width: 34px; height: 34px; border-radius: 50%; background: var(--brand); color: var(--brand-fg); display: grid; place-items: center; font-family: var(--font-display); font-size: 16px; }
+.big { margin: 0; font-family: var(--font-display); font-weight: 800; font-size: 28px; line-height: 1.1; }
+.lede { font-size: 16px; line-height: 1.45; color: var(--muted); margin: 0; }
+.meta { display: flex; flex-wrap: wrap; gap: 6px; }
+.qwrap { min-height: 100%; display: flex; flex-direction: column; gap: 12px; padding: 14px 16px 16px; }
+.qtop { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.qtop button { border: 0; background: transparent; color: var(--brand); font-weight: 600; font-size: 14px; min-height: 44px; padding: 0 4px; }
+.pbar { height: 8px; border-radius: 4px; background: var(--track); overflow: hidden; }
+.pbar span { display: block; height: 100%; background: var(--sun); border-radius: 4px; transition: width .2s; }
+.qmeta { display: flex; justify-content: space-between; gap: 8px; font-size: 13px; font-weight: 600; color: var(--muted); min-height: 18px; }
+.qmeta em { font-style: normal; color: var(--sun-ink); }
+.qcard { flex: 1; min-height: 220px; display: flex; align-items: center; justify-content: center; text-align: center; background: var(--surface); border: 1px solid var(--line); border-radius: 22px; padding: 28px 22px; font-family: var(--font-display); font-size: 25px; font-weight: 700; line-height: 1.25; text-wrap: balance; }
+.yesno { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.yesno button { height: 66px; border-radius: 18px; font-size: 18px; font-weight: 800; }
+.yesno .no { background: var(--surface); border: 1.5px solid var(--line); color: var(--fg); }
+.yesno .yes { background: var(--brand); border: 1.5px solid var(--brand); color: var(--brand-fg); }
+.yesno button[aria-pressed="true"] { box-shadow: 0 0 0 3px var(--sun); }
+.result { background: #1A3C8F; color: #FFFFFF; border-radius: 22px; padding: 20px 18px; display: flex; flex-direction: column; gap: 14px; text-align: center; }
+.result small { color: #F2B705; font-weight: 700; font-size: 13px; letter-spacing: .04em; text-transform: uppercase; }
+.code3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.code3 div { display: flex; flex-direction: column; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: #DCE5FA; }
+.code3 b { width: 66px; height: 66px; border-radius: 50%; background: #FFFFFF; color: #1A3C8F; display: grid; place-items: center; font-family: var(--font-display); font-size: 32px; }
+.code3 div:first-child b { background: #F2B705; color: #0E1B3D; }
+.result p { margin: 0; font-size: 15px; line-height: 1.45; }
+.result .share { height: 46px; border-radius: 14px; border: 1.5px solid rgba(255,255,255,.45); background: transparent; color: #FFFFFF; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 8px; }
+.bars { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 14px; display: flex; flex-direction: column; gap: 10px; }
+.bar { display: grid; grid-template-columns: 112px minmax(0, 1fr) 26px; align-items: center; gap: 10px; font-size: 13px; font-weight: 600; }
+.bar .tr { height: 12px; border-radius: 6px; background: var(--track); overflow: hidden; }
+.bar .fill { display: block; height: 100%; border-radius: 6px; background: var(--faint); }
+.bar .fill.top { background: var(--brand); }
+.bar span:last-child { text-align: right; font-variant-numeric: tabular-nums; }
+.sharebox { width: 100%; min-height: 90px; border-radius: 12px; border: 1.5px solid var(--line); background: var(--surface); color: var(--fg); padding: 10px; font: inherit; font-size: 14px; }
+
+/* Favoritos y comparar */
+.favrow { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px; align-items: stretch; }
+.cmp-toggle { width: 56px; border-radius: 16px; border: 1.5px solid var(--line); background: var(--surface); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 11px; font-weight: 700; color: var(--muted); }
+.cmp-toggle[aria-pressed="true"] { border-color: var(--brand); background: var(--brand-soft); color: var(--brand); }
+.cmp-scroll { overflow-x: auto; margin: 0 -16px; padding: 0 16px 6px; }
+.cmp { border-collapse: separate; border-spacing: 0; min-width: 100%; font-size: 14px; }
+.cmp th, .cmp td { text-align: left; vertical-align: top; padding: 10px; border-bottom: 1px solid var(--line); min-width: 150px; line-height: 1.4; }
+.cmp th[scope="row"] { min-width: 96px; font-size: 12px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); position: sticky; left: 0; background: var(--bg); }
+.cmp thead th { font-family: var(--font-display); font-size: 16px; }
+
+nav.tabs { flex-shrink: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); background: var(--surface); border-top: 1px solid var(--line); padding-bottom: env(safe-area-inset-bottom, 0px); }
+nav.tabs button { position: relative; height: 64px; border: 0; background: transparent; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 12px; font-weight: 600; color: var(--faint); }
+nav.tabs button[aria-current="page"] { color: var(--brand); }
+nav.tabs button[aria-current="page"]::before { content: ""; position: absolute; top: 0; left: 30%; right: 30%; height: 3px; border-radius: 0 0 3px 3px; background: var(--brand); }
+nav.tabs .badge { position: absolute; top: 8px; left: 56%; min-width: 18px; height: 18px; border-radius: 9px; background: var(--heart); color: #FFFFFF; font-size: 11px; display: grid; place-items: center; padding: 0 4px; }
+.toast { position: absolute; left: 16px; right: 16px; top: 66px; background: var(--fg); color: var(--bg); padding: 12px 16px; border-radius: 14px; font-weight: 600; font-size: 14px; text-align: center; z-index: 5; }
+@media (prefers-reduced-motion: no-preference) {
+  main > * { animation: in .18s ease-out; }
+  @keyframes in { from { opacity: .4; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+}
+.gcards { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.gcard { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; padding: 14px; border-radius: 18px; border: 0; background: var(--brand-soft); color: var(--fg); text-align: left; min-height: 112px; }
+.gcard .ic { width: 42px; height: 42px; border-radius: 13px; display: grid; place-items: center; background: var(--surface); color: var(--brand); }
+.gcard.alt { background: var(--sun-soft); }
+.gcard.alt .ic { color: var(--sun-ink); }
+.gcard strong { font-size: 15px; line-height: 1.2; }
+.gcard small { color: var(--muted); font-size: 13px; margin-top: -4px; }
+.g-head { padding: 20px 16px 6px; display: flex; flex-direction: column; gap: 8px; }
+.g-head .g-ic { width: 52px; height: 52px; border-radius: 16px; display: grid; place-items: center; background: var(--sun-soft); color: var(--sun-ink); }
+.g-head h1 { margin: 0; font-family: var(--font-display); font-weight: 700; font-size: 28px; line-height: 1.1; }
+.g-head p { margin: 0; color: var(--muted); font-size: 16px; line-height: 1.45; }
+.beca { border: 1px solid var(--line); border-radius: 16px; background: var(--surface); }
+.beca summary { list-style: none; display: flex; align-items: center; gap: 10px; padding: 14px; min-height: 56px; cursor: pointer; }
+.beca summary::-webkit-details-marker { display: none; }
+.beca summary .t { flex: 1; min-width: 0; }
+.beca summary strong { display: block; font-size: 15px; }
+.beca summary small { color: var(--muted); font-size: 13px; }
+.beca summary .chip { display: inline-block; margin-top: 6px; }
+.beca summary small { display: block; }
+.beca summary .down { flex-shrink: 0; color: var(--muted); transition: transform .2s; }
+.beca[open] summary .down { transform: rotate(180deg); }
+.beca .sec-body { padding: 0 14px 14px; display: flex; flex-direction: column; gap: 10px; }
+.dato { margin: 0; padding: 10px 12px; border-radius: 12px; background: var(--ok-soft); color: var(--fg); font-size: 14px; line-height: 1.45; }
+.bmini { padding: 10px 12px; border-radius: 12px; background: var(--brand-soft); }
+.bmini strong { display: block; font-size: 14px; }
+.bmini small { color: var(--muted); font-size: 13px; }
+</style>
+</head>
+<body>
+
+<div class="app">
+  <header class="topbar" id="top"></header>
+  <main id="main"></main>
+  <div id="toast" class="toast" role="status" hidden></div>
+  <nav class="tabs" aria-label="Navegación principal">
+    <button type="button" data-tab="home"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5L12 4l8 6.5V20h-5.5v-5h-5v5H4z"/></svg>Inicio</button>
+    <button type="button" data-tab="search"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>Buscar</button>
+    <button type="button" data-tab="test"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg>Test</button>
+    <button type="button" data-tab="favs"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.5-9.2C1 8.2 3.3 4.5 7 4.5c2.1 0 3.6 1.1 5 3 1.4-1.9 2.9-3 5-3 3.7 0 6 3.7 4.5 7.3C19.5 16.4 12 21 12 21z"/></svg>Favoritos<span class="badge" id="favbadge" hidden></span></button>
+  </nav>
+</div>
+
+<script>
+(function () {
+  /* ---------- Datos (relevados de los sitios oficiales, oct. 2026) ---------- */
+  var FREE = 'Gratuita';
+  var PRIV = 'Con arancel · consultá becas';
+  var ASK = 'Consultar en la institución';
+
+  var INSTS = [
+    { id: 'udelar', short: 'UR', full: 'Universidad de la República', type: 'Pública', place: 'Montevideo e interior', url: 'https://udelar.edu.uy/carreras' },
+    { id: 'utu', short: 'UTU', full: 'UTU · Educación Terciaria', type: 'Pública', place: 'Todo el país', url: 'https://eduterciaria.utu.edu.uy/carreras/' },
+    { id: 'utec', short: 'UTEC', full: 'Universidad Tecnológica', type: 'Pública', place: 'Sedes en el interior del país', url: 'https://utec.edu.uy/es/educacion/carreras/' },
+    { id: 'ucu', short: 'UCU', full: 'Universidad Católica del Uruguay', type: 'Privada', place: 'Montevideo, Punta del Este y Salto', url: 'https://www.ucu.edu.uy/' },
+    { id: 'ort', short: 'ORT', full: 'Universidad ORT Uruguay', type: 'Privada', place: 'Montevideo', url: 'https://www.ort.edu.uy/' },
+    { id: 'um', short: 'UM', full: 'Universidad de Montevideo', type: 'Privada', place: 'Montevideo', url: 'https://www.um.edu.uy/admisiones-becas' },
+    { id: 'ude', short: 'UDE', full: 'Universidad de la Empresa', type: 'Privada', place: 'Montevideo, Punta del Este, Colonia y otras', url: 'https://ude.edu.uy/' },
+    { id: 'claeh', short: 'CLAEH', full: 'Universidad CLAEH', type: 'Privada', place: 'Montevideo, Punta del Este y Tacuarembó', url: 'https://universidad.claeh.edu.uy/' },
+    { id: 'unifa', short: 'UNIFA', full: 'Instituto Universitario Francisco de Asís', type: 'Privada', place: 'Maldonado', url: 'https://www.unifa.edu.uy/' }
+  ];
+
+  var UTEC_REQ = 'Bachillerato (Secundaria o UTU) en cualquier orientación';
+  var CAREERS = [
+    { id: 'udelar-psico', inst: 'udelar', name: 'Licenciatura en Psicología', area: 'Salud', code: 'SIA', dur: '4 años (8 semestres)', cost: FREE, sedes: 'Montevideo, Salto y Paysandú (en Maldonado, solo el ciclo inicial)', req: ASK, src: 'https://psico.edu.uy/guia-movilidad/licenciatura' },
+
+    { id: 'utu-asist', inst: 'utu', name: 'Tecnólogo en Gestión de Servicios de Tecnología Asistiva', area: 'Salud', code: 'RSC', dur: '3 años', cost: FREE, sedes: 'Montevideo (práctica en el CENATT)', req: ASK, src: 'https://www.elobservador.com.uy/nacional/utu-lanzo-una-carrera-terciaria-inedita-el-pais-todo-lo-que-tenes-que-saber-tecnologia-asistiva-n6040701' },
+
+    { id: 'ti-inf', inst: 'utec', also: ['utu', 'udelar'], name: 'Tecnólogo en Informática', area: 'Tecnología', code: 'IRC', dur: '3 años (6 semestres)', title: 'Tecnólogo/a en Informática · título compartido UTEC, UTU y UdelaR', cost: FREE, sedes: 'Maldonado, San José y Florida (presencial); Paysandú (híbrida)', req: 'Bachillerato aprobado sin previas, con orientación habilitante para Ingeniería o bachillerato tecnológico en informática. Si hay más inscriptos que cupos, sorteo.', jobs: ['Programación', 'Testing de software', 'Bases de datos y redes'], src: 'https://utec.edu.uy/es/educacion/carrera/tecnologo-en-informatica/' },
+    { id: 'utec-meca', inst: 'utec', name: 'Ingeniería en Mecatrónica', area: 'Tecnología', code: 'RIC', dur: '5 años (título intermedio a los 3)', title: 'Ingeniería en Mecatrónica · intermedio: Tecnólogo/a en Mecatrónica (compartido con UTU)', cost: FREE, sedes: 'Fray Bentos · semipresencial', req: 'Bachillerato Físico-Matemático, Matemática y Diseño, Ciencias Biológicas o Agrarias, o EMT/Bachillerato Profesional UTU afines', jobs: ['Automatización industrial', 'Planes de mantenimiento industrial', 'Selección de hardware y software industrial'], src: 'https://utec.edu.uy/es/educacion/carrera/ingenieria-en-mecatronica/' },
+    { id: 'utec-bio', inst: 'utec', name: 'Ingeniería Biomédica', area: 'Tecnología', code: 'IRS', dur: '5 años (título intermedio a los 3)', title: 'Ingeniero/a Biomédico/a · intermedio: Tecnólogo/a en Ingeniería Biomédica', cost: FREE, sedes: 'Fray Bentos · presencial', req: UTEC_REQ, jobs: ['Equipamiento médico en hospitales', 'Diseño de dispositivos médicos', 'Investigación e innovación'], src: 'https://utec.edu.uy/es/educacion/carrera/ingenieria-biomedica/' },
+    { id: 'utec-er', inst: 'utec', name: 'Ingeniería en Energías Renovables', area: 'Tecnología', code: 'RIC', dur: '5 años (título intermedio a los 3)', title: 'Ingeniero/a en Energías Renovables (solar o eólica)', cost: FREE, sedes: 'Durazno · presencial', req: 'Bachillerato Físico-Matemático, Matemática y Diseño, Agrario, Social-Económico, Biológico o EMT/BP UTU afines', jobs: ['Parques solares y eólicos', 'Consultoría energética', 'Investigación'], src: 'https://utec.edu.uy/es/educacion/carrera/ingenieria-en-energias-renovables/' },
+    { id: 'utec-agro', inst: 'utec', name: 'Ingeniería Agroambiental', area: 'Agro y ambiente', code: 'RIS', dur: '5 años (10 semestres)', title: 'Ingeniero/a Agroambiental · intermedio: Tecnólogo/a Agroambiental', cost: FREE, sedes: 'Durazno · semipresencial (1 día presencial cada 2 semanas)', req: 'Bachillerato Biológico-Agrario, Matemática y Diseño, Físico-Matemático, Social-Económico, Social-Humanístico o EMT UTU', jobs: ['Gestión de recursos naturales', 'Proyectos ambientales', 'Organismos públicos y privados'], src: 'https://utec.edu.uy/es/educacion/carrera/ingenieria-agroambiental/' },
+    { id: 'utec-log', inst: 'utec', name: 'Ingeniería en Logística', area: 'Negocios', code: 'ECR', dur: '5 años (título intermedio a los 3)', title: 'Ingeniería en Logística · intermedio: Tecnólogo/a en Logística', cost: FREE, sedes: 'Rivera y Fray Bentos · presencial, de 18 a 22 h', req: 'Bachillerato de Secundaria (varias orientaciones, incluida Arte y Expresión) o EMT UTU', jobs: ['Cadenas de suministro', 'Centros logísticos', 'Comercio internacional'], src: 'https://utec.edu.uy/es/educacion/carrera/ingenieria-en-logistica/' },
+    { id: 'utec-lti', inst: 'utec', name: 'Licenciatura en Tecnologías de la Información', area: 'Tecnología', code: 'ICR', dur: '4 años (8 semestres)', title: 'Licenciado/a en TI · intermedio: Técnico/a Superior Universitario en TI', cost: FREE, sedes: 'Durazno, Fray Bentos, Melo y Minas · híbrida', req: UTEC_REQ + ', más un curso inicial virtual (mínimo 80/100)', jobs: ['Desarrollo de apps', 'Ciberseguridad y nube', 'Gestión de proyectos TI'], src: 'https://utec.edu.uy/es/educacion/carrera/licenciatura-en-tecnologias-de-la-informacion/' },
+    { id: 'utec-ia', inst: 'utec', name: 'Licenciatura en Ingeniería de Datos e Inteligencia Artificial', area: 'Tecnología', code: 'ICR', dur: '4 años', title: 'Licenciatura en Ingeniería de Datos e IA · intermedio: Tecnólogo/a en Análisis y Gestión de Datos', cost: FREE, sedes: 'Rivera · presencial, horario diurno', req: UTEC_REQ + ', más curso de admisión obligatorio', jobs: ['Procesamiento y análisis de datos a gran escala'], src: 'https://utec.edu.uy/es/educacion/carrera/licenciatura-en-ingenieria-de-datos-e-inteligencia-artificial/' },
+    { id: 'utec-jazz', inst: 'utec', name: 'Licenciatura en Jazz y Música Creativa', area: 'Arte y diseño', code: 'ASE', dur: '4 años (título intermedio a los 3)', title: 'Licenciado/a en Jazz y Música Creativa', cost: FREE, sedes: 'Mercedes · semipresencial (3 días seguidos por semana)', req: UTEC_REQ + '; evaluación diagnóstica no eliminatoria', jobs: ['Interpretación en ensambles', 'Composición y arreglos', 'Sonido y producción musical'], src: 'https://utec.edu.uy/es/educacion/carrera/licenciatura-en-jazz-y-musica-creativa/' },
+    { id: 'utec-ccd', inst: 'utec', name: 'Tecnicatura en Comunicación Creativa y Entretenimiento Digital', area: 'Arte y diseño', code: 'AER', dur: '2 años', title: 'Técnico/a Universitario/a en Comunicación Creativa y Entretenimiento Digital', cost: FREE, sedes: 'Minas · semipresencial (3 días por semana)', req: UTEC_REQ + ', más curso de admisión. Sin cupo máximo.', jobs: ['Proyectos creativos digitales', 'Equipos de contenido', 'Entretenimiento digital'], src: 'https://utec.edu.uy/es/educacion/carrera/tecnicatura-en-comunicacion-creativa-y-entretenimiento-digital/' },
+
+    { id: 'ucu-psico', inst: 'ucu', name: 'Licenciatura en Psicología', area: 'Salud', code: 'SIA', dur: '4 años (título intermedio a los 2,5)', title: 'Licenciado/a en Psicología · intermedio: Asistente en Evaluación Psicológica', cost: PRIV, sedes: 'Montevideo y Punta del Este (presencial); Salto (semipresencial)', req: 'Bachillerato de cualquier orientación. Para egresar: inglés nivel B1/B2 (cursos gratuitos en la UCU).', jobs: ['Clínica', 'Ámbito educativo', 'Ámbito laboral y comunitario'], src: 'https://carreras.ucu.edu.uy/programas/ver/licenciatura-en-psicologia--mvd' },
+
+    { id: 'ort-is', inst: 'ort', name: 'Ingeniería en Sistemas', area: 'Tecnología', code: 'IRC', dur: '5 años', title: 'Ingeniero/a en Sistemas · a los 3 años: Ayudante de Ingeniero · a los 4: Lic. en Ingeniería de Software · nueva orientación en Inteligencia Artificial', cost: PRIV, sedes: 'Montevideo · turno mañana o noche', req: 'Bachillerato en la mayoría de las orientaciones (no Creativo Artístico, General ni Derecho y Ciencias Políticas). Se puede entrar con hasta 2 previas.', jobs: ['Desarrollo de software', 'Liderazgo de proyectos', 'Consultoría TI'], src: 'https://fi.ort.edu.uy/ingenieria-en-sistemas' },
+    { id: 'ort-ls', inst: 'ort', name: 'Licenciatura en Sistemas', area: 'Tecnología', code: 'ICE', dur: '4 años (título intermedio a los 3)', title: 'Licenciado/a en Sistemas · intermedio: Analista de Sistemas en Computación · nueva orientación en Ciencia de Datos', cost: PRIV, sedes: 'Montevideo · turno mañana o noche', req: 'Bachillerato en cualquier orientación. Se puede entrar con hasta 2 previas.', jobs: ['Gerencia y consultoría TI', 'Ciencia de datos', 'Desarrollo de software'], src: 'https://fi.ort.edu.uy/licenciatura-en-sistemas' },
+    { id: 'ort-arq', inst: 'ort', name: 'Arquitectura', area: 'Arte y diseño', code: 'ARI', dur: '5 años', title: 'Arquitecto/a · doble titulación posible con PUC Minas (Brasil)', cost: PRIV, sedes: 'Montevideo', req: ASK, src: 'https://fa.ort.edu.uy' },
+
+    { id: 'um-gth', inst: 'um', name: 'Licenciatura en Gestión del Talento Humano', area: 'Negocios', code: 'SEC', dur: '4 años (8 semestres)', title: 'Licenciado/a en Gestión del Talento Humano', cost: PRIV, sedes: 'Montevideo', req: 'Bachillerato, entrevista de admisión y prueba de aptitud (lengua, matemática y lógica)', src: 'https://www.um.edu.uy/sites/default/files/documentos/2026-07/PDE%20GTH.pdf' },
+    { id: 'um-eco', inst: 'um', name: 'Licenciatura en Economía', area: 'Negocios', code: 'ICE', dur: '4 años (8 semestres)', title: 'Licenciado/a en Economía · opción de doble título con University of London', cost: PRIV, sedes: 'Montevideo', req: 'Bachillerato, entrevista de admisión y prueba de aptitud (lengua, matemática y lógica)', src: 'https://www.um.edu.uy/sites/default/files/documentos/2026-06/PDE%20ECO.pdf' },
+    { id: 'um-cdn', inst: 'um', name: 'Licenciatura en Ciencia de Datos para Negocios', area: 'Tecnología', code: 'ICE', dur: '4 años (8 semestres)', title: 'Licenciado/a en Ciencia de Datos para Negocios', cost: PRIV, sedes: 'Montevideo', req: 'Bachillerato, entrevista de admisión y prueba de aptitud (lengua, matemática y lógica)', src: 'https://www.um.edu.uy/sites/default/files/documentos/2026-06/PDE%20CDN.pdf' },
+
+    { id: 'ude-cont', inst: 'ude', name: 'Contador Público', area: 'Negocios', code: 'CEI', dur: '4 años (8 semestres)', title: 'Contador/a Público/a', cost: PRIV, sedes: 'Montevideo, Punta del Este y Colonia', req: 'Bachillerato en cualquier orientación; las previas se aprueban antes de terminar el 1.er semestre', jobs: ['Auditoría y asesoría', 'Empresas', 'Administración pública'], src: 'https://ude.edu.uy/facultades-de-ciencias-empresariales/contador-publico/' },
+    { id: 'ude-inf', inst: 'ude', name: 'Licenciatura en Informática', area: 'Tecnología', code: 'IRC', dur: '4 años (8 semestres)', title: 'Licenciado/a en Informática · intermedio: Analista en Sistemas de Información', cost: PRIV, sedes: 'Montevideo, Punta del Este y Colonia', req: 'Bachillerato en cualquier orientación; las previas se aprueban antes de terminar el 1.er semestre', jobs: ['Desarrollo de software', 'Consultoría independiente', 'Docencia e investigación'], src: 'https://ude.edu.uy/facultad-de-ingenieria/licenciatura-en-informatica/' },
+    { id: 'ude-fisio', inst: 'ude', name: 'Licenciatura en Fisioterapia', area: 'Salud', code: 'SRI', dur: '4 años + internado', title: 'Licenciado/a en Fisioterapia', cost: PRIV, sedes: 'Montevideo, Punta del Este y Colonia', req: 'Bachillerato en cualquier orientación; las previas se aprueban antes de terminar el 1.er semestre', jobs: ['Hospitales y clínicas', 'Deporte', 'Práctica independiente'], src: 'https://ude.edu.uy/facultad-de-ciencias-de-la-salud/licenciatura-en-fisioterapia/' },
+    { id: 'ude-enf', inst: 'ude', name: 'Licenciatura en Enfermería', area: 'Salud', code: 'SIR', dur: '4 años + 1 semestre de internado', title: 'Licenciado/a en Enfermería', cost: PRIV, sedes: 'Montevideo y Punta del Este', req: 'Bachillerato completo (se admite empezar con hasta 3 previas) y entrevista con la coordinación', jobs: ['Atención en todos los niveles de salud', 'Gestión de servicios de enfermería', 'Educación e investigación'], src: 'https://ude.edu.uy/facultad-de-ciencias-de-la-salud/licenciatura-en-enfermeria/' },
+
+    { id: 'unifa-psico', inst: 'unifa', name: 'Licenciatura en Psicología', area: 'Salud', code: 'SIA', dur: '5 años', title: 'Licenciado/a en Psicología', cost: PRIV, sedes: 'Maldonado · lunes a viernes de 18 a 24 h', req: 'Bachillerato completo en cualquier orientación', jobs: ['Clínica', 'Instituciones educativas', 'Empresas y ONG', 'Docencia e investigación'], src: 'https://www.unifa.edu.uy/licenciatura_psicologia' }
+  ];
+
+  /* UCU: listado oficial de carreras (capturas del sitio, 13/10/2026). [nombre, modalidad, años, campus, área, código Holland] */
+  var UCU_CAMPUS = { MVD: 'Montevideo', PDE: 'Punta del Este', SALTO: 'Salto' };
+  var P = 'presencial', PS = 'presencial o semipresencial';
+  var UCU = [
+    ['Abogacía', P, 5, 'PDE MVD', 'Derecho y política', 'ESI'],
+    ['Acompañamiento Terapéutico', PS, 2, 'SALTO MVD', 'Salud', 'SAI'],
+    ['Agronomía', P, 5, 'MVD', 'Agro y ambiente', 'RIC'],
+    ['Analista en Informática', P, 3, 'PDE SALTO MVD', 'Tecnología', 'IRC'],
+    ['Arquitectura', P, 5, 'MVD', 'Arte y diseño', 'ARI'],
+    ['Artes Escénicas', P, 4, 'MVD', 'Arte y diseño', 'ASE'],
+    ['Artes Visuales', P, 4, 'MVD', 'Arte y diseño', 'ARI'],
+    ['Business Analytics', P, 4, 'MVD', 'Negocios', 'ICE'],
+    ['Ciencia Política', P, 4, 'MVD', 'Derecho y política', 'ISE'],
+    ['Ciencias del Comportamiento', P, 4, 'MVD', 'Social y educación', 'ISA'],
+    ['Cine', P, 4, 'MVD', 'Arte y diseño', 'AER'],
+    ['Comunicación', P, 4, 'MVD', 'Social y educación', 'ASE'],
+    ['Comunicación y Marketing', P, 4, 'PDE', 'Negocios', 'EAS'],
+    ['Contador Público', P, 4, 'PDE SALTO MVD', 'Negocios', 'CEI'],
+    ['Criminología', P, 4, 'MVD', 'Derecho y política', 'ISR'],
+    ['Deporte y Actividad Física', P, 4, 'MVD', 'Salud', 'RSE'],
+    ['Desarrollador de Software', P, 2, 'PDE SALTO MVD', 'Tecnología', 'IRC'],
+    ['Dirección de Empresas', P, 4, 'PDE SALTO MVD', 'Negocios', 'ECS'],
+    ['Diseño Arquitectónico', P, 2, 'PDE MVD', 'Arte y diseño', 'ARC'],
+    ['Economía', P, 4, 'PDE SALTO MVD', 'Negocios', 'ICE'],
+    ['Educación', P, 4, 'MVD', 'Social y educación', 'SAE'],
+    ['Educación Inicial', P, 4, 'MVD', 'Social y educación', 'SAE'],
+    ['Filosofía', P, 4, 'MVD', 'Social y educación', 'IAS'],
+    ['Finanzas', P, 4, 'PDE SALTO MVD', 'Negocios', 'CEI'],
+    ['Fisioterapia', P, 4, 'MVD', 'Salud', 'SRI'],
+    ['Fonoaudiología', P, 4, 'MVD', 'Salud', 'SIR'],
+    ['Gestión Humana', P, 4, 'PDE SALTO MVD', 'Negocios', 'SEC'],
+    ['Ingeniería Ambiental', P, 5, 'MVD', 'Agro y ambiente', 'IRS'],
+    ['Ingeniería Biomédica', P, 5, 'MVD', 'Tecnología', 'IRS'],
+    ['Ingeniería Civil', P, 5, 'MVD', 'Tecnología', 'RIC'],
+    ['Ingeniería en Alimentos', P, 5, 'MVD', 'Tecnología', 'IRC'],
+    ['Ingeniería en Electrónica', P, 5, 'MVD', 'Tecnología', 'RIC'],
+    ['Ingeniería en Informática', P, 5, 'PDE MVD', 'Tecnología', 'IRC'],
+    ['Ingeniería en Sistemas Eléctricos de Potencia', P, 5, 'MVD', 'Tecnología', 'RIC'],
+    ['Ingeniería en Telecomunicaciones', P, 5, 'MVD', 'Tecnología', 'RIC'],
+    ['Ingeniería Industrial', P, 5, 'MVD', 'Tecnología', 'RIE'],
+    ['Ingeniería Mecánica', P, 5, 'MVD', 'Tecnología', 'RIC'],
+    ['Ingeniería Química', P, 5, 'MVD', 'Tecnología', 'IRC'],
+    ['Inteligencia Artificial y Ciencia de Datos', P, 5, 'MVD', 'Tecnología', 'ICR'],
+    ['Licenciatura en Enfermería', P, 4, 'MVD', 'Salud', 'SIR'],
+    ['Licenciatura en Enfermería (Profesionalización)', PS, 3, 'MVD', 'Salud', 'SIR'],
+    ['Licenciatura en Informática', P, 4, 'PDE MVD', 'Tecnología', 'IRC'],
+    ['Marketing y Estrategia Comercial', P, 4, 'PDE SALTO MVD', 'Negocios', 'EAC'],
+    ['Medicina', P, 6, 'MVD', 'Salud', 'ISR'],
+    ['Negocios Digitales y Gestión Tecnológica', P, 4, 'MVD', 'Negocios', 'EIC'],
+    ['Negocios Internacionales', P, 4, 'PDE SALTO MVD', 'Negocios', 'ECS'],
+    ['Negocios y Economía', P, 4, 'PDE', 'Negocios', 'ECI'],
+    ['Notariado', P, 5, 'PDE MVD', 'Derecho y política', 'CES'],
+    ['Nutrición', P, 4, 'MVD', 'Salud', 'ISR'],
+    ['Odontología', P, 4, 'MVD', 'Salud', 'IRS'],
+    ['Psicomotricidad', P, 4, 'MVD', 'Salud', 'SRA'],
+    ['Psicopedagogía', PS, 4, 'PDE SALTO MVD', 'Social y educación', 'SIA'],
+    ['Química Farmacéutica', P, 5, 'MVD', 'Salud', 'ICR'],
+    ['Relaciones Internacionales', P, 4, 'MVD', 'Derecho y política', 'ESI'],
+    ['Sociología', P, 4, 'MVD', 'Social y educación', 'ISA'],
+    ['Tecnicatura en Educación y Recreación', P, 2, 'MVD', 'Social y educación', 'SRE'],
+    ['Trabajo Social', P, 4, 'MVD', 'Social y educación', 'SEA'],
+    ['Veterinaria', P, 5, 'MVD', 'Agro y ambiente', 'IRS']
+  ];
+  function joinY(list) { return list.length > 1 ? list.slice(0, -1).join(', ') + ' y ' + list[list.length - 1] : list[0]; }
+  UCU.forEach(function (r) {
+    var slug = norm(r[0]).replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+    CAREERS.push({
+      id: 'ucu-' + slug, inst: 'ucu', name: r[0], area: r[4], code: r[5],
+      dur: r[2] ? r[2] + ' años' : ASK, cost: PRIV,
+      sedes: joinY(r[3].split(' ').map(function (k) { return UCU_CAMPUS[k]; })) + ' · ' + r[1],
+      req: ASK, src: 'https://www.ucu.edu.uy/'
+    });
+  });
+
+  /* ORT: carreras universitarias y técnicas (capturas del sitio, 13/10/2026). [nombre, nivel, ingresos, área, código] — M = marzo 2027, A = agosto 2027 */
+  var ORT = [
+    ['Contador Público', 'Grado', 'MA', 'Negocios', 'CEI'],
+    ['Licenciatura en Economía', 'Grado', 'MA', 'Negocios', 'ICE'],
+    ['Licenciatura en Estudios Internacionales', 'Grado', 'MA', 'Derecho y política', 'ESI'],
+    ['Licenciatura en Finanzas', 'Grado', 'MA', 'Negocios', 'CEI'],
+    ['Licenciatura en Gerencia y Administración', 'Grado', 'MA', 'Negocios', 'ECS'],
+    ['Licenciatura en Marketing y Dirección Comercial', 'Grado', 'MA', 'Negocios', 'EAC'],
+    ['Licenciatura en Negocios Digitales', 'Grado', 'MA', 'Negocios', 'EIC'],
+    ['Licenciatura en Diseño de Interiores', 'Grado', 'MA', 'Arte y diseño', 'ARE'],
+    ['Licenciatura en Comunicación Global', 'Grado', 'MA', 'Social y educación', 'ASE'],
+    ['Licenciatura en Comunicación y Analítica de Datos', 'Grado', 'MA', 'Social y educación', 'AIC'],
+    ['Licenciatura en Comunicación', 'Grado', 'MA', 'Social y educación', 'ASE'],
+    ['Licenciatura en Comunicación Publicitaria y Marketing', 'Grado', 'MA', 'Social y educación', 'AES'],
+    ['Licenciatura en Comunicación Audiovisual y Cinematográfica', 'Grado', 'MA', 'Arte y diseño', 'ARE'],
+    ['Licenciatura en Comunicación Empresarial', 'Grado', 'MA', 'Social y educación', 'ESA'],
+    ['Licenciatura en Comunicación Periodística y Creación de Contenidos', 'Grado', 'MA', 'Social y educación', 'ASI'],
+    ['Licenciatura en Diseño Industrial', 'Grado', 'MA', 'Arte y diseño', 'ARI'],
+    ['Licenciatura en Artes Digitales', 'Grado', 'M', 'Arte y diseño', 'AIR'],
+    ['Licenciatura en Diseño Multimedia', 'Grado', 'MA', 'Arte y diseño', 'AIR'],
+    ['Licenciatura en Animación y Videojuegos', 'Grado', 'MA', 'Arte y diseño', 'AIR'],
+    ['Licenciatura en Diseño de Modas', 'Grado', 'MA', 'Arte y diseño', 'AER'],
+    ['Licenciatura en Diseño Gráfico', 'Grado', 'MA', 'Arte y diseño', 'AEC'],
+    ['Ingeniería Eléctrica', 'Grado', 'MA', 'Tecnología', 'RIC'],
+    ['Ingeniería en Biotecnología', 'Grado', 'MA', 'Tecnología', 'IRC'],
+    ['Ingeniería en Electrónica', 'Grado', 'MA', 'Tecnología', 'RIC'],
+    ['Ingeniería en Telecomunicaciones', 'Grado', 'MA', 'Tecnología', 'RIC'],
+    ['Licenciatura en Bioinformática', 'Grado', 'M', 'Tecnología', 'ICR'],
+    ['Licenciatura en Biotecnología', 'Grado', 'MA', 'Tecnología', 'IRC'],
+    ['Analista en Comercio Exterior', 'Técnica', 'MA', 'Negocios', 'CEI'],
+    ['Analista en Gestión Humana', 'Técnica', 'M', 'Negocios', 'SEC'],
+    ['Analista en Gestión Logística y Cadenas de Suministro', 'Técnica', 'MA', 'Negocios', 'ECR'],
+    ['Analista en Inteligencia de Negocios', 'Técnica', 'M', 'Negocios', 'ICE'],
+    ['Analista en Marketing Digital y Comercio Electrónico', 'Técnica', 'MA', 'Negocios', 'EAC'],
+    ['Técnico en Gestión Comercial y Ventas', 'Técnica', 'MA', 'Negocios', 'ESC'],
+    ['Técnico en Gestión Turística y Hotelera', 'Técnica', 'M', 'Negocios', 'ESC'],
+    ['Técnico en Gestión y Administración de Empresas', 'Técnica', 'MA', 'Negocios', 'ECS'],
+    ['Operador Inmobiliario', 'Técnica', 'MA', 'Negocios', 'ESC'],
+    ['Técnico en Diseño de Interiores', 'Técnica', 'MA', 'Arte y diseño', 'ARE'],
+    ['Técnico en Paisajismo', 'Técnica', 'MA', 'Arte y diseño', 'ARI'],
+    ['Técnico en Fotografía y Postproducción Audiovisual', 'Técnica', 'M', 'Arte y diseño', 'ARE'],
+    ['Técnico en Relaciones Públicas y Organización de Eventos', 'Técnica', 'MA', 'Social y educación', 'ESA'],
+    ['Analista en Comunicación Corporativa y Relaciones Públicas', 'Técnica', 'MA', 'Social y educación', 'ESA'],
+    ['Analista en Publicidad y Comunicación Digital', 'Técnica', 'MA', 'Social y educación', 'AES'],
+    ['Productor Musical', 'Técnica', 'M', 'Arte y diseño', 'AER'],
+    ['Técnico en Diseño de Sonido', 'Técnica', 'M', 'Arte y diseño', 'ARI'],
+    ['Técnico en Realización Audiovisual', 'Técnica', 'MA', 'Arte y diseño', 'ARE'],
+    ['Diseño de Interfaces', 'Técnica', 'M', 'Arte y diseño', 'AIC'],
+    ['Diseño Digital', 'Técnica', 'MA', 'Arte y diseño', 'AIR'],
+    ['Diseño Gráfico', 'Técnica', 'MA', 'Arte y diseño', 'AEC'],
+    ['Diseño y Producción de Videojuegos', 'Técnica', 'M', 'Arte y diseño', 'AIR'],
+    ['Administrador de Servidores y Aplicaciones', 'Técnica', 'MA', 'Tecnología', 'RCI'],
+    ['Analista en Infraestructura Informática', 'Técnica', 'MA', 'Tecnología', 'RCI'],
+    ['Analista en Tecnologías de la Información', 'Técnica', 'MA', 'Tecnología', 'ICR'],
+    ['Analista Programador', 'Técnica', 'MA', 'Tecnología', 'IRC']
+  ];
+  /* CLAEH: carreras de grado y tecnicaturas (capturas del sitio, 13/10/2026). [nombre, nivel, área, código] */
+  [
+    ['Licenciatura en Psicología', 'Grado', 'Salud', 'SIA'],
+    ['Licenciatura en Medicina Transfusional', 'Grado', 'Salud', 'ISR'],
+    ['Licenciatura en Fonoaudiología', 'Grado', 'Salud', 'SIR'],
+    ['Abogacía y Notariado', 'Grado', 'Derecho y política', 'ESC'],
+    ['Doctor en Medicina', 'Grado', 'Salud', 'ISR'],
+    ['Licenciatura en Gestión Cultural', 'Grado', 'Social y educación', 'EAS'],
+    ['Tecnicatura en Gestión Cultural', 'Técnica', 'Social y educación', 'EAS'],
+    ['Tecnicatura en Gestión de Instituciones Deportivas', 'Técnica', 'Negocios', 'ESC']
+  ].forEach(function (r) {
+    var slug = norm(r[0]).replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+    CAREERS.push({
+      id: 'claeh-' + slug, inst: 'claeh', name: r[0], nivel: r[1], area: r[2], code: r[3],
+      dur: ASK, cost: PRIV, sedes: ASK, req: ASK, src: 'https://universidad.claeh.edu.uy/'
+    });
+  });
+
+  /* UDE: carreras de grado y técnicas (capturas del sitio, 13/10/2026). Sin maestrías ni programas cortos.
+     [nombre, nivel, área, código, duración, sedes, nota] — PDE = figura en la oferta de Punta del Este */
+  var PDE_ONLY = 'Punta del Este (otras sedes: consultar)';
+  var MEC = 'El sitio de UDE Punta del Este indica reconocimiento del MEC en trámite';
+  var DIS_ING = 'Marzo (el sitio también indica agosto 2026)';
+  [
+    ['Licenciatura en Gestión Agropecuaria', 'Grado', 'Agro y ambiente', 'ECR'],
+    ['Ingeniero Agrónomo', 'Grado', 'Agro y ambiente', 'RIC'],
+    ['Técnico Agropecuario', 'Técnica', 'Agro y ambiente', 'RCE'],
+    ['Técnico en Ciencias Veterinarias', 'Técnica', 'Agro y ambiente', 'RIS'],
+    ['Técnico en Gestión de Equinos', 'Técnica', 'Agro y ambiente', 'RES'],
+    ['Técnico Asistente Veterinario', 'Técnica', 'Agro y ambiente', 'RSC'],
+    ['Instructor de Equitación Terapéutica', 'Técnica', 'Salud', 'SRA'],
+    ['Técnico Forestal', 'Técnica', 'Agro y ambiente', 'RIC', null, 'Campus virtual'],
+    ['Licenciatura en Educación Física, Deporte y Recreación', 'Grado', 'Salud', 'SRE', null, PDE_ONLY, MEC],
+    ['Licenciatura en Imagenología', 'Grado', 'Salud', 'IRS', null, PDE_ONLY],
+    ['Licenciatura en Marketing', 'Grado', 'Negocios', 'EAC', null, PDE_ONLY],
+    ['Licenciatura en Administración de Empresas', 'Grado', 'Negocios', 'ECS', null, PDE_ONLY],
+    ['Licenciatura en Recursos Humanos', 'Grado', 'Negocios', 'SEC'],
+    ['Licenciatura en Comercio Exterior', 'Grado', 'Negocios', 'CEI'],
+    ['Licenciatura en Economía y Finanzas', 'Grado', 'Negocios', 'ICE'],
+    ['Analista en Formulación y Evaluación de Proyectos', 'Técnica', 'Negocios', 'CEI'],
+    ['Abogacía', 'Grado', 'Derecho y política', 'ESI', null, PDE_ONLY, MEC],
+    ['Escribanía', 'Grado', 'Derecho y política', 'CES'],
+    ['Licenciatura en Relaciones Internacionales', 'Grado', 'Derecho y política', 'ESI'],
+    ['Licenciatura en Diseño Gráfico', 'Grado', 'Arte y diseño', 'AEC', '4 años', null, null, DIS_ING],
+    ['Licenciatura en Diseño de Indumentaria', 'Grado', 'Arte y diseño', 'AER', '4 años', null, null, DIS_ING],
+    ['Licenciatura en Diseño Industrial', 'Grado', 'Arte y diseño', 'ARI', '4 años', null, null, DIS_ING],
+    ['Técnico en Diseño Gráfico', 'Técnica', 'Arte y diseño', 'AEC', '2 años', PDE_ONLY, null, DIS_ING],
+    ['Tecnicatura en Indumentaria', 'Técnica', 'Arte y diseño', 'AER', '2 años', null, null, DIS_ING],
+    ['Técnico en Diseño de Interiores', 'Técnica', 'Arte y diseño', 'ARE', '2 años', PDE_ONLY, null, DIS_ING],
+    ['Ingeniería en Informática', 'Grado', 'Tecnología', 'IRC'],
+    ['Licenciatura en Logística', 'Grado', 'Negocios', 'ECR'],
+    ['Analista en Ingeniería Informática', 'Técnica', 'Tecnología', 'IRC', null, null, 'Carrera terciaria no universitaria'],
+    ['Técnico en Informática', 'Técnica', 'Tecnología', 'IRC', null, null, 'Carrera terciaria no universitaria'],
+    ['Analista en Tecnología Informática', 'Técnica', 'Tecnología', 'ICR'],
+    ['Analista en Ciberseguridad', 'Técnica', 'Tecnología', 'ICR'],
+    ['Analista en Logística', 'Técnica', 'Negocios', 'ECR'],
+    ['Analista en Comercio Exterior', 'Técnica', 'Negocios', 'CEI', null, PDE_ONLY],
+    ['Analista en Marketing', 'Técnica', 'Negocios', 'EAC', null, PDE_ONLY],
+    ['Analista en Marketing Digital', 'Técnica', 'Negocios', 'EAC', null, PDE_ONLY],
+    ['Analista en Recursos Humanos', 'Técnica', 'Negocios', 'SEC', null, PDE_ONLY],
+    ['Técnico en Gerencia', 'Técnica', 'Negocios', 'ECS', null, PDE_ONLY],
+    ['Experto en Turismo y Entretenimiento', 'Técnica', 'Negocios', 'ESA', null, PDE_ONLY],
+    ['Analista de Negocios Digitales e Inteligencia Artificial', 'Técnica', 'Negocios', 'EIC'],
+    ['Analista en Periodismo', 'Técnica', 'Social y educación', 'ASI']
+  ].forEach(function (r) {
+    var slug = norm(r[0]).replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+    CAREERS.push({
+      id: 'ude-' + (r[1] === 'Técnica' ? 't-' : '') + slug, inst: 'ude', name: r[0], nivel: r[1], area: r[2], code: r[3],
+      dur: r[4] || ASK, cost: PRIV, sedes: r[5] || ASK, nota: r[6] || null, ingreso: r[7] || null, req: ASK, src: 'https://ude.edu.uy/facultades/'
+    });
+  });
+
+  /* UDE Ingeniería: datos de cada página de carrera (13/10/2026) */
+  var UDE_ING = 'https://ude.edu.uy/facultad-de-ingenieria/';
+  var UDE_ING_REQ = 'Bachillerato Diversificado Ingeniería, Arquitectura o Economía; Reformulación 2006 Social-Económica, Físico-Matemática o Matemática y Diseño; o Bachillerato Tecnológico afín (Informática, Electrotecnia-Electrónica, Electromecánica, entre otros). Las previas se aprueban antes de terminar el 1.er semestre.';
+  var UDE_FIX = {
+    'ude-ingenieria-en-informatica': { dur: '5 años', title: 'Ingeniería en Informática · intermedio: Analista en Sistemas de Información (título propio)', sedes: 'Montevideo', req: UDE_ING_REQ, jobs: ['Gestión de proyectos TI y centros de datos', 'Cargos de gestión y dirección', 'Desarrollo de software o consultoría', 'Docencia e investigación'], src: UDE_ING + 'ingenieria-en-informatica/' },
+    'ude-licenciatura-en-logistica': { dur: '4 años (8 semestres)', title: 'Licenciatura en Logística · intermedio: Técnico en Logística', sedes: 'Montevideo', req: 'Bachillerato Diversificado (Arquitectura, Ingeniería, Economía, Medicina o Agronomía), Reformulación 2006 (Social-Económica, Físico-Matemática, Matemática y Diseño, Biológicas o Agrarias) o Bachillerato Tecnológico afín. Las previas se aprueban antes de terminar el 1.er semestre.', jobs: ['Gestión de proyectos y cadenas de suministro', 'Centros de distribución', 'Consultoría o emprendimiento propio'], src: UDE_ING + 'licenciatura-en-logistica/' },
+    'ude-t-analista-en-ingenieria-informatica': { dur: '3 años (6 semestres)', sedes: 'Montevideo', req: UDE_ING_REQ, jobs: ['Mantenimiento de sistemas y centros de datos', 'Desarrollo de software', 'Docencia técnica e investigación'], src: UDE_ING + 'analista-en-ingenieria-informatica/' },
+    'ude-t-tecnico-en-informatica': { dur: '5 semestres (según el plan de estudios)', title: 'Técnico en Informática · tras el 1.er año: Programador Java/.NET', sedes: 'Montevideo', req: 'Bachillerato en cualquier orientación; las previas se aprueban antes de terminar el 1.er semestre', jobs: ['Desarrollo de software en empresas públicas y privadas', 'Pymes'], src: UDE_ING + 'tecnico-en-informatica/' },
+    'ude-t-analista-en-tecnologia-informatica': { dur: '5 semestres (según el plan de estudios)', title: 'Analista en Tecnología Informática · tras el 1.er año: Programador Java/.NET', sedes: 'Montevideo', req: 'EBI aprobada', jobs: ['Empresas de software públicas y privadas', 'Equipos interdisciplinarios', 'Pymes del sector TI'], src: UDE_ING + 'analista-en-tecnologia-informatica/' },
+    'ude-t-analista-en-ciberseguridad': { dur: '123 horas', sedes: 'Campus virtual · 100 % virtual con clases en vivo', req: 'EBI aprobada', ingreso: 'Consultar', src: UDE_ING + 'analista-en-ciberseguridad/' },
+    'ude-t-analista-en-logistica': { dur: '3 semestres', sedes: 'Montevideo · clases virtuales en vivo y 2 evaluaciones presenciales por semestre en Pocitos', req: 'EBI aprobada o equivalente', jobs: ['Logística de cadenas de suministro', 'Centros de distribución', 'Emprendimiento o consultoría técnica'], nota: 'Según el sitio, estos estudios pueden reconocerse en carreras universitarias afines', src: UDE_ING + 'analista-en-logistica/' }
+  };
+  /* UDE resto de facultades: datos de cada página de carrera (13/10/2026). ingreso: null = las fechas publicadas ya pasaron */
+  var U = 'https://ude.edu.uy/';
+  var BACH = 'Bachillerato aprobado en cualquier orientación; las previas se aprueban antes de terminar el 1.er semestre';
+  var BACH_JUL = 'ingreso condicional con hasta 2 previas, a aprobar antes de julio del año de ingreso';
+  var CB = 'EBI aprobada (Secundaria o UTU); ' + BACH_JUL;
+  var MORE = {
+    'ude-licenciatura-en-gestion-agropecuaria': { dur: '4 años (8 semestres)', title: 'Licenciatura en Gestión Agropecuaria', sedes: 'Montevideo · lunes a jueves de 8:00 a 12:30', req: 'Bachillerato (Secundaria o UTU) en cualquier orientación; ' + BACH_JUL, jobs: ['Comercialización y marketing agroalimentario', 'Proyectos de inversión agropecuarios', 'Gestión de empresas agropecuarias'], src: U + 'facultad-de-ciencias-agrarias/licenciatura-en-gestion-agropecuaria/' },
+    'ude-ingeniero-agronomo': { dur: '5 años (10 semestres)', sedes: 'Montevideo · turno mañana (8:00 a 12:30) o tarde-noche (17:00 a 21:30)', req: 'Bachillerato (Secundaria o UTU) con matemática en el último año; ' + BACH_JUL, jobs: ['Asesoramiento a actores públicos y privados', 'Gestión de empresas y cadenas agroindustriales', 'Desarrollo rural'], src: U + 'facultad-de-ciencias-agrarias/ingeniero-agronomo/' },
+    'ude-t-tecnico-agropecuario': { dur: '2 años (4 semestres)', sedes: 'Semipresencial · teóricos por Zoom y Moodle, encuentros presenciales obligatorios', req: CB, jobs: ['Producción animal (ovinos y bovinos)', 'Producción vegetal y forestación', 'Apoyo a la gestión de empresas agropecuarias'], src: U + 'facultad-de-ciencias-agrarias/tecnico-agropecuario/' },
+    'ude-t-tecnico-en-ciencias-veterinarias': { dur: '2 años (4 semestres)', sedes: 'Montevideo · martes a jueves de 17:00 a 21:30', req: 'Bachillerato Biológico o Científico, o Bachillerato Tecnológico UTU Agrario o Química; ' + BACH_JUL, jobs: ['Asistencia al médico veterinario', 'Planes sanitarios y reproductivos en predios rurales', 'Laboratorios e industria animal'], src: U + 'facultad-de-ciencias-agrarias/tecnico-en-ciencias-veterinarias/' },
+    'ude-t-tecnico-en-gestion-de-equinos': { dur: '2 años (4 semestres)', sedes: 'Montevideo · semipresencial: jueves y viernes de 18:00 a 21:30 y sábados cada 15 días', req: 'EBI terminada (Secundaria o UTU); ' + BACH_JUL, jobs: ['Cría y producción equina', 'Establecimientos deportivos', 'Empresas de actividad hípica'], src: U + 'facultad-de-ciencias-agrarias/tecnico-en-gestion-de-equinos/' },
+    'ude-t-tecnico-asistente-veterinario': { dur: '2 años (4 semestres)', sedes: 'Montevideo · miércoles y jueves de 17:00 a 21:30', req: CB, jobs: ['Programas de sanidad animal', 'Inseminación artificial y diagnóstico de gestación', 'Apoyo a médicos veterinarios'], src: U + 'facultad-de-ciencias-agrarias/tecnico-asistente-veterinario/' },
+    'ude-t-instructor-de-equitacion-terapeutica': { dur: '4 semestres (según el plan de estudios)', sedes: 'Montevideo · presencial', req: 'Ser mayor de 18 años y tener bachillerato aprobado en cualquier orientación (hasta 2 previas, a aprobar antes del 2.º semestre)', jobs: ['Instructor de equitación terapéutica', 'Gestión de un centro de terapia ecuestre'], src: U + 'facultad-de-ciencias-agrarias/instructor-de-equitacion-terapeutica/' },
+    'ude-t-tecnico-forestal': { dur: '2 años (4 semestres)', sedes: 'Campus virtual · Zoom lunes a miércoles de 17:00 a 21:30', req: CB, jobs: ['Viveros y material reproductivo', 'Manejo sostenible de bosques', 'Parques y jardines'], src: U + 'facultad-de-ciencias-agrarias/tecnico-forestal/' },
+    'ude-licenciatura-en-educacion-fisica-deporte-y-recreacion': { dur: '4 años (8 semestres)', sedes: 'Montevideo y Punta del Este · teóricos en la UDE y prácticas en la Scuola Italiana', req: 'Bachillerato completo en cualquier orientación', jobs: ['Docencia en educación física', 'Formación de formadores', 'Clubes, gimnasios y proyectos deportivos'], nota: 'En la oferta de Punta del Este figura con reconocimiento del MEC en trámite', src: U + 'facultad-de-ciencias-de-la-educacion/licenciatura-en-educacion-fisica-deportes-y-recreacion/' },
+    'ude-licenciatura-en-imagenologia': { dur: '4 años', title: 'Licenciado/a en Imagenología', sedes: 'Montevideo, Punta del Este y Colonia', req: BACH, jobs: ['Servicios de salud públicos y privados', 'Atención a domicilio', 'Veterinaria e industria'], src: U + 'facultad-de-ciencias-de-la-salud/licenciatura-en-imagenologia/' },
+    'ude-abogacia': { dur: '5 años (10 semestres)', title: 'Abogado/a', sedes: 'Montevideo, Punta del Este y Colonia', req: BACH + '. Postulantes de otras áreas: cursillo de actualización previo', jobs: ['Magistratura', 'Ejercicio independiente', 'Asesoría a empresas y organismos'], nota: 'En Punta del Este está en trámite de reconocimiento del MEC; allí el 1.er semestre es virtual hasta obtenerlo', src: U + 'facultad-de-ciencias-juridicas/abogacia/' },
+    'ude-escribania': { dur: '5 años (10 semestres)', title: 'Intermedio: Procurador', sedes: 'Montevideo y Colonia', req: BACH + '. Postulantes de otras áreas: cursillo de actualización previo', jobs: ['Magistratura', 'Ejercicio independiente', 'Asesoría a empresas y organismos'], nota: 'El sitio marca la sede Colonia como "en trámite de reconocimiento"', src: U + 'facultad-de-ciencias-juridicas/escribania/' },
+    'ude-licenciatura-en-relaciones-internacionales': { dur: '8 semestres (según el plan de estudios)', sedes: 'Montevideo', req: BACH, jobs: ['Administración pública y diplomacia', 'Organismos internacionales y ONG', 'Consultoría y negocios internacionales'], src: U + 'facultad-de-ciencias-juridicas/licenciatura-en-relaciones-internacionales/' },
+    'ude-licenciatura-en-marketing': { dur: '4 años (8 semestres)', sedes: 'Montevideo y Punta del Este', req: BACH, jobs: ['Cargos ejecutivos en empresas', 'Investigación de mercados y consultoría', 'Agencias de publicidad y medios'], src: U + 'facultades-de-ciencias-empresariales/licenciatura-en-marketing/' },
+    'ude-licenciatura-en-administracion-de-empresas': { dur: '4 años (8 semestres)', sedes: 'Montevideo, Punta del Este y Colonia', req: BACH, jobs: ['Empresas industriales, comerciales y de servicios', 'Empresas públicas y bancos', 'Ejercicio libre y emprendimientos'], nota: 'Posible doble titulación con la Universidad de Trento (Italia)', src: U + 'facultades-de-ciencias-empresariales/licenciatura-en-administracion-de-empresas/' },
+    'ude-licenciatura-en-recursos-humanos': { dur: '4 años (8 semestres)', title: 'Licenciado/a en Recursos Humanos', sedes: 'Montevideo y Colonia', req: BACH, jobs: ['Empresas industriales, comerciales y de servicios', 'Empresas públicas', 'Bancos, instituciones educativas y de salud'], src: U + 'facultades-de-ciencias-empresariales/licenciatura-en-recursos-humanos/' },
+    'ude-licenciatura-en-comercio-exterior': { dur: '4 años (8 semestres)', title: 'Licenciado/a en Comercio Exterior', sedes: 'Montevideo y Colonia', req: BACH, jobs: ['Empresas industriales, comerciales y de servicios', 'Empresas públicas', 'Consultoría nacional e internacional'], src: U + 'facultades-de-ciencias-empresariales/licenciado-en-comercio-exterior/' },
+    'ude-licenciatura-en-economia-y-finanzas': { dur: '8 semestres (según el plan de estudios)', sedes: 'Montevideo y Colonia', jobs: ['Gestión financiera y bancaria', 'Estudios económicos', 'Formulación de proyectos'], src: U + 'facultades-de-ciencias-empresariales/licenciatura-en-economia-y-finanzas/' },
+    'ude-licenciatura-en-diseno-grafico': { dur: '4 años (8 semestres)', title: 'Licenciatura en Diseño Gráfico · intermedio: Técnico en Diseño Gráfico Profesional', sedes: 'Montevideo y Colonia · semipresencial', req: BACH, ingreso: null, jobs: ['Diseño independiente', 'Equipos multidisciplinarios', 'Proyectos de sistemas y asesoramiento'], src: U + 'facultad-de-diseno-y-comunicacion/licenciatura-en-diseno-grafico/' },
+    'ude-licenciatura-en-diseno-de-indumentaria': { title: 'Licenciatura en Diseño de Indumentaria', sedes: 'Montevideo · semipresencial, lunes a viernes de 8 a 13 h (talleres 2 días presenciales seguidos)', req: BACH, ingreso: null, jobs: ['Marca o emprendimiento propio', 'Departamentos de diseño de empresas', 'Producción y comunicación de moda'], src: U + 'facultad-de-diseno-y-comunicacion/licenciatura-en-diseno-de-indumentaria/' },
+    'ude-licenciatura-en-diseno-industrial': { dur: '4 años (8 semestres)', title: 'Licenciatura en Diseño Industrial · intermedio: Técnico en Diseño Industrial', sedes: 'Montevideo · semipresencial', req: 'Bachillerato aprobado', ingreso: null, jobs: ['Proyectos de diseño', 'Empresas y organizaciones', 'Políticas públicas y programas'], src: U + 'facultad-de-diseno-y-comunicacion/licenciatura-en-diseno-industrial/' },
+    'ude-t-tecnico-en-diseno-grafico': { sedes: 'Montevideo, Punta del Este y Colonia · semipresencial', req: 'Bachillerato aprobado', ingreso: null, jobs: ['Logotipos e identidad', 'Diseño editorial', 'Envases y embalajes'], src: U + 'facultad-de-diseno-y-comunicacion/tecnico-en-diseno-grafico/' },
+    'ude-t-tecnicatura-en-indumentaria': { name: 'Tecnicatura en Diseño de Indumentaria', dur: '2 años (4 semestres)', sedes: 'Montevideo · semipresencial, lunes a viernes de 8 a 13 h', req: '1.º de EMS aprobado', ingreso: null, nota: 'Permite continuar con la Licenciatura convalidando materias', jobs: ['Departamentos de diseño de empresas', 'Producción y comunicación de moda', 'Vestuario para teatro y televisión'], src: U + 'facultad-de-diseno-y-comunicacion/tecnicatura-en-diseno-de-indumentaria/' },
+    'ude-t-tecnico-en-diseno-de-interiores': { sedes: 'Montevideo y Punta del Este · semipresencial', req: 'Bachillerato aprobado', ingreso: null, jobs: ['Estudios de diseño y arquitectura', 'Locales de materiales y equipamiento', 'Asesoramiento independiente'], src: U + 'facultad-de-diseno-y-comunicacion/tecnico-en-diseno-de-interiores/' },
+    'ude-t-analista-en-comercio-exterior': { dur: '1 año (2 semestres)', sedes: 'Campus virtual', req: '1.º de EMS aprobado', jobs: ['Operativa de comercio exterior', 'Aduana y logística internacional', 'Transporte, seguros y banca'], src: U + 'escuela-desarrollo-empresarial/analista-en-comercio-exterior/' },
+    'ude-t-analista-en-marketing': { dur: '1 año (2 semestres)', sedes: 'Campus virtual', req: '1.º de EMS aprobado', jobs: ['Ventas y publicidad', 'Distribución', 'Investigación de mercado'], src: U + 'escuela-desarrollo-empresarial/analista-en-marketing/' },
+    'ude-t-analista-en-marketing-digital': { sedes: 'Campus virtual', jobs: ['Áreas de marketing de organizaciones', 'Emprendimiento propio'], src: U + 'escuela-desarrollo-empresarial/analista-en-marketing-digital/' },
+    'ude-t-analista-en-recursos-humanos': { dur: '1 año (2 semestres)', sedes: 'Campus virtual', req: '1.º de EMS aprobado', jobs: ['Selección de personal', 'Formación y desarrollo', 'Gestión de remuneraciones'], src: U + 'escuela-desarrollo-empresarial/analista-en-recursos-humanos/' },
+    'ude-t-tecnico-en-gerencia': { dur: '2 años (4 semestres)', sedes: 'Campus virtual', req: 'Bachillerato finalizado, o 1.º de EMS con 2 años de experiencia laboral en el área', jobs: ['Mandos medios en planificación y control de gestión', 'Organización y dirección de empresas'], src: U + 'escuela-desarrollo-empresarial/tecnico-en-gerencia/' },
+    'ude-t-experto-en-turismo-y-entretenimiento': { dur: '4 meses (132 horas)', sedes: 'Punta del Este y Colonia · híbrida: martes, jueves y sábados', src: U + 'escuela-desarrollo-empresarial/turismo-hospitality/' },
+    'ude-t-analista-de-negocios-digitales-e-inteligencia-artificial': { dur: '1 año', sedes: '100 % virtual · martes y jueves de 19:00 a 21:45', src: U + 'escuela-desarrollo-empresarial/analista-de-negocios-digitales-e-inteligencia-artificial/' },
+    'ude-t-analista-en-periodismo': { name: 'Analista en Periodismo en la Era Digital', dur: '1 año', sedes: 'Montevideo · híbrida', jobs: ['Medios digitales y agencias de noticias', 'Comunicación institucional', 'Redacción digital y periodismo de datos'], src: U + 'escuela-desarrollo-empresarial/analista-en-periodismo-en-la-era-digital/' },
+
+    /* CLAEH: datos de las capturas del sitio que envió Chris (13/10/2026) */
+    'claeh-licenciatura-en-psicologia': { dur: '4 años', title: 'Licenciado/a en Psicología', sedes: 'Montevideo · presencial', nota: 'Carrera nueva' },
+    'claeh-licenciatura-en-medicina-transfusional': { dur: '4 años', title: 'Licenciado/a en Medicina Transfusional', sedes: 'Punta del Este · presencial', nota: 'Concebida junto al Hemocentro Regional de Maldonado' },
+    'claeh-licenciatura-en-fonoaudiologia': { dur: '4 años', title: 'Licenciado/a en Fonoaudiología', sedes: 'Punta del Este · presencial' },
+    'claeh-abogacia-y-notariado': { dur: '5 años', title: 'Abogado/a | Escribano/a Público/a', sedes: 'Punta del Este · presencial' },
+    'claeh-doctor-en-medicina': { dur: '6 años', title: 'Doctor/a en Medicina', sedes: 'Punta del Este · presencial', nota: 'Título de médico general reconocido por el MEC' },
+    'claeh-licenciatura-en-gestion-cultural': { dur: '4 años', title: 'Licenciado/a en Gestión Cultural · intermedio: Técnico/a en Gestión Cultural', sedes: 'Montevideo · presencial' },
+    'claeh-tecnicatura-en-gestion-cultural': { sedes: 'Online · en vivo por Zoom, martes y miércoles de 19 a 21 h (clases grabadas)', nota: 'El sitio indicaba inicio en agosto de 2026; consultar la próxima edición' },
+    'claeh-tecnicatura-en-gestion-de-instituciones-deportivas': { dur: '10 meses (marzo a diciembre)', sedes: 'Semipresencial · Zoom martes y jueves de 19:30 a 21 h, campus virtual y un sábado al mes de 9 a 13 h en Montevideo', ingreso: 'Marzo de 2027' }
+  };
+  for (var key in MORE) UDE_FIX[key] = MORE[key];
+  var DROP = { 'ude-t-analista-en-formulacion-y-evaluacion-de-proyectos': 1 }; /* figura como discontinuada */
+  for (var d = CAREERS.length - 1; d >= 0; d--) if (DROP[CAREERS[d].id]) CAREERS.splice(d, 1);
+  CAREERS.forEach(function (c) { var f = UDE_FIX[c.id]; if (f) for (var k in f) c[k] = f[k]; });
+  var want = Object.keys(UDE_FIX).length;
+  var fixed = CAREERS.filter(function (c) { return UDE_FIX[c.id]; }).length;
+  if (fixed !== want && window.console) console.warn('Correcciones aplicadas: ' + fixed + ' de ' + want + ' · faltan: ' + Object.keys(UDE_FIX).filter(function (k) { return !CAREERS.some(function (c) { return c.id === k; }); }).join(', '));
+
+  var ING = { MA: 'Marzo o agosto de 2027', M: 'Marzo de 2027' };
+  ['ort-is', 'ort-ls', 'ort-arq'].forEach(function (id) { byIdEarly(id).ingreso = ING.MA; });
+  function byIdEarly(id) { return CAREERS.filter(function (c) { return c.id === id; })[0]; }
+  ORT.forEach(function (r) {
+    var slug = norm(r[0]).replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+    CAREERS.push({
+      id: 'ort-' + (r[1] === 'Técnica' ? 't-' : '') + slug, inst: 'ort', name: r[0], nivel: r[1], area: r[3], code: r[4],
+      dur: ASK, cost: PRIV, sedes: 'Montevideo', ingreso: ING[r[2]], req: ASK, src: 'https://www.ort.edu.uy/carreras-y-postgrados'
+    });
+  });
+
+  /* ORT: datos de cada página de carrera en el sitio de su facultad (13/10/2026) */
+  var RU = 'Bachillerato completo en cualquier orientación (o tecnológico afín, a evaluación); se puede entrar con hasta 2 previas';
+  var RI = 'Bachillerato completo, salvo orientaciones Creativo Artístico, General y Ciencias Sociales y Humanidades (o tecnológico afín, a evaluación); hasta 2 previas';
+  var R1 = '1.º de EMS aprobado, o equivalente';
+  var R2 = '2.º de EMS aprobado; se puede entrar con hasta 3 previas por un año';
+  var RB = 'Bachillerato completo';
+  var MVD = 'Montevideo · ';
+  var FA = 'https://fa.ort.edu.uy/', FC = 'https://fc.ort.edu.uy/', FD = 'https://fd.ort.edu.uy/', FI = 'https://fi.ort.edu.uy/', FS = 'https://facs.ort.edu.uy/';
+  var TM = 'tres días por semana, de 17:00 a 19:30 o de 19:30 a 22:00';
+  var ORT_FIX = {
+    'ort-contador-publico': { dur: '4 años', title: 'Contador/a Público/a · a los 2 años: Analista de Información Financiera', sedes: MVD + 'lunes a jueves, mañana (solo ingreso de marzo) o noche', req: RU, jobs: ['Contabilidad y administración', 'Auditoría', 'Impuestos'], src: FS + 'contador-publico' },
+    'ort-licenciatura-en-economia': { dur: '4 años', title: 'Licenciado/a en Economía · a los 2 años: Analista Económico/a', sedes: MVD + 'lunes a jueves de 8:00 a 12:00 · presencial con opción remota', req: RU + ' (no Creativo Artístico)', jobs: ['Políticas públicas', 'Sector financiero', 'Gestión empresarial'], src: FS + 'licenciatura-en-economia' },
+    'ort-licenciatura-en-estudios-internacionales': { dur: '4 años', title: 'Licenciado/a en Estudios Internacionales · a los 2 años: Analista Internacional', sedes: MVD + 'lunes a jueves de 8:00 a 12:00 · presencial con opción remota', req: RU, nota: 'Opción de doble titulación con Rennes School of Business (Francia)', jobs: ['Diplomacia y misiones internacionales', 'Negocios internacionales y comercio exterior', 'Empresas multinacionales'], src: FS + 'licenciatura-en-estudios-internacionales' },
+    'ort-licenciatura-en-finanzas': { dur: '4 años', sedes: MVD + 'lunes a jueves de 8:00 a 12:00 · presencial con opción remota', req: RU + ' (no Creativo Artístico)', nota: 'Título en trámite de reconocimiento del MEC', jobs: ['Liderazgo financiero en empresas', 'Gestión de inversiones', 'Análisis de mercados'], src: FS + 'licenciatura-en-finanzas' },
+    'ort-licenciatura-en-gerencia-y-administracion': { dur: '4 años', title: 'Licenciado/a en Gerencia y Administración · a los 2 años: Analista en Administración', sedes: MVD + 'lunes a jueves, mañana (solo ingreso de marzo) o noche', req: RU, jobs: ['Gerencia de áreas de la empresa', 'Consultoría', 'Emprendimiento propio'], src: FS + 'licenciatura-en-gerencia-y-administracion' },
+    'ort-licenciatura-en-marketing-y-direccion-comercial': { dur: '4 años', title: 'Licenciado/a en Marketing y Dirección Comercial · a los 2 años: Analista en Gestión Comercial', sedes: MVD + 'lunes a jueves, mañana o noche · presencial con opción remota', req: RU, jobs: ['Consumer insights y campañas digitales', 'Gerencia comercial', 'Brand management'], src: FS + 'licenciatura-en-marketing-y-direccion-comercial' },
+    'ort-licenciatura-en-negocios-digitales': { dur: '4 años', title: 'Licenciado/a en Negocios Digitales · a los 2 años: Analista en Negocios Digitales', sedes: MVD + 'lunes a jueves de 8:00 a 12:00 · presencial con opción remota', req: RU, jobs: ['Marketing digital', 'Comercio electrónico', 'Analítica de datos'], src: FS + 'licenciatura-en-negocios-digitales' },
+    'ort-t-analista-en-comercio-exterior': { dur: '1 año y medio', sedes: MVD + TM, req: RB + '; hasta 3 previas por un año', jobs: ['Empresas importadoras y exportadoras', 'Agencias marítimas y operadores logísticos', 'Despachos de aduana'], src: FS + 'analista-en-comercio-exterior' },
+    'ort-t-analista-en-gestion-humana': { dur: '18 meses', sedes: MVD + TM, req: RB, jobs: ['Gestión humana en empresas pequeñas y familiares', 'Áreas de personas en organizaciones', 'Selección y gestión del talento'], src: FS + 'analista-en-gestion-humana' },
+    'ort-t-analista-en-gestion-logistica-y-cadenas-de-suministro': { dur: '1 año y medio', sedes: MVD + TM + ' · presencial o semipresencial', req: RB, jobs: ['Logística empresarial y multimodal', 'Operaciones de centros logísticos', 'Proyectos propios'], src: FS + 'analista-en-gestion-logistica-y-cadenas-de-suministro' },
+    'ort-t-analista-en-inteligencia-de-negocios': { dur: '18 meses', sedes: MVD + TM + ' · presencial o semipresencial', req: RB, jobs: ['Análisis de datos en organizaciones', 'Visualización de datos para decisiones', 'Optimización de procesos'], src: FS + 'analista-en-inteligencia-de-negocios' },
+    'ort-t-analista-en-marketing-digital-y-comercio-electronico': { dur: '2 años (4 semestres)', title: 'Analista en Marketing Digital y Comercio Electrónico · al 1.er año: Asistente de Marketing', sedes: MVD + 'tres días por semana, mañana, tarde o noche', req: RB + '; hasta 3 previas por un año', jobs: ['Empresas locales e internacionales', 'Trabajo presencial o remoto', 'Asesoría externa'], src: FS + 'analista-en-marketing-digital-y-comercio-electronico' },
+    'ort-t-tecnico-en-gestion-comercial-y-ventas': { dur: '2 años', sedes: MVD + TM + ' · presencial o semipresencial', req: '1.º de EMS aprobado; hasta 3 previas por un año', jobs: ['Cargos medios en empresas', 'Dirección de equipos de ventas', 'Emprendimiento propio'], src: FS + 'tecnico-en-gestion-comercial-y-ventas' },
+    'ort-t-tecnico-en-gestion-turistica-y-hotelera': { dur: '2 años', sedes: MVD + TM + ' · presencial o semipresencial', req: '1.º de EMS aprobado; hasta 3 previas por un año', jobs: ['Coordinación en turismo y hotelería', 'Revenue management', 'Eventos, ferias y congresos'], src: FS + 'tecnico-en-gestion-turistica-y-hotelera' },
+    'ort-t-tecnico-en-gestion-y-administracion-de-empresas': { dur: '2 años', sedes: MVD + 'tres días por semana, mañana, tarde o noche', req: '1.º de EMS aprobado; hasta 3 previas por un año', jobs: ['Cargos medios en empresas', 'Dirección de personal', 'Emprendimiento propio'], src: FS + 'tecnico-en-gestion-y-administracion-de-empresas' },
+    'ort-t-operador-inmobiliario': { dur: '2 años + trabajo final', sedes: MVD + 'lunes a jueves de 18:00 a 22:00 · presencial y virtual', req: RB + '; hasta 2 previas', nota: 'Carrera terciaria no universitaria reconocida por el MEC', jobs: ['Compraventa y alquileres', 'Tasaciones', 'Administración de propiedad horizontal'], src: FA + 'operador-inmobiliario' },
+    'ort-t-tecnico-en-diseno-de-interiores': { dur: '2 años', sedes: MVD + 'lunes a jueves, 16:00 a 19:00 o 19:00 a 22:00', req: '1.º de EMS aprobado; hasta 2 previas', jobs: ['Trabajo independiente', 'Estudios de interiorismo o arquitectura', 'Emprendimientos propios'], src: FA + 'tecnico-en-diseno-de-interiores' },
+    'ort-t-tecnico-en-paisajismo': { dur: '2 años', sedes: 'Montevideo · lunes, miércoles y jueves de 9:00 a 13:00', req: '1.º de EMS aprobado; hasta 2 previas', jobs: ['Proyectos de jardines', 'Asesoría en viveros', 'Obras de paisajismo'], src: FA + 'tecnico-en-paisajismo' },
+    'ort-arq': { title: 'Arquitecto/a · a los 3 años: Asistente de Obra y Estudio · doble titulación posible con PUC Minas (Brasil)', sedes: MVD + 'mañana (lunes a viernes de 8:00 a 14:00); semestres avanzados de noche', req: 'Bachillerato completo orientación Ciencia y Tecnología (o técnico afín, a evaluación)', jobs: ['Estudios de arquitectura y obras', 'Consultoras e inmobiliarias', 'Emprendimientos e investigación'], src: FA + 'arquitectura' },
+    'ort-licenciatura-en-diseno-de-interiores': { dur: '4 años + 3 meses de portafolio', title: 'Licenciado/a en Diseño de Interiores · intermedio: Diseñador/a de Interiores', sedes: MVD + 'lunes a viernes de 8:00 a 13:00 · presencial con opción remota', req: RU, jobs: ['Diseño de espacios y equipamiento', 'Estudios y empresas', 'Negocios propios'], src: FA + 'licenciatura-en-diseno-de-interiores' },
+    'ort-licenciatura-en-comunicacion': { dur: '4 años', sedes: MVD + 'mañana (semestres 1 a 4) y noche (semestres 5 a 8) · presencial', req: RU, nota: 'Reconocida por el MEC', src: FC + 'licenciatura-en-comunicacion' },
+    'ort-licenciatura-en-comunicacion-global': { dur: '4 años', title: 'Licenciado/a en Comunicación Global · intermedio: Analista en Comunicación Global', sedes: MVD + 'mañana (semestres 1 a 4) y noche (semestres 5 a 8)', req: RU, jobs: ['Dirección de comunicación', 'Jefatura de prensa', 'Comunicación institucional'], src: FC + 'licenciatura-en-comunicacion-global' },
+    'ort-licenciatura-en-comunicacion-empresarial': { dur: '4 años', title: 'Licenciado/a en Comunicación Empresarial · intermedio: Analista en Comunicación Empresarial', sedes: MVD + 'mañana (semestres 1 a 4) y noche (semestres 5 a 8)', req: RU, jobs: ['Gerencia de comunicación', 'Comunicación interna', 'Jefatura de prensa'], src: FC + 'licenciatura-en-comunicacion-empresarial' },
+    'ort-t-tecnico-en-fotografia-y-postproduccion-audiovisual': { dur: '2 años', sedes: MVD + 'tres días por semana de 18:30 a 21:30 · presencial', req: R2, jobs: ['Dirección de fotografía', 'Edición', 'Color y técnico de imagen digital'], src: FC + 'tecnico-en-fotografia-y-postproduccion-audiovisual' },
+    'ort-t-tecnico-en-relaciones-publicas-y-organizacion-de-eventos': { dur: '1 año y medio + práctica profesional', sedes: MVD + 'tres días por semana de 18:30 a 21:30', req: R2, jobs: ['Relaciones públicas', 'Producción de eventos', 'Relación con la prensa'], src: FC + 'tecnico-en-relaciones-publicas-y-organizacion-de-eventos' },
+    'ort-t-analista-en-publicidad-y-comunicacion-digital': { dur: '2 años', sedes: MVD + 'lunes a jueves de 18:30 a 21:30 · presencial con opción remota', req: R2, jobs: ['Planificación digital', 'Community management', 'Creación de contenido'], src: FC + 'analista-en-publicidad-y-comunicacion-digital' },
+    'ort-t-productor-musical': { dur: '2 años y medio', sedes: MVD + 'lunes a viernes de 8:00 a 13:00, más prácticas en estudios', req: R2.split(';')[0], nota: 'Hay que tener computadora con Ableton Live, controlador MIDI, interfaz de audio y auriculares', jobs: ['Producción de música propia', 'Producciones de terceros', 'Música para plataformas de streaming'], src: FC + 'productor-musical' },
+    'ort-t-tecnico-en-diseno-de-sonido': { dur: '2 años y medio', sedes: MVD + 'lunes a viernes de 8:00 a 13:00, más prácticas en estudios', req: R2, jobs: ['Estudios de grabación', 'Salas, radio y televisión', 'Productoras audiovisuales'], src: FC + 'tecnico-en-diseno-de-sonido' },
+    'ort-t-tecnico-en-realizacion-audiovisual': { dur: '2 años', sedes: MVD + 'tres noches por semana de 18:30 a 23:00', req: R2, jobs: ['Canales de televisión', 'Productoras audiovisuales', 'Medios digitales'], src: FC + 'tecnico-en-realizacion-audiovisual' },
+    'ort-licenciatura-en-diseno-grafico': { dur: '4 años', title: 'Licenciado/a en Diseño Gráfico · a los 2 años: Proyectista Gráfico', sedes: MVD + '1.º y 2.º año de día; 3.º y 4.º de noche', req: RU, jobs: ['Agencias de publicidad', 'Estudios de diseño', 'Medios digitales'], src: FD + 'licenciatura-en-diseno-grafico' },
+    'ort-licenciatura-en-diseno-industrial': { dur: '4 años', title: 'Licenciado/a en Diseño Industrial · a los 2 años: Proyectista Industrial', sedes: MVD + '1.º y 2.º año de día; 3.º y 4.º de noche', req: RU, jobs: ['Estudios de diseño', 'Industria manufacturera', 'Desarrollo de productos'], src: FD + 'licenciatura-en-diseno-industrial' },
+    'ort-licenciatura-en-artes-digitales': { dur: '4 años', title: 'Licenciado/a en Artes Digitales · a los 2 años: Técnico/a en Artes Visuales', sedes: MVD + '1.º y 2.º año de día; 3.º y 4.º de noche · presencial', req: RU, jobs: ['Estudios creativos', 'Productoras', 'Instituciones culturales'], src: FD + 'licenciatura-en-artes-digitales' },
+    'ort-licenciatura-en-diseno-multimedia': { dur: '4 años', title: 'Licenciado/a en Diseño Multimedia · a los 2 años: Diseñador/a Web', sedes: 'Montevideo · 1.º y 2.º año de día; 3.º y 4.º de noche', req: RU, jobs: ['Proyectos creativos multimedia', 'Video, animación y motion graphics', 'Diseño web UX/UI'], src: FD + 'licenciatura-en-diseno-multimedia' },
+    'ort-licenciatura-en-animacion-y-videojuegos': { dur: '4 años', title: 'Licenciado/a en Animación y Videojuegos · a los 2 años: Técnico/a en Animación', sedes: 'Montevideo · 1.º y 2.º año de día; 3.º y 4.º de noche', req: RU, jobs: ['Animación', 'Diseño de videojuegos', 'Dirección de proyectos'], src: FD + 'licenciatura-en-animacion-y-videojuegos' },
+    'ort-licenciatura-en-diseno-de-modas': { dur: '4 años', title: 'Licenciado/a en Diseño de Modas · a los 2 años: Técnico/a en Indumentaria', sedes: MVD + '1.º y 2.º año de tarde; 3.º y 4.º de noche · presencial', req: RU, nota: 'Reconocida por el MEC', jobs: ['Colecciones de moda', 'Emprendimientos en la industria', 'Marcas masivas o de autor'], src: FD + 'licenciatura-en-diseno-de-modas' },
+    'ort-t-diseno-de-interfaces': { dur: '2 años', title: 'Diseñador/a de Interfaces', sedes: MVD + 'mañana, 4 días por semana', req: R1, jobs: ['Prototipos de interfaces digitales', 'Proyectos web y apps', 'Investigación de usuarios y usabilidad'], src: FD + 'diseno-de-interfaces' },
+    'ort-t-diseno-digital': { dur: '2 años', title: 'Diseñador/a Digital', sedes: MVD + 'mañana o noche, 4 días por semana', req: R1, jobs: ['Contenidos visuales para web y redes', 'Equipos de desarrollo', 'Agencias o trabajo independiente'], src: FD + 'diseno-digital' },
+    'ort-t-diseno-grafico': { dur: '2 años', title: 'Diseñador/a Gráfico/a', sedes: MVD + 'mañana o noche', req: R1, jobs: ['Piezas gráficas e identidad visual', 'Agencias o trabajo independiente', 'Comunicación editorial y publicitaria'], src: FD + 'diseno-grafico' },
+    'ort-t-diseno-y-produccion-de-videojuegos': { dur: '2 años', title: 'Diseñador/a y Productor/a de Videojuegos', sedes: MVD + 'noche, lunes a jueves de 19:00 a 22:15', req: R1, jobs: ['Producción de videojuegos', 'Prototipos 2D y 3D', 'Emprendimiento propio'], src: FD + 'diseno-y-produccion-de-videojuegos' },
+    'ort-ingenieria-electrica': { dur: '5 años', title: 'Ingeniero/a Eléctrico/a · a los 2 años: Ayudante de Ingeniero en Electrónica', sedes: MVD + 'mañana (semestres 1 a 4) y noche (desde el 5.º)', req: RI, jobs: ['Empresas de energía', 'Consultoría', 'Técnico Instalador Categoría A'], src: FI + 'ingenieria-electrica' },
+    'ort-ingenieria-en-biotecnologia': { dur: '5 años', title: 'Ingeniero/a en Biotecnología', sedes: MVD + 'lunes a viernes de 8:00 a 14:00 · desde el 6.º semestre, presencial o remota', req: RI, jobs: ['Control de calidad y procesos', 'Industria farmacéutica, alimentaria y forestal', 'Investigación aplicada'], src: FI + 'ingenieria-en-biotecnologia' },
+    'ort-ingenieria-en-electronica': { dur: '5 años', title: 'Ingeniero/a en Electrónica · a los 4 años: Licenciado/a en Electrónica · a los 2: Ayudante de Ingeniero', sedes: MVD + 'mañana (semestres 1 a 4) y noche (desde el 5.º)', req: RI, jobs: ['Diseño de circuitos y hardware', 'Sistemas embebidos', 'Automatización y robótica'], src: FI + 'ingenieria-en-electronica' },
+    'ort-ingenieria-en-telecomunicaciones': { dur: '5 años', title: 'Ingeniero/a en Telecomunicaciones · a los 4 años: Licenciado/a en Telecomunicaciones · a los 2: Ayudante de Ingeniero', sedes: MVD + 'mañana (semestres 1 a 4) y noche (desde el 5.º)', req: RI, jobs: ['Proveedores de telecomunicaciones', 'Consultoría o empresa propia', 'Cargos técnicos gerenciales'], src: FI + 'ingenieria-en-telecomunicaciones' },
+    'ort-licenciatura-en-bioinformatica': { dur: '4 años', sedes: MVD + 'lunes a viernes de 8:00 a 14:00 · desde el 6.º semestre, presencial o remota', req: RI, nota: 'Título en trámite de reconocimiento del MEC', jobs: ['Bioinformática', 'Análisis de datos biológicos', 'Software científico'], src: FI + 'licenciatura-en-bioinformatica' },
+    'ort-licenciatura-en-biotecnologia': { dur: '4 años', title: 'Licenciado/a en Biotecnología · a los 3 años: Técnico/a Biotecnólogo/a', sedes: MVD + 'mañana, de 8:00 a 14:00', req: RI, jobs: ['Industria farmacéutica, alimentaria y forestal', 'Control de calidad', 'Investigación y consultoría'], src: FI + 'licenciatura-en-biotecnologia' },
+    'ort-t-administrador-de-servidores-y-aplicaciones': { dur: '2 años', sedes: MVD + 'lunes a jueves, mañana o noche', req: '1.º de EMS aprobado (también tecnológico); hasta 3 previas por un año', jobs: ['Soporte a usuarios (Helpdesk)', 'Administración de redes', 'Servidores Windows y Linux'], src: FI + 'administrador-de-servidores-y-aplicaciones' },
+    'ort-t-analista-en-infraestructura-informatica': { dur: '3 años', title: 'Analista en Infraestructura Informática · a los 2 años: Administrador/a de Servidores y Aplicaciones', sedes: MVD + 'lunes a jueves, mañana o noche', req: 'Bachillerato completo o 3.er año de bachillerato tecnológico; hasta 2 previas', jobs: ['Soporte a usuarios (Helpdesk)', 'Administración de redes', 'Servidores Windows y Linux'], src: FI + 'analista-en-infraestructura-informatica' },
+    'ort-t-analista-en-tecnologias-de-la-informacion': { dur: '3 años', title: 'Analista en TI · intermedios: Programador/a de Aplicaciones y Analista Programador/a', sedes: MVD + 'lunes a jueves, mañana, tarde o noche', req: 'Bachillerato completo o 3.er año de bachillerato tecnológico; hasta 2 previas', nota: 'Carrera terciaria no universitaria', jobs: ['Desarrollo de software', 'Desarrollo web front-end y back-end', 'Integración de inteligencia artificial'], src: FI + 'analista-en-tecnologias-de-la-informacion' },
+    'ort-t-analista-programador': { name: 'Analista Programador · Desarrollo de Software con IA', dur: '2 años', title: 'Analista Programador/a · al 3.er semestre: Programador/a de Aplicaciones', sedes: MVD + 'lunes a jueves, mañana, tarde o noche', req: '1.º de EMS aprobado (también tecnológico); hasta 3 previas por un año', jobs: ['Análisis y programación de sistemas', 'Desarrollo e integración de software', 'Liderazgo de equipos de desarrollo'], src: FI + 'analista-programador' }
+  };
+  /* ORT Comunicación Audiovisual: capturas de Chris (13/10/2026) */
+  ORT_FIX['ort-licenciatura-en-comunicacion-audiovisual-y-cinematografica'] = { dur: '4 años', sedes: MVD + 'mañana (semestres 1 a 4) y noche (semestres 5 a 8); algunas prácticas y electivas fuera de ese turno', req: RU };
+  /* Según Chris: las licenciaturas de Comunicación de ORT son la misma carrera con distinto énfasis, con igual duración y horarios */
+  ['ort-licenciatura-en-comunicacion-y-analitica-de-datos', 'ort-licenciatura-en-comunicacion-publicitaria-y-marketing', 'ort-licenciatura-en-comunicacion-periodistica-y-creacion-de-contenidos'].forEach(function (id) {
+    ORT_FIX[id] = { dur: '4 años', sedes: MVD + 'mañana (semestres 1 a 4) y noche (semestres 5 a 8)', req: RU, nota: 'Es la Licenciatura en Comunicación de ORT con este énfasis' };
+  });
+
+  /* UNIFA: páginas de carrera, preguntas frecuentes y "Quiénes somos" del sitio (13/10/2026) */
+  var UF = 'https://www.unifa.edu.uy/';
+  var UNIFA_MEC = function (y) { return 'Reconocida por el MEC (' + y + ')'; };
+  CAREERS.push(
+    { id: 'unifa-contador', inst: 'unifa', name: 'Contador Público', area: 'Negocios', code: 'CEI', dur: '4 años', title: 'Contador/a Público/a', cost: PRIV, sedes: 'Maldonado · lunes a viernes de 18:00 a 23:00', req: 'Bachillerato completo en cualquier orientación', nota: UNIFA_MEC(2009), jobs: ['Trabajo independiente o en equipos, público y privado', 'Asistencia a emprendimientos o negocio propio', 'Docencia e investigación'], src: UF + 'contador_publico' },
+    { id: 'unifa-admin', inst: 'unifa', name: 'Licenciatura en Administración y Dirección de Empresas', area: 'Negocios', code: 'ECS', dur: '4 años', title: 'Licenciado/a en Administración y Dirección de Empresas', cost: PRIV, sedes: 'Maldonado · lunes a viernes de 18:00 a 23:00', req: 'Bachillerato completo en cualquier orientación', nota: UNIFA_MEC(2001) + '. Los 2 primeros años coinciden casi totalmente con Contador Público, así que se pueden obtener los dos títulos', jobs: ['Trabajo independiente o en equipos, público y privado', 'Asistencia a emprendimientos o negocio propio', 'Docencia e investigación'], src: UF + 'quienes_somos' },
+    { id: 'unifa-turismo', inst: 'unifa', name: 'Licenciatura en Turismo', area: 'Negocios', code: 'ESA', dur: '4 años', title: 'Licenciado/a en Turismo · intermedios: Técnico en Turismo (3 años), Guía de Turismo Universitario (2 años) y Diploma de Gestión en Servicios Turísticos (1 año)', cost: PRIV, sedes: 'Maldonado · lunes a viernes de 19:00 a 23:00 aprox.', req: 'Bachillerato completo en cualquier orientación', nota: UNIFA_MEC(2002) + '. Primera Licenciatura en Turismo del país', jobs: ['Gerencia o consultoría en empresas turísticas', 'Guía de turismo para tours y cruceros', 'Emprendimientos, docencia e investigación'], src: UF + 'licenciatura_turismo' }
+  );
+  ORT_FIX['unifa-psico'] = { nota: UNIFA_MEC(2016) + '. Carga de 20 horas semanales' };
+
+  /* UdelaR: sitios de cada facultad (13/10/2026). El portal udelar.edu.uy bloquea lectores automáticos. */
+  var MVF = 'Montevideo (sede de la facultad)';
+  function UR(id, name, area, code, dur, sedes, src, extra) {
+    var c = { id: 'udelar-' + id, inst: 'udelar', name: name, area: area, code: code, dur: dur || ASK, cost: FREE, sedes: sedes || MVF, req: ASK, src: src };
+    if (extra) for (var k in extra) c[k] = extra[k];
+    CAREERS.push(c);
+  }
+  var FDER = 'https://www.fder.edu.uy/', FCS = 'https://cienciassociales.edu.uy/ensenanza/', FIC = 'https://fic.edu.uy/ensenanza/grado/', FADU = 'https://www.fadu.edu.uy/carreras/', FHCE = 'https://fhce.edu.uy/';
+  /* Derecho */
+  UR('abogacia', 'Abogacía', 'Derecho y política', 'ESI', '5 años', null, FDER + 'node/5070', { title: 'Abogado/a', jobs: ['Patrocinio judicial y judicatura', 'Asesoría, negociación y mediación', 'Ministerio Público y fiscalía'] });
+  UR('notariado', 'Notariado', 'Derecho y política', 'CES', '5 años', null, FDER + 'node/5072', { title: 'Escribano/a Público/a', jobs: ['Asesoría en contratos y asuntos patrimoniales', 'Actuario judicial', 'Actas y certificados notariales'] });
+  UR('rrii', 'Licenciatura en Relaciones Internacionales', 'Derecho y política', 'ESI', '4 años', null, FDER + 'rrii', { title: 'Licenciado/a en Relaciones Internacionales', jobs: ['Análisis e investigación internacional', 'Negocios y comercio internacional', 'Negociación para el Estado, ONG o empresas'] });
+  UR('rrll', 'Licenciatura en Relaciones Laborales', 'Derecho y política', 'SEC', '4 años', null, FDER + 'rrll', { title: 'Licenciado/a en Relaciones Laborales', jobs: ['Asesoramiento y negociación', 'Representación', 'Prevención, análisis y estudios'] });
+  UR('traduccion', 'Licenciatura en Traducción Pública', 'Social y educación', 'ACI', '4 años', 'Montevideo (Edificio Anexo de la facultad)', FDER + 'node/5158', { title: 'Licenciado/a en Traducción Pública', req: 'Pruebas de admisión (ver el sitio de la facultad)', jobs: ['Traducción pública', 'Perito intérprete judicial', 'Herramientas informáticas de traducción'] });
+  /* Ciencias Sociales */
+  UR('ciencia-politica', 'Licenciatura en Ciencia Política', 'Derecho y política', 'ISE', '4 años', 'Montevideo', FCS + 'licenciatura-en-ciencia-politica/');
+  UR('sociologia', 'Licenciatura en Sociología', 'Social y educación', 'ISA', '4 años', 'Montevideo', FCS + 'licenciatura-en-sociologia/');
+  UR('trabajo-social', 'Licenciatura en Trabajo Social', 'Social y educación', 'SEA', '4 años', 'Montevideo y CENUR Norte', FCS + 'licenciatura-en-trabajo-social/');
+  UR('desarrollo', 'Licenciatura en Desarrollo', 'Social y educación', 'ISE', '4 años', 'Montevideo', FCS + 'licenciatura-en-desarrollo/');
+  UR('ciencias-sociales', 'Licenciatura en Ciencias Sociales', 'Social y educación', 'ISA', '4 años', 'CENUR Norte', 'https://cienciassociales.edu.uy/oferta-de-grado-en-el-interior/');
+  UR('desarrollo-regional', 'Tecnicatura en Desarrollo Regional Sustentable', 'Social y educación', 'ESI', null, 'Tacuarembó (CENUR Noreste)', 'https://cienciassociales.edu.uy/oferta-de-grado-en-el-interior/', { nivel: 'Técnica' });
+  /* Información y Comunicación */
+  UR('comunicacion', 'Licenciatura en Comunicación', 'Social y educación', 'ASE', '4 años (8 semestres)', 'Montevideo', FIC + 'lic-en-comunicacion', { title: 'Licenciado/a en Comunicación', nota: 'Durante la carrera se elige una de siete orientaciones, y se puede cambiar', jobs: ['Comunicación en instituciones públicas y privadas', 'Proyectos de comunicación', 'Políticas públicas de comunicación'] });
+  UR('archivologia', 'Licenciatura en Archivología', 'Social y educación', 'CIR', '4 años (8 semestres)', 'Montevideo', FIC + 'lic-en-archivologia', { title: 'Licenciado/a en Archivología', jobs: ['Dirección técnica de archivos', 'Gestión electrónica y digitalización de documentos', 'Preservación de documentos'] });
+  UR('bibliotecologia', 'Licenciatura en Bibliotecología', 'Social y educación', 'CSI', '4 años (8 semestres)', 'Montevideo', FIC + 'lic-en-bibliotecologia', { title: 'Licenciado/a en Bibliotecología', jobs: ['Bibliotecas y centros de documentación', 'Asesoramiento editorial', 'Políticas y proyectos de información'] });
+  UR('ing-medios', 'Licenciatura en Ingeniería de Medios', 'Tecnología', 'IAR', '4 años (8 semestres)', 'Montevideo · FIC junto con Facultad de Ingeniería', FIC + 'lic-en-ing-de-medios', { title: 'Licenciado/a en Ingeniería de Medios', req: 'Cualquier bachillerato con matemática en el último año, o bachillerato tecnológico', jobs: ['Contenidos y plataformas digitales', 'Desarrollo de plataformas tecnológicas', 'Tecnologías emergentes en medios'] });
+  /* Arquitectura, Diseño y Urbanismo */
+  UR('arquitectura', 'Arquitectura', 'Arte y diseño', 'ARI', '5 años', 'Montevideo', FADU + 'arquitectura/informacion-general/', { jobs: ['Diseño y dirección de proyectos', 'Asesoramiento y mantenimiento de edificaciones', 'Equipos interdisciplinarios'] });
+  UR('ldcv', 'Licenciatura en Diseño de Comunicación Visual', 'Arte y diseño', 'AEC', '4 años', 'Montevideo', FADU + 'ldcv/informacion-general/', { jobs: ['Diseño gráfico y editorial', 'Diseño publicitario y multimedia', 'Envases, señalética e identidad visual'] });
+  UR('ldind', 'Licenciatura en Diseño Industrial', 'Arte y diseño', 'ARI', '4 años', 'Montevideo', FADU + 'ldind/informacion-general/', { nota: 'Perfiles Producto y Textil-Indumentaria', jobs: ['Productos y servicios', 'Indumentaria y textil', 'Gestión y planificación en equipos'] });
+  UR('ldp', 'Licenciatura en Diseño de Paisaje', 'Arte y diseño', 'ARI', '4 años', 'Maldonado (CURE)', FADU + 'ldp/informacion-general/', { jobs: ['Parques, jardines y espacios urbanos', 'Asesoría a ingeniería y arquitectura', 'Dirección de obras paisajísticas'] });
+  UR('ldi', 'Licenciatura en Diseño Integrado', 'Arte y diseño', 'ARE', '4 años', 'Salto (CENUR Litoral Norte)', FADU + 'ldi/informacion-general/', { jobs: ['Administración pública', 'Emprendimientos productivos y turísticos', 'Encargos particulares'] });
+  /* Humanidades y Ciencias de la Educación */
+  UR('antropologia', 'Licenciatura en Ciencias Antropológicas', 'Social y educación', 'IAS', null, null, FHCE + 'licenciatura-en-ciencias-antropologicas/');
+  UR('educacion', 'Licenciatura en Ciencias de la Educación', 'Social y educación', 'SIA', null, null, FHCE + 'licenciatura-en-educacion/', { jobs: ['Educación formal, no formal e informal', 'Docencia', 'Investigación'] });
+  UR('historia', 'Licenciatura en Historia', 'Social y educación', 'IAS', null, null, FHCE + 'licenciatura-en-historia/', { jobs: ['Investigación', 'Docencia', 'Asesoramiento'] });
+  UR('filosofia', 'Licenciatura en Filosofía', 'Social y educación', 'IAS', null, null, FHCE + 'licenciatura-en-filosofia/');
+  UR('letras', 'Licenciatura en Letras', 'Social y educación', 'AIS', null, null, FHCE + 'licenciatura-en-letras/');
+  UR('linguistica', 'Licenciatura en Lingüística', 'Social y educación', 'IAS', null, null, FHCE + 'licenciatura-en-linguistica/', { jobs: ['Salud', 'Comunicaciones', 'Educación'] });
+  UR('biologia-humana', 'Licenciatura en Biología Humana', 'Salud', 'IRS', null, 'Montevideo (Espacio Interdisciplinario)', FHCE + 'licenciatura-en-biologia-humana/', { req: 'No es de ingreso directo desde el liceo: pide al menos 1.er año aprobado de otra carrera terciaria (o 80 créditos)' });
+  UR('turismo', 'Licenciatura en Turismo', 'Negocios', 'ESA', null, 'Salto (CENUR Litoral Norte) y Maldonado (CURE)', FHCE + 'licenciatura-en-turismo-maldonado-salto/', { req: 'Bachillerato en cualquier orientación (o UTU nivel bachillerato, título de Maestro, egreso del INET o ciclos iniciales de UdelaR)' });
+  UR('dramaturgia', 'Tecnicatura Universitaria en Dramaturgia', 'Arte y diseño', 'ASE', '2 años', null, FHCE + 'tecnicatura-universitaria-en-dramaturgia/', { nivel: 'Técnica', title: 'Técnico/a Universitario/a en Dramaturgia' });
+  UR('bienes-culturales', 'Tecnicatura Universitaria en Bienes Culturales', 'Social y educación', 'SAC', '2 años y medio (5 semestres)', 'Tacuarembó (CENUR Noreste), Paysandú (CENUR Litoral Norte) y Colonia', FHCE + 'tecnicatura-universitaria-en-bienes-culturales-tubicu/', { nivel: 'Técnica', nota: 'Menciones en Historia Regional y Local, Patrimonio o Museología' });
+  UR('museologia', 'Tecnicatura Universitaria en Museología', 'Social y educación', 'SAC', null, null, FHCE + 'tecnicatura-universitaria-en-museologia/', { nivel: 'Técnica' });
+  UR('correccion', 'Tecnicatura Universitaria en Corrección de Estilo', 'Social y educación', 'CAI', null, null, FHCE + 'tecnicatura-universitaria-en-correccion-de-estilo/', { nivel: 'Técnica', jobs: ['Editoriales', 'Medios de comunicación', 'Agencias publicitarias'] });
+  UR('lsu', 'Tecnólogo en Interpretación y Traducción LSU – Español', 'Social y educación', 'SAC', null, null, FHCE + 'tecnologo-en-interpretacion-y-traduccion-lsu-espanol/', { nivel: 'Técnica', req: 'Prueba de ingreso de comprensión y expresión en Lengua de Señas Uruguaya y en español (preinscripción en febrero)' });
+  /* Psicología: cursado en el interior */
+  ORT_FIX['udelar-psico'] = { sedes: 'Montevideo, Salto y Paysandú (completa). En Maldonado y en otros ciclos iniciales del interior se puede hacer el primer año', src: 'https://www.psico.edu.uy/ensenanza/grado/estudiar-interior-pais' };
+
+  /* ---------- Formación en Educación (CFE) · sitio "Oferta Educativa 2026" del CFE (13/10/2026) ----------
+     Duración: el sitio organiza cada carrera en 1.º a 4.º año. Sedes: página de 1.er año de cada especialidad. */
+  INSTS.push({ id: 'cfe', short: 'CFE', full: 'Formación en Educación (CFE)', type: 'Pública', place: 'Todo el país', url: 'https://www.cfe.edu.uy/' });
+  var CFE = 'https://sites.google.com/docente.ceibal.edu.uy/ofertaeducativacfe2025/';
+  var CERP = { C: 'Florida', E: 'Maldonado', L: 'Salto', N: 'Rivera', S: 'Atlántida', O: 'Colonia' };
+  function cerps(keys) { return keys.split('').map(function (k) { return CERP[k]; }); }
+  function listY(a) { return a.length > 1 ? a.slice(0, -1).join(', ') + ' y ' + a[a.length - 1] : a[0]; }
+  /* pres: centros presenciales; semi: texto de la modalidad semipresencial */
+  function profSedes(pres, semi) {
+    return (pres ? 'Presencial: ' + pres + '.' : '') + (semi ? (pres ? ' ' : '') + 'Semipresencial: ' + semi + '.' : '');
+  }
+  var IFD_PAIS = 'institutos de formación docente (IFD) de todo el país';
+  function CF(id, name, code, sedes, path, extra) {
+    var c = { id: 'cfe-' + id, inst: 'cfe', name: name, area: 'Social y educación', code: code, dur: '4 años', cost: FREE, sedes: sedes || ASK, req: ASK, src: CFE + path };
+    if (extra) for (var k in extra) c[k] = extra[k];
+    CAREERS.push(c);
+  }
+  var P6 = 'IPA (Montevideo) y CeRP de ' + listY(cerps('CELNSO'));
+  /* Magisterio y Educador Social */
+  CF('maestro-primaria', 'Maestro/a de Educación Primaria', 'SAE', 'Presencial en Montevideo (Institutos Normales) y en los IFD de Artigas, Canelones, Carmelo, Durazno, Florida, Fray Bentos, La Costa, Maldonado, Melo, Mercedes, Minas, Pando, Paysandú, Rivera, Rocha, Rosario, Salto, San José, San Ramón, Tacuarembó, Treinta y Tres y Trinidad', 'magisterio/maestro-de-educación-primaria');
+  CF('maestro-primera-infancia', 'Maestro/a de Primera Infancia', 'SAE', 'Presencial en Montevideo (Institutos Normales) y en los IFD de Durazno, Florida, Fray Bentos, La Costa, Maldonado, Melo, Mercedes, Minas, Pando, Paysandú, Rivera, Salto, San José, Tacuarembó, Treinta y Tres y Trinidad', 'magisterio/maestro-de-primera-infancia');
+  CF('educador-social', 'Educador/a Social', 'SEA', 'Presencial en Montevideo (Instituto de Formación en Educación Social), CeRP del Este (Maldonado) y los IFD de Canelones, Paysandú y Rivera', 'educador-social/educador-social');
+  /* Profesorados */
+  var PR = 'profesorado/';
+  CF('prof-matematica', 'Profesorado de Matemática', 'SIC', profSedes(P6 + ', e IFD de Melo, Paysandú, Rocha, Tacuarembó y Treinta y Tres', 'otros ' + IFD_PAIS), PR + 'matemática');
+  CF('prof-fisica', 'Profesorado de Física', 'SIR', profSedes(P6 + ', e IFD de Melo y Paysandú', 'otros ' + IFD_PAIS), PR + 'física');
+  CF('prof-quimica', 'Profesorado de Química', 'SIR', profSedes(P6, IFD_PAIS), PR + 'química');
+  CF('prof-biologia', 'Profesorado de Ciencias Biológicas', 'SIR', profSedes(P6, IFD_PAIS), PR + 'ciencias-biológicas');
+  CF('prof-astronomia', 'Profesorado de Astronomía', 'SIR', profSedes(null, 'IPA (Montevideo)'), PR + 'astronomía');
+  CF('prof-geografia', 'Profesorado de Ciencias Geográficas', 'SIA', profSedes('IPA (Montevideo), CeRP de Maldonado, Salto y Colonia, e IFD de Tacuarembó', 'CeRP de Rivera y Atlántida, y ' + IFD_PAIS), PR + 'ciencias-geográficas');
+  CF('prof-historia', 'Profesorado de Historia', 'SIA', profSedes(P6, IFD_PAIS), PR + 'historia');
+  CF('prof-filosofia', 'Profesorado de Filosofía', 'SIA', profSedes('IPA (Montevideo) y CeRP de Maldonado, Salto y Colonia', 'CeRP de Florida, Rivera y Atlántida, y ' + IFD_PAIS), PR + 'filosofía');
+  CF('prof-sociologia', 'Profesorado de Sociología', 'SIE', profSedes('IPA (Montevideo) y CeRP de Maldonado, Salto, Rivera, Atlántida y Colonia', IFD_PAIS), PR + 'sociología');
+  CF('prof-derecho', 'Profesorado de Derecho', 'SEI', profSedes('IPA (Montevideo) y CeRP de Florida, Maldonado, Rivera, Colonia y Salto', 'CeRP de Atlántida y ' + IFD_PAIS), PR + 'derecho');
+  CF('prof-derecho-sociologia', 'Profesorado de Derecho - Sociología', 'SEI', null, PR + 'derecho-sociología');
+  CF('prof-espanol', 'Profesorado de Idioma Español', 'SAI', profSedes(P6, IFD_PAIS), PR + 'idioma-español');
+  CF('prof-literatura', 'Profesorado de Literatura', 'SAI', profSedes(P6, IFD_PAIS), PR + 'literatura');
+  CF('prof-ingles', 'Profesorado de Inglés', 'SAE', profSedes(P6 + ', e IFD de Paysandú y Tacuarembó', 'otros ' + IFD_PAIS), PR + 'inglés');
+  CF('prof-frances', 'Profesorado de Francés', 'SAE', null, PR + 'francés');
+  CF('prof-italiano', 'Profesorado de Italiano', 'SAE', null, PR + 'italiano');
+  CF('prof-portugues', 'Profesorado de Portugués', 'SAE', profSedes(null, 'IPA (Montevideo), los seis CeRP y ' + IFD_PAIS), PR + 'portugués');
+  CF('prof-comunicacion-visual', 'Profesorado de Comunicación Visual', 'SAR', profSedes('IPA (Montevideo) y CeRP de Salto y Colonia', 'CeRP de Florida, Maldonado, Rivera y Atlántida, y ' + IFD_PAIS), PR + 'comunicación-visual');
+  CF('prof-danza', 'Profesorado de Danza', 'SAR', profSedes('IPA (Montevideo)', null), PR + 'danza');
+  CF('prof-musica', 'Profesorado de Educación Musical', 'SAR', profSedes('IPA (Montevideo)', 'los seis CeRP y ' + IFD_PAIS), PR + 'educación-musical');
+  CF('prof-informatica', 'Profesorado de Informática', 'SIC', profSedes('INET (Montevideo) y CeRP de ' + listY(cerps('CELNSO')), IFD_PAIS), PR + 'informática');
+  /* Maestro Técnico y Profesor Técnico (INET, Montevideo) */
+  var MT = 'maestro-técnico/', PT = 'profesor-técnico/';
+  var INET_P = 'Montevideo (INET) · presencial', INET_S = 'Montevideo (INET) · semipresencial';
+  [['carpinteria', 'Carpintería', 'RSA', INET_P, 'carpintería'], ['construccion', 'Construcción', 'RSC', INET_S, 'construcción'],
+   ['indumentaria', 'Diseño e Indumentaria', 'RAS', INET_P, 'diseño-e-indumentaria'], ['automotriz', 'Electromecánica Automotriz', 'RSI', INET_P, 'electro-mecánica-automotriz'],
+   ['electro-electronica', 'Electro Electrónica', 'RSI', null, 'electro-electrónica'], ['electronica', 'Electrónica', 'RSI', INET_S, 'electrónica'],
+   ['electrotecnia', 'Electrotecnia', 'RSI', INET_S, 'electrotécnia'], ['gastronomia', 'Gastronomía', 'RSA', INET_P, 'gastronomía'],
+   ['mecanica', 'Mecánica Industrial', 'RSI', INET_P, 'mecánica-industrial'], ['agropecuaria', 'Producción Agropecuaria', 'RSI', null, 'producción-agropecuaria'],
+   ['animal', 'Producción Animal', 'RSI', INET_P, 'producción-animal'], ['vegetal', 'Producción Vegetal', 'RSI', INET_S, 'producción-vegetal'],
+   ['redes', 'Redes y Telecomunicaciones', 'RSI', null, 'redes-y-telecomunicaciones']
+  ].forEach(function (r) { CF('mt-' + r[0], 'Maestro/a Técnico/a en ' + r[1], r[2], r[3], MT + r[4]); });
+  [['administracion', 'Administración', 'SCE', 'administración'], ['contabilidad', 'Contabilidad', 'SCE', 'contabilidad'], ['economia', 'Economía', 'SCI', 'económia']
+  ].forEach(function (r) { CF('pt-' + r[0], 'Profesor/a Técnico/a en ' + r[1], r[2], INET_S, PT + r[3]); });
+  CF('acompanante-inclusiva', 'Tecnicatura en Acompañante Pedagógico en Educación Inclusiva', 'SAC', 'Presencial en Montevideo (Institutos Normales) y en los IFD de Fray Bentos, Paysandú, Treinta y Tres y Rivera', 'tecnicatura/acompañante-pedagógico-en-educación-inclusiva', { dur: ASK, nivel: 'Técnica', nota: 'En la oferta 2026 el sitio solo muestra el 2.º año de esta tecnicatura' });
+
+  /* ---------- UTU Educación Terciaria · eduterciaria.utu.edu.uy/carreras (13/10/2026) ----------
+     Duración según el nivel publicado en cada área: Técnico 2 años, Tecnólogo 3 años, Ingeniero Tecnológico 4 años. */
+  var UTUB = 'https://eduterciaria.utu.edu.uy/';
+  var UTU_LVL = { T: '2 años', G: '3 años', I: '4 años' };
+  function UT(lvl, name, area, code, path) {
+    CAREERS.push({ id: 'utu-' + norm(name).replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''), inst: 'utu', name: name, area: area, code: code, dur: UTU_LVL[lvl], cost: FREE, sedes: ASK,
+      req: lvl === 'I' ? 'Según UTU, está pensada para quienes ya tienen formación técnica (ver requisitos en el sitio)' : ASK,
+      nivel: lvl === 'I' ? 'Grado' : 'Técnica', src: UTUB + path });
+  }
+  /* Ingeniería y Tecnología para la Producción Sostenible */
+  UT('T', 'Técnico en Autotrónica', 'Tecnología', 'RIC', '2024/06/22/tecnico-en-autotronica/');
+  UT('T', 'Técnico en Instalaciones Eléctricas', 'Tecnología', 'RCI', '2024/06/26/tecnico-en-instalaciones-electricas/');
+  UT('T', 'Técnico en Instrumentación y Control', 'Tecnología', 'RIC', '2024/06/15/tecnico-en-instrumentacion-y-control-y-tecnico-en-agronica/');
+  UT('T', 'Técnico en Agrónica', 'Tecnología', 'RIC', '2024/06/15/tecnico-en-instrumentacion-y-control-y-tecnico-en-agronica/');
+  UT('T', 'Técnico en Mantenimiento Electromecánico Industrial', 'Tecnología', 'RCI', '2024/06/27/tecnico-en-mantenimiento-electromecanico-industrial/');
+  UT('T', 'Técnico Maquinista Naval', 'Tecnología', 'RCI', '2024/06/27/tecnico-maquinista-naval/');
+  UT('T', 'Técnico en Náutica y Pesca', 'Agro y ambiente', 'RIC', '2024/06/27/tecnico-en-nautica-y-pesca/');
+  UT('G', 'Tecnólogo en Biotecnología', 'Tecnología', 'IRC', '2024/06/21/tecnologo-en-biotecnologia/');
+  UT('G', 'Tecnólogo Industrial Mecánico', 'Tecnología', 'RIC', '2024/06/26/tecnologo-industrial-mecanico/');
+  UT('G', 'Tecnólogo en Mecatrónica', 'Tecnología', 'RIC', '2024/06/23/tecnologo-en-mecatronica/');
+  UT('G', 'Tecnólogo en Meteorología', 'Tecnología', 'IRC', '2024/06/25/tecnologo-en-meteorologia/');
+  UT('G', 'Tecnólogo en Óptica Oftálmica', 'Salud', 'RIS', '2024/06/25/tecnologo-en-optica-oftalmica/');
+  UT('G', 'Tecnólogo Químico', 'Tecnología', 'IRC', '2024/06/26/tecnologo-quimico/');
+  UT('I', 'Ingeniero Tecnológico Aeronáutico', 'Tecnología', 'RIC', '2024/06/28/ingeniero-tecnologico-aeronautico/');
+  UT('I', 'Ingeniero Tecnológico en Electrónica', 'Tecnología', 'RIC', '2025/04/01/ingeniero-tecnologico-electronica-opcion-telecomunicaciones-e-industrial/');
+  UT('I', 'Ingeniero Tecnológico en Electrotecnia', 'Tecnología', 'RIC', '2024/06/27/ingeniero-tecnologico-en-electrotecnia/');
+  UT('I', 'Ingeniero Tecnológico Prevencionista', 'Tecnología', 'RCS', '2024/07/03/ingeniero-tecnologico-prevencionista-2/');
+  /* Gestión, Comercio y Negocios */
+  UT('T', 'Técnico en Administración', 'Negocios', 'CES', '2024/06/12/tecnico-en-administracion/');
+  UT('T', 'Técnico Corredor de Seguros', 'Negocios', 'ECS', '2024/06/25/tecnico-corredor-de-seguros/');
+  UT('T', 'Técnico en Gestión Humana', 'Negocios', 'SEC', '2024/06/15/tecnico-en-gestion-humana/');
+  UT('T', 'Técnico en Logística Nacional', 'Negocios', 'CER', '2024/06/27/tecnico-en-logistica/');
+  UT('T', 'Técnico en Marketing', 'Negocios', 'EAC', '2024/06/27/tecnico-en-marketing/');
+  UT('T', 'Técnico Operador Inmobiliario', 'Negocios', 'ESC', '2024/06/27/tecnico-operador-inmobiliario/');
+  UT('T', 'Técnico Rematador', 'Negocios', 'ECS', '2024/06/27/tecnico-rematador/');
+  UT('T', 'Técnico en Secretariado Ejecutivo Bilingüe (Inglés–Portugués)', 'Negocios', 'CSE', '2024/06/27/tecnico-en-secretariado-ejecutivo-bilingue-ingles-y-portugues/');
+  UT('T', 'Técnico en Logística Binacional', 'Negocios', 'CER', '2024/07/17/tecnico-en-logistica-binacional/');
+  UT('T', 'Técnico en Secretariado Ejecutivo Bilingüe Binacional (Español–Portugués)', 'Negocios', 'CSE', '2024/07/17/tecnico-en-secretariado-ejecutivo-bilingue-espanol-portugues/');
+  /* Procesos Agrarios, Ambiente y Sostenibilidad */
+  UT('T', 'Técnico en Conservación y Gestión en Áreas Naturales', 'Agro y ambiente', 'RIS', '2024/06/22/tecnico-en-conservacion-y-gestion-de-areas-naturales/');
+  UT('T', 'Técnico en Control Ambiental', 'Agro y ambiente', 'RIC', '2024/06/15/tecnico-en-control-ambiental/');
+  UT('T', 'Técnico Forestal', 'Agro y ambiente', 'RIC', '2024/06/26/tecnico-forestal/');
+  UT('T', 'Técnico en Industrias Lácteas', 'Agro y ambiente', 'RIC', '2024/06/15/tecnico-en-industrias-lacteas/');
+  UT('T', 'Técnico en Producción Agrícola Ganadera', 'Agro y ambiente', 'RCE', '2024/06/27/tecnico-en-produccion-agricola-ganadera/');
+  UT('T', 'Técnico en Producción Lechera', 'Agro y ambiente', 'RCE', '2024/07/15/tecnico-en-produccion-lechera/');
+  UT('T', 'Técnico en Producciones Vegetales Intensivas', 'Agro y ambiente', 'RIC', '2024/07/15/tecnico-en-producciones-vegetales-intensivas/');
+  UT('T', 'Técnico en Producción Agropecuaria Familiar', 'Agro y ambiente', 'RSE', '2024/07/15/tecnico-en-produccion-agropecuaria-familiar/');
+  UT('T', 'Técnico Superior en Control Ambiental (Binacional)', 'Agro y ambiente', 'RIC', '2025/03/19/tecnico-superior-en-control-ambiental-binacional/');
+  UT('T', 'Técnico Superior en Gestión de Vinos y Aceite de Oliva', 'Agro y ambiente', 'ERC', '2024/10/01/tecnico-en-gestion-de-vinos-y-aceite-de-oliva/');
+  UT('G', 'Tecnólogo en Manejo de Sistema de Producción Lechera', 'Agro y ambiente', 'RCE', '2024/06/23/tecnologo-en-manejo-de-sistema-de-produccion-lechera/');
+  UT('G', 'Tecnólogo Cárnico', 'Agro y ambiente', 'RIC', '2024/06/20/tecnologo-carnico/');
+  UT('G', 'Tecnólogo en Producción Equina', 'Agro y ambiente', 'RIE', '2024/07/04/tecnologo-en-produccion-equina/');
+  UT('G', 'Tecnólogo en Sistemas Agropecuarios Familiares', 'Agro y ambiente', 'RSE', '2025/04/09/tecnologo-en-sistemas-agropecuarios-familiares/');
+  UT('G', 'Tecnólogo en Vitivinicultura', 'Agro y ambiente', 'RIA', '2024/06/25/tecnologo-en-vitivinicultura/');
+  /* Industrias Creativas y Culturales */
+  UT('T', 'Técnico en Audiovisuales', 'Arte y diseño', 'ARE', '2025/06/02/tecnico-en-audiovisuales/');
+  UT('T', 'Técnico en Comunicación Social', 'Social y educación', 'ASE', '2025/03/24/tecnico-en-comunicacion-social-2/');
+  /* Informática y Tecnologías de la Información (el Tecnólogo en Informática ya figura como carrera compartida) */
+  UT('T', 'Técnico en Redes y Comunicaciones Ópticas', 'Tecnología', 'RIC', '2024/06/27/tecnico-en-redes-y-comunicaciones-opticas/');
+  UT('T', 'Técnico en Redes y Software', 'Tecnología', 'RIC', '2024/06/27/tecnico-en-redes-y-software/');
+  UT('T', 'Técnico en Telecomunicaciones', 'Tecnología', 'RIC', '2024/07/03/tecnico-en-telecomunicaciones/');
+  UT('G', 'Tecnólogo en Ciberseguridad', 'Tecnología', 'ICR', '2024/06/22/tecnologo-en-ciberseguridad/');
+  /* Tecnologías Alimentarias, Bienestar y Turismo */
+  UT('T', 'Técnico en Deportes Náuticos', 'Salud', 'RSE', '2024/06/25/tecnico-en-deportes-nauticos/');
+  UT('T', 'Técnico en Gestión de Alojamientos', 'Negocios', 'ECS', '2024/06/15/tecnico-en-gestion-de-alojamientos/');
+  UT('T', 'Técnico en Gestión de Empresas Turísticas', 'Negocios', 'ESC', '2024/06/26/tecnico-en-gestion-de-empresas-turisticas/');
+  UT('T', 'Técnico en Organización de Eventos', 'Negocios', 'ESA', '2024/06/27/tecnico-en-organizacion-de-eventos/');
+  UT('T', 'Técnico en Recreación', 'Social y educación', 'SER', '2024/06/15/tecnico-en-recreacion/');
+  UT('T', 'Técnico Superior en Gastronomía', 'Arte y diseño', 'RAE', '2024/06/26/tecnico-superior-en-gastronomia/');
+  UT('T', 'Técnico Superior en Gastronomía (Binacional)', 'Arte y diseño', 'RAE', '2024/07/17/tecnico-en-gastronomia/');
+  UT('G', 'Tecnólogo en Diseño de Itinerarios Turísticos Culturales Sostenibles', 'Negocios', 'EAS', '2024/06/23/tecnologo-en-diseno-de-itinerarios-turisticos-sostenibles-culturales-y-de-la-naturaleza/');
+  UT('G', 'Tecnólogo en Diseño de Itinerarios Turísticos Sostenibles de Naturaleza', 'Negocios', 'ERS', '2024/06/23/tecnologo-en-diseno-de-itinerarios-turisticos-sostenibles-culturales-y-de-la-naturaleza/');
+  UT('G', 'Tecnólogo en Gestión de Deporte y Recreación', 'Salud', 'SER', '2024/06/23/tecnologo-en-gestion-de-deporte-y-recreacion/');
+  /* Construcción, diseño y arquitectura */
+  UT('T', 'Técnico Constructor en Obras de Arquitectura y en Obra Seca', 'Tecnología', 'RCE', '2024/06/15/tecnico-constructor-en-obras-de-arquitectura-y-en-obra-seca/');
+  UT('T', 'Técnico Diseñador Gráfico en Comunicación Visual', 'Arte y diseño', 'AEC', '2024/06/15/tecnico-disenador-grafico-en-comunicacion-visual/');
+  UT('T', 'Técnico en Infografía y Tecnología de la Construcción', 'Tecnología', 'RAC', '2024/06/26/tecnico-en-infografia-y-tecnologia-de-la-construccion/');
+  UT('T', 'Técnico en Instalaciones Sanitarias', 'Tecnología', 'RCI', '2024/06/27/tecnico-en-instalaciones-sanitarias/');
+  UT('T', 'Técnico en Construcción de Obra Civil (Binacional)', 'Tecnología', 'RCE', '2024/07/17/tecnico-en-construccion-de-obra-civil/');
+  UT('G', 'Tecnólogo en Madera', 'Tecnología', 'RAC', '2024/06/21/tecnologo-en-madera/');
+  INSTS.forEach(function (i) { if (i.id === 'utu') i.url = UTUB + 'carreras/'; });
+
+  ['utu-asist', 'ti-inf', 'utec-ccd', 'ucu-acompanamiento-terapeutico', 'ucu-analista-en-informatica', 'ucu-desarrollador-de-software', 'ucu-diseno-arquitectonico', 'ucu-tecnicatura-en-educacion-y-recreacion'].forEach(function (id) { ORT_FIX[id] = ORT_FIX[id] || {}; ORT_FIX[id].nivel = 'Técnica'; });
+  CAREERS.forEach(function (c) { var f = ORT_FIX[c.id]; if (f) for (var k in f) c[k] = f[k]; });
+  var ortWant = Object.keys(ORT_FIX), ortMiss = ortWant.filter(function (k) { return !CAREERS.some(function (c) { return c.id === k; }); });
+  if (ortMiss.length && window.console) console.warn('ORT sin aplicar: ' + ortMiss.join(', '));
+
+  var TYPES = {
+    R: { name: 'Realista', desc: 'Te atrae lo concreto: trabajar con instrumentos, máquinas o herramientas, el aire libre, el taller y las tareas que piden habilidad manual y física.' },
+    I: { name: 'Intelectual', desc: 'Resolvés los problemas con ideas, lenguaje y símbolos. Te atraen la investigación, el análisis y entender a fondo cómo funcionan las cosas.' },
+    A: { name: 'Artístico', desc: 'Te expresás con tus sentimientos, tu intuición y tu imaginación: escribir, dibujar, crear, actuar, hacer música.' },
+    S: { name: 'Social', desc: 'Te importa el bienestar de los demás: te atraen las tareas de enseñar, orientar, acompañar y ayudar.' },
+    E: { name: 'Emprendedor', desc: 'Encarás el mundo con energía y audacia: te atraen liderar, convencer, vender, organizar y tomar decisiones.' },
+    C: { name: 'Convencional', desc: 'Te sentís a gusto con el orden, las normas claras y el manejo prolijo y sistemático de datos y procedimientos.' }
+  };
+  var ORDER = ['R', 'I', 'A', 'S', 'E', 'C'];
+  /* Inventario de Intereses de Holland (documento aportado por Chris). 90 ítems; el tipo sigue la clave de corrección: ítem n → R,I,A,S,E,C según (n-1) mod 6. Se corrigieron solo erratas tipográficas. */
+  var ITEM_TEXTS = [
+    'Es importante para mí tener un cuerpo fuerte y ágil.',
+    'Necesito tener una comprensión completa de las cosas.',
+    'La música, el color, la belleza de cualquier clase pueden realmente afectar mi manera de ser.',
+    'La gente enriquece mi vida y le da sentido.',
+    'Tengo confianza en mí mismo/a como para poder hacer las cosas.',
+    'Me interesa tener claras las pautas para saber qué hacer.',
+    'Usualmente puedo construir o sostener cosas sólidas por mí mismo/a.',
+    'Puedo estar absorto/a por horas en mis pensamientos.',
+    'Aprecio la belleza a mi alrededor; el color y el diseño significan mucho para mí.',
+    'Me gusta estar acompañado/a.',
+    'Me gusta la competencia.',
+    'Necesito tener mi entorno en orden antes de iniciar un proyecto.',
+    'Disfruto haciendo manualidades.',
+    'Es gratificante explorar nuevas ideas.',
+    'Siempre estoy buscando nuevas formas para expresar mi creatividad.',
+    'Valoro la capacidad de compartir cosas personales con los demás.',
+    'Me gusta ser una persona clave del grupo.',
+    'Me enorgullece ser cuidadoso/a en todos los detalles de mi trabajo.',
+    'No me molesta ensuciarme las manos.',
+    'Veo la educación como un proceso que se da a lo largo de la vida, que desarrolla y marca mi mente.',
+    'Me encanta vestirme de manera informal, intentar nuevos colores y estilos.',
+    'Casi siempre me doy cuenta cuando alguien necesita hablar.',
+    'Me alegra encontrar gente organizada y en acción.',
+    'Una buena rutina ayuda a hacer el trabajo.',
+    'Me gusta comprar materiales para hacer las cosas por mí mismo/a.',
+    'A veces puedo estar sentado/a por largo tiempo armando rompecabezas, leyendo o solo pensando acerca de la vida.',
+    'Tengo una gran imaginación.',
+    'Me hace sentir bien cuidar a la gente.',
+    'Me gusta que me tengan confianza para hacer un trabajo.',
+    'Estoy satisfecho/a sabiendo que hice un trabajo cuidadosa y completamente.',
+    'Me gusta hacer cosas prácticas, manuales.',
+    'Me meto de lleno a leer sobre temas que despiertan mi curiosidad.',
+    'Me gusta aplicar creativamente nuevas ideas.',
+    'Si tengo un problema con alguien, me gusta hablar y resolverlo.',
+    'Para tener éxito hay que apuntar alto.',
+    'Prefiero estar en una posición en la que no tenga responsabilidad en las decisiones.',
+    'No me gusta perder mucho tiempo en discusiones: lo que es así es así.',
+    'Necesito analizar profundamente un problema antes de actuar.',
+    'Me gusta arreglar las cosas a mi alrededor para que parezcan únicas y diferentes.',
+    'Cuando me siento deprimido/a, busco a un amigo para hablar.',
+    'Después de sugerir un plan, prefiero dejarles a los otros la atención de los detalles.',
+    'En general, me siento cómodo/a en cualquier parte.',
+    'Es estimulante realizar actividades al aire libre.',
+    'Sigo preguntando: ¿por qué?',
+    'Deseo que mi trabajo sea una expresión de mi manera de ser y de mis sentimientos.',
+    'Me gustaría encontrar medios para hacer que la gente se interese más en el prójimo.',
+    'Es emocionante ser parte de decisiones importantes.',
+    'Me gusta que haya alguien más que se ocupe.',
+    'Me gusta que lo que me rodea sea comprensible y práctico.',
+    'Necesito meterme en el problema hasta encontrar una respuesta.',
+    'La belleza de la naturaleza toca algo muy profundo dentro de mí.',
+    'Las relaciones familiares son muy importantes para mí.',
+    'Ascender y progresar es importante para mí.',
+    'La eficiencia, para mí, significa armar a diario el conjunto de manera cuidadosa y ordenada.',
+    'Un sistema de leyes fuertes y el orden son importantes para prevenir el caos.',
+    'Los libros que desafían la manera de pensar siempre amplían mi perspectiva.',
+    'Busco ir a espectáculos artísticos, musicales y ver buenas películas.',
+    'Cuando paso un tiempo sin ver a alguien, quisiera saber en qué está.',
+    'Influir en la gente es algo atractivo.',
+    'Cuando me comprometo a hacer algo, tengo en cuenta cada detalle.',
+    'Y bien, el trabajo físico duro no le hace mal a nadie.',
+    'Me gustaría aprender todo sobre los temas que me interesan.',
+    'No me gusta ser del montón, quiero hacer las cosas de manera diferente.',
+    '"Decime cómo te puedo ayudar."',
+    'Estoy dispuesto/a a asumir riesgos para seguir adelante.',
+    'Quiero instrucciones precisas y reglas claras cuando comienzo algo.',
+    'Lo primero que busco en un auto es un motor bien construido.',
+    'Algunas personas son intelectualmente estimulantes.',
+    'Cuando estoy creando, no presto atención a otras cosas.',
+    'Estoy convencido/a de que mucha gente en nuestra sociedad necesita ayuda.',
+    'Es divertido obtener ideas a través de la gente.',
+    'Odio que cambien los esquemas cuando ya los aprendí.',
+    'Usualmente sé cómo actuar en situaciones de emergencia.',
+    'Es atrapante leer sobre nuevos descubrimientos.',
+    'Me gusta crear situaciones fuera de lo común.',
+    'Con frecuencia dejo mis cosas para prestar atención a la gente que parece solitaria y sin amigos.',
+    'Me encanta el intercambio.',
+    'No me gusta hacer cosas de las que no estoy seguro/a de su consistencia.',
+    'Los deportes son importantes para alcanzar la fortaleza física.',
+    'Siempre he tenido curiosidad acerca de la modalidad de los trabajos al aire libre.',
+    'Es divertido tener condiciones para tratar o hacer algo inusual.',
+    'Creo que la gente es básicamente buena.',
+    'Si no puedo hacer algo en el primer intento, trato otra vez con entusiasmo y energía.',
+    'Aprecio saber exactamente qué es lo que la gente espera de mí.',
+    'Me gusta poner distancia en las cosas para ver si puedo asegurarlas.',
+    'No hay que apurarse: se pueden pensar y planificar los movimientos lógicamente.',
+    'Sería duro imaginar la vida sin belleza alrededor.',
+    'A menudo la gente me confía sus problemas.',
+    'En general, me acerco a la gente que me pone en contacto con distintos recursos.',
+    'No necesito demasiado para ser feliz.'
+  ];
+  var ITEMS = ITEM_TEXTS.map(function (text, k) { return { t: ORDER[k % 6], text: text }; });
+  var AREAS = ['Todas', 'Salud', 'Tecnología', 'Arte y diseño', 'Negocios', 'Derecho y política', 'Social y educación', 'Agro y ambiente'];
+
+  /* ---------- Estado ---------- */
+  var instById = {}; INSTS.forEach(function (i) { instById[i.id] = i; });
+  var byId = {}; CAREERS.forEach(function (c) { byId[c.id] = c; });
+  var favs = [];
+  try { favs = JSON.parse(localStorage.getItem('orientarte-favs') || '[]').filter(function (id) { return byId[id]; }); } catch (e) { favs = []; }
+  function saveFavs() { try { localStorage.setItem('orientarte-favs', JSON.stringify(favs)); } catch (e) {} }
+
+  var S = { view: 'home', inst: null, career: null, stack: [], q: '', area: 'Todas', zona: 'Todo el país', gratis: false, phase: 'intro', step: 0, answers: [], cmp: [], bach: null, bachOpen: false, draft: null, canOnly: false };
+  try { var sb = JSON.parse(localStorage.getItem('orientarte-bach') || 'null'); if (sb && sb.lvl) S.bach = sb; } catch (e) {}
+  try {
+    var savedTest = JSON.parse(localStorage.getItem('orientarte-test') || 'null');
+    if (savedTest && Array.isArray(savedTest.answers)) { S.answers = savedTest.answers.slice(0, 90); S.step = Math.min(savedTest.step || 0, 89); S.phase = savedTest.phase === 'done' ? 'done' : 'intro'; }
+  } catch (e) {}
+
+  /* ---------- Íconos ---------- */
+  function svg(paths, size) { return '<svg width="' + (size || 22) + '" height="' + (size || 22) + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + paths + '</svg>'; }
+  var P = {
+    redo: '<path d="M20 7v5h-5"/><path d="M20 12a8 8 0 1 1-2.3-5.7L20 8.5"/>',
+    compass: '<circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/>',
+    chev: '<path d="M9 6l6 6-6 6"/>', back: '<path d="M15 18l-6-6 6-6"/>', down: '<path d="M6 9l6 6 6-6"/>',
+    heart: '<path d="M12 21s-7.5-4.6-9.5-9.2C1 8.2 3.3 4.5 7 4.5c2.1 0 3.6 1.1 5 3 1.4-1.9 2.9-3 5-3 3.7 0 6 3.7 4.5 7.3C19.5 16.4 12 21 12 21z"/>',
+    search: '<circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/>',
+    home: '<path d="M4 10.5L12 4l8 6.5V20h-5.5v-5h-5v5H4z"/>',
+    cube: '<path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/>',
+    clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+    coin: '<circle cx="12" cy="12" r="9"/><path d="M14.5 9.5c-.5-1-1.5-1.5-2.5-1.5-1.4 0-2.5.8-2.5 2s1.1 1.6 2.5 2 2.5.8 2.5 2-1.1 2-2.5 2c-1 0-2-.5-2.5-1.5M12 6.5v1.5M12 16v1.5"/>',
+    pin: '<path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/>',
+    check: '<path d="M5 12.5l4.5 4.5L19 7.5"/>', doc: '<path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M10 13h6M10 17h6"/>',
+    cap: '<path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2.5 9 2.5 12 0v-5"/>', brief: '<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 13h18"/>',
+    info: '<circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/>', share: '<circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="M8.2 10.8l7.6-4.6M8.2 13.2l7.6 4.6"/>',
+    ext: '<path d="M14 4h6v6M20 4l-9 9"/><path d="M18 14v6H4V6h6"/>', cols: '<rect x="3" y="4" width="7" height="16" rx="1.5"/><rect x="14" y="4" width="7" height="16" rx="1.5"/>',
+    grid: '<rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/>'
+  };
+  var AREA_IC = {
+    'Salud': P.heart + '<path d="M7 12h2.5l1.5-2.5 2 5 1.5-2.5H17"/>',
+    'Tecnología': '<rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4M10 8l-2 2 2 2M14 8l2 2-2 2"/>',
+    'Arte y diseño': '<path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.8-.9 1.5-1.9-.3-1 .4-2.1 1.5-2.1H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1"/><circle cx="10" cy="7" r="1"/><circle cx="14.5" cy="7" r="1"/>',
+    'Negocios': P.brief,
+    'Derecho y política': '<path d="M12 3v18M7 21h10M5 7h14"/><path d="M5 7l-3 6a3 3 0 0 0 6 0zM19 7l-3 6a3 3 0 0 0 6 0z"/>',
+    'Social y educación': '<circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="2.5"/><path d="M16 14.2c2.9.4 5 2.8 5 5.8"/>',
+    'Agro y ambiente': '<path d="M5 19c0-8 5-14 15-14 0 10-6 15-14 15"/><path d="M5 19c3-4 6-6 10-8"/>'
+  };
+  var LOGO = '<svg width="32" height="32" viewBox="0 0 40 40" role="img" aria-label="Orientarte UY"><g stroke="#E0A800" stroke-width="2.4" stroke-linecap="round"><line x1="20" y1="2" x2="20" y2="8"/><line x1="20" y1="32" x2="20" y2="38"/><line x1="2" y1="20" x2="8" y2="20"/><line x1="32" y1="20" x2="38" y2="20"/><line x1="7.3" y1="7.3" x2="11.5" y2="11.5"/><line x1="28.5" y1="28.5" x2="32.7" y2="32.7"/><line x1="7.3" y1="32.7" x2="11.5" y2="28.5"/><line x1="28.5" y1="11.5" x2="32.7" y2="7.3"/></g><circle cx="20" cy="20" r="9" fill="#F2B705"/><path d="M20 13.5l2.6 6.5-2.6 6.5-2.6-6.5z" fill="#1A3C8F"/></svg>';
+
+  /* ---------- Utilidades ---------- */
+  function norm(s) { return s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, ''); }
+  function badgeCls(i) { return i.type === 'Pública' ? 'pub' : 'priv'; }
+  function careersOf(id) { return CAREERS.filter(function (c) { return c.inst === id || (c.also && c.also.indexOf(id) >= 0); }); }
+  function shortDur(c) { return c.dur && c.dur !== ASK ? c.dur.split(' (')[0].split(' +')[0].split(' · ')[0] : null; }
+  function costShort(c) { return c.cost === FREE ? 'Gratis' : 'Arancel'; }
+  var RX_INT = /maldonado|punta del este|salto|paysand|rivera|tacuaremb|colonia|durazno|fray bentos|mercedes|minas|melo|florida|san jos|la paloma|ciudad de la costa|cenur|cure\b|interior|cerro largo|rocha|artigas/i;
+  var RX_VIR = /virtual|online|100 %/i;
+  function zones(c) {
+    var s = c.sedes && c.sedes !== ASK ? c.sedes : '', z = [];
+    if (/montevideo/i.test(s)) z.push('Montevideo');
+    if (RX_INT.test(s)) z.push('Interior');
+    if (RX_VIR.test(s)) z.push('Virtual');
+    return z;
+  }
+  /* ---------- Filtro según mi bachillerato ----------
+     Reglas tomadas del texto de requisitos de cada carrera. Si la institución no publica requisitos: "sin dato".
+     Si una orientación no aparece mencionada (o el plan no coincide), se marca "revisá" en lugar de afirmar que no. */
+  var ORI = {
+    FM: 'Físico-Matemático', MD: 'Matemática y Diseño', CB: 'Ciencias Biológicas', CA: 'Ciencias Agrarias', SE: 'Social-Económico', SH: 'Social-Humanístico', AE: 'Arte y Expresión',
+    CT: 'Ciencia y Tecnología', CSH: 'Ciencias Sociales y Humanidades', CRA: 'Creativo Artístico', GEN: 'General',
+    TEC: 'Bachillerato tecnológico (UTU)', NS: 'Otra / no sé'
+  };
+  var PLAN06 = ['FM', 'MD', 'CB', 'CA', 'SE', 'SH', 'AE'], PLANN = ['CT', 'CSH', 'CRA', 'GEN'];
+  var LVL = { '3': 'EBI completa', '4': '1.º de EMS', '5': '2.º de EMS', '6': 'Bachillerato completo (3.º EMS)' };
+  var ALLCHECK = { def06: 'check', defN: 'check', tec: 'check' };
+  var RULES = {};
+  ['ort-ingenieria-electrica', 'ort-ingenieria-en-biotecnologia', 'ort-ingenieria-en-electronica', 'ort-ingenieria-en-telecomunicaciones', 'ort-licenciatura-en-bioinformatica', 'ort-licenciatura-en-biotecnologia'].forEach(function (id) { RULES[id] = { deny: ['CRA', 'GEN', 'CSH'], ok: ['CT'], tec: 'check' }; });
+  RULES['ort-is'] = { deny: ['CRA', 'GEN'], ok: ['CT'], tec: 'check' };
+  RULES['ort-licenciatura-en-economia'] = RULES['ort-licenciatura-en-finanzas'] = { deny: ['CRA'], ok: ['CT', 'CSH', 'GEN'], tec: 'check' };
+  RULES['ort-arq'] = { ok: ['CT'], defN: 'no', tec: 'check' };
+  RULES['ude-ingenieria-en-informatica'] = RULES['ude-t-analista-en-ingenieria-informatica'] = { ok: ['SE', 'FM', 'MD'], def06: 'no', tec: 'check' };
+  RULES['ude-licenciatura-en-logistica'] = { ok: ['SE', 'FM', 'MD', 'CB', 'CA'], def06: 'no', tec: 'check' };
+  RULES['ude-t-tecnico-en-ciencias-veterinarias'] = { ok: ['FM', 'MD', 'CB', 'CA'], def06: 'no', tec: 'check' };
+  RULES['utec-meca'] = { ok: ['FM', 'MD', 'CB', 'CA'], tec: 'check' };
+  RULES['utec-er'] = { ok: ['FM', 'MD', 'CA', 'SE', 'CB'], tec: 'check' };
+  RULES['utec-agro'] = { ok: ['CB', 'CA', 'MD', 'FM', 'SE', 'SH'], tec: 'check' };
+  RULES['utec-log'] = { ok: PLAN06.slice(), tec: 'check' };
+  ['ti-inf', 'ude-ingeniero-agronomo', 'udelar-traduccion', 'udelar-lsu', 'utu-ingeniero-tecnologico-aeronautico', 'utu-ingeniero-tecnologico-en-electronica', 'utu-ingeniero-tecnologico-en-electrotecnia', 'utu-ingeniero-tecnologico-prevencionista'].forEach(function (id) { RULES[id] = ALLCHECK; });
+  RULES['udelar-ing-medios'] = { def06: 'check', defN: 'check', tec: 'ok' };
+  RULES['udelar-biologia-humana'] = { never: true };
+
+  function minLevel(req) {
+    if (/^Bachillerato finalizado, o 1\.º de EMS/.test(req)) return 4;
+    if (/\bEBI\b/.test(req)) return 3;
+    if (/1\.º de EMS/.test(req)) return 4;
+    if (/2\.º de EMS/.test(req)) return 5;
+    return 6;
+  }
+  function elig(c) {
+    var b = S.bach; if (!b) return null;
+    if (!c.req || c.req === ASK) return { s: 'na', msg: 'Requisitos sin publicar' };
+    var r = RULES[c.id];
+    if (r && r.never) return { s: 'no', msg: 'No es de ingreso directo desde el liceo' };
+    var need = minLevel(c.req), lv = +b.lvl;
+    if (lv < need) return { s: 'no', msg: need === 6 ? 'Necesitás terminar el bachillerato' : 'Necesitás ' + LVL[String(need)] + ' aprobado' };
+    if (/^Bachillerato finalizado, o 1\.º de EMS/.test(c.req) && lv < 6) return { s: 'check', msg: 'Con 1.º o 2.º de EMS pide experiencia laboral' };
+    if (!r || need < 6) return /prueba|curso de admisión|curso inicial|entrevista/i.test(c.req) ? { s: 'check', msg: 'Pide prueba, curso o entrevista de ingreso' } : { s: 'ok', msg: 'Podés entrar' };
+    var o = b.o, st;
+    if (!o || o === 'NS') st = 'check';
+    else if (o === 'TEC') st = r.tec || 'check';
+    else if (r.deny && r.deny.indexOf(o) >= 0) st = 'no';
+    else if (r.ok && r.ok.indexOf(o) >= 0) st = 'ok';
+    else st = PLAN06.indexOf(o) >= 0 ? (r.def06 || 'check') : (r.defN || 'check');
+    return st === 'ok' ? { s: 'ok', msg: 'Podés entrar' } : st === 'no' ? { s: 'no', msg: 'Pide otra orientación' } : { s: 'check', msg: 'Revisá los requisitos' };
+  }
+  function eligChip(c) {
+    var e = elig(c); if (!e) return '';
+    var cls = { ok: 'ok', check: 'warn', no: 'bad', na: '' }[e.s];
+    return '<span class="chip ' + cls + '">' + (e.s === 'ok' ? '✓ ' : '') + (e.s === 'na' ? 'Sin dato de ingreso' : e.s === 'ok' ? 'Podés entrar' : e.s === 'no' ? 'No cumplís' : 'Revisá requisitos') + '</span>';
+  }
+  function bachLabel() { var b = S.bach; if (!b) return 'Mi bachillerato'; return b.lvl === '6' ? (b.o && b.o !== 'NS' ? ORI[b.o] : 'Bachillerato completo') : LVL[b.lvl]; }
+  function saveBach() { try { localStorage.setItem('orientarte-bach', JSON.stringify(S.bach)); } catch (e) {} }
+  function bachPanel() {
+    var b = S.draft || {};
+    function chip(attr, val, label, on) { return '<button type="button" class="filter" ' + attr + '="' + val + '" aria-pressed="' + on + '">' + label + '</button>'; }
+    var lv = ['3', '4', '5', '6'].map(function (k) { return chip('data-lvl', k, LVL[k], b.lvl === k); }).join('');
+    var ori = b.lvl === '6'
+      ? '<div class="label">¿Qué orientación hiciste?</div>' +
+        '<div class="ori-group"><small>Plan 2006</small><div class="chips">' + PLAN06.map(function (k) { return chip('data-ori', k, ORI[k], b.o === k); }).join('') + '</div></div>' +
+        '<div class="ori-group"><small>Plan nuevo</small><div class="chips">' + PLANN.map(function (k) { return chip('data-ori', k, ORI[k], b.o === k); }).join('') + '</div></div>' +
+        '<div class="ori-group"><small>Otros</small><div class="chips">' + chip('data-ori', 'TEC', ORI.TEC, b.o === 'TEC') + chip('data-ori', 'NS', ORI.NS, b.o === 'NS') + '</div></div>'
+      : '';
+    var ready = b.lvl && (b.lvl !== '6' || b.o);
+    return '<div class="bach-panel"><div class="label">¿Hasta dónde llegaste en el liceo?</div><div class="chips">' + lv + '</div>' + ori +
+      '<div class="bach-actions"><button type="button" class="btn" data-bach-done' + (ready ? '' : ' disabled') + '>Ver mis opciones</button>' +
+      (S.bach ? '<button type="button" class="btn ghost" data-bach-clear>Quitar</button>' : '<button type="button" class="btn ghost" data-bach-cancel>Cancelar</button>') + '</div>' +
+      '<p class="src" style="text-align:left">Se calcula con los requisitos que publica cada institución. Confirmalo siempre antes de inscribirte.</p></div>';
+  }
+
+  function areaCount(a) { return CAREERS.filter(function (c) { return c.area === a; }).length; }
+  function card(c) {
+    var i = instById[c.inst], d = shortDur(c), z = zones(c);
+    return '<button type="button" class="card" data-go-career="' + c.id + '">' +
+      '<span class="card-head"><span class="mini ' + badgeCls(i) + '">' + i.short + '</span><span class="card-title">' + c.name + '</span>' + svg(P.chev, 18).replace('<svg', '<svg class="chev"') + '</span>' +
+      '<span class="chips">' + (d ? '<span class="chip">' + d + '</span>' : '') + '<span class="chip' + (c.cost === FREE ? ' ok' : '') + '">' + costShort(c) + '</span>' +
+      (z.length ? '<span class="chip">' + z.join(' · ') + '</span>' : '') + (c.nivel === 'Técnica' ? '<span class="chip sun">Técnica</span>' : '') + eligChip(c) + '</span></button>';
+  }
+  function sec(icon, title, body, open) {
+    return '<details class="sec"' + (open ? ' open' : '') + '><summary>' + svg(icon, 20) + '<span>' + title + '</span>' + svg(P.down, 18).replace('<svg', '<svg class="down"') + '</summary><div class="sec-body">' + body + '</div></details>';
+  }
+  var NA = '<p class="muted">No está publicado. Consultalo en el sitio de la institución.</p>';
+  function profile() {
+    var sc = { R: 0, I: 0, A: 0, S: 0, E: 0, C: 0 };
+    ITEMS.forEach(function (it, k) { if (S.answers[k] === 1) sc[it.t] += 1; });
+    var ranked = ORDER.slice().sort(function (a, b) { return sc[b] - sc[a] || ORDER.indexOf(a) - ORDER.indexOf(b); });
+    return { sc: sc, ranked: ranked, code: ranked.slice(0, 3).join('') };
+  }
+  function answered() { return S.answers.filter(function (x) { return x === 0 || x === 1; }).length; }
+  function saveTest() { try { localStorage.setItem('orientarte-test', JSON.stringify({ phase: S.phase, step: S.step, answers: S.answers })); } catch (e) {} }
+  function consistency(a, b) {
+    var d = Math.abs(ORDER.indexOf(a) - ORDER.indexOf(b)); d = Math.min(d, 6 - d);
+    return d === 1 ? ['Elevada', 'tus dos tipos principales son vecinos en el hexágono de Holland: comparten intereses y valores, y tu perfil es más fácil de interpretar.']
+         : d === 2 ? ['Media', 'tus dos tipos principales están a un lugar de distancia en el hexágono: tienen algunos puntos en común.']
+         : ['Baja', 'tus dos tipos principales son opuestos en el hexágono: tenés intereses variados, que pueden buscar ambientes distintos.'];
+  }
+  var toastTimer;
+  function toast(msg) {
+    var t = document.getElementById('toast'); if (!t) return;
+    t.textContent = msg; t.hidden = false; clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { t.hidden = true; }, 2600);
+  }
+
+  /* ---------- Materias de 1.er año (planes de estudio de UDE, leídos dos veces y comparados, 13/10/2026) ---------- */
+  var SALUD1 = ['Introducción a la vida universitaria', 'Biología Celular y Tisular', 'Anatomía Humana', 'Neurobiología', 'Metodología Científica 1', 'Salud Pública y Atención Primaria en Salud', 'Cardiovascular y Respiratorio', 'Digestivo, Renal y Endocrino', 'Reproducción y Desarrollo', 'Inglés Técnico Básico 1', 'Psicología Básica', 'Administración en Salud', 'Ética, Bioética y Deontología', 'Principios básicos de la física'];
+  var PRIMER = {
+    'ude-enf': { m: SALUD1 },
+    'ude-cont': { m: ['Administración General', 'Matemática I', 'Derecho Civil', 'Informática I', 'Microeconomía', 'Contabilidad I', 'Introducción a la Universidad', 'Matemática II', 'Derecho Comercial I', 'Macroeconomía', 'Taller de Informática II', 'Contabilidad II', 'Costos', 'Teoría de las Organizaciones'] },
+    'ude-inf': { m: ['Programación I', 'Sistemas Operativos I', 'Matemática Discreta', 'Programación II', 'Arquitectura del Computador I', 'Taller I'] },
+    'ude-ingenieria-en-informatica': { m: ['Programación I', 'Sistemas Operativos I', 'Matemática Discreta I', 'Análisis Matemático I', 'Psicología Social', 'Comunicación: Taller de expresión oral y escrita', 'Programación II', 'Álgebra Lineal', 'Arquitectura del Computador I', 'Administración I', 'Taller I'] },
+    'ude-abogacia': { m: ['Derecho Civil I', 'Derecho Constitucional I', 'Análisis de la Realidad Contemporánea', 'Técnicas de Estudio', 'Instituciones e Ideas Jurídicas', 'Informática', 'Derecho Civil II', 'Derecho Constitucional II', 'Sociología', 'Negocios, Empresas y Sociedad', 'Contabilidad', 'Informática Jurídica'] },
+    'ude-licenciatura-en-marketing': { m: ['Marketing Básico', 'Introducción al Mundo Digital', 'Sociología', 'Economía I', 'Administración I', 'Propedéutico de Análisis Cuantitativo', 'Introducción a la Universidad', 'Análisis Cuantitativo', 'Economía II', 'Social Media Marketing', 'Administración II', 'Informática Aplicada', 'Comunicaciones'] }
+  };
+
+  /* ---------- Becas y apoyos (fuentes oficiales; montos y plazos según lo publicado, 2026) ---------- */
+  var BECAS = [
+    { id: 'fondo', name: 'Becas del Fondo de Solidaridad', para: 'UdelaR · UTEC · UTU', inst: ['udelar', 'utec', 'utu'], tipo: 'Apoyo mensual en dinero',
+      items: ['2 BPC por mes: unos $13.728 en 2026.', 'Se otorga según la situación económica de tu hogar.', 'Te podés postular mientras terminás el bachillerato, aunque todavía no te hayas inscripto en la carrera.', 'Hay límite de edad: entre 25 y 28 años según el tipo de beca.', 'En 2026 la inscripción cerró el 28 de febrero.'],
+      dato: 'En 2026 se dieron 11.168 becas, y 85 % de quienes las reciben son la primera generación de su familia en llegar a estudios terciarios.',
+      link: 'https://becas.fondodesolidaridad.edu.uy/inscripciones/', linkTxt: 'Portal de becas', src: 'Presidencia de Uruguay, feb. y jul. 2026' },
+    { id: 'bienestar', name: 'Bienestar Universitario', para: 'UdelaR', inst: ['udelar'], tipo: 'Comida, transporte y alojamiento',
+      items: ['Becas y apoyos de alimentación, transporte y alojamiento para estudiantes de la UdelaR, según su situación económica.', 'Montos, edades y fechas cambian: confirmalos en el sitio.'],
+      link: 'https://www.bienestar.edu.uy/', linkTxt: 'Sitio de Bienestar', src: 'Guía de recursos de PROGRESA (UdelaR). Es una guía anterior: confirmá los datos actuales' },
+    { id: 'docente', name: 'Beca Docente (MEC)', para: 'Formación docente', inst: ['cfe'], tipo: 'Beca de dedicación total',
+      items: ['Para Magisterio (Primaria y Primera Infancia), Profesorado, Maestro Técnico y Profesor Técnico.', 'Pensada para que puedas dedicarte a estudiar o trabajar menos.', 'Inscripción de enero a abril; se cobra en 9 cuotas, de abril a diciembre.', 'Pide tener todo aprobado al cierre de la inscripción (podés anotarte con exámenes de febrero pendientes).', 'Tiene cupos para personas afrodescendientes y trans.'],
+      link: 'https://www.gub.uy/ministerio-educacion-cultura/politicas-y-gestion/preguntas-frecuentes-beca-docente', linkTxt: 'Preguntas frecuentes del MEC', src: 'Ministerio de Educación y Cultura' },
+    { id: 'utec', name: 'Becas UTEC', para: 'UTEC', inst: ['utec'], tipo: 'Comida, traslado y empleo',
+      items: ['Apoyos de alimentación y traslado para estudiantes de hogares de ingresos bajos o medio-bajos.', 'Becas comunitarias y becas de oportunidad.', 'Becas con empleo: 2 BPC por mes durante 9 meses (se puede extender), una vez que aprobaste un semestre.'],
+      link: 'https://www.gub.uy/presidencia/comunicacion/noticias/becas-empleo-utec-promueven-culminacion-carreras-generan-primera-experiencia', linkTxt: 'Ver la nota oficial', src: 'Presidencia de Uruguay, jul. 2026' },
+    { id: 'ort', name: 'Becas ORT', para: 'Universidad ORT', inst: ['ort'], tipo: 'Descuento en la cuota',
+      items: ['Excelencia Académica: hasta 60 % si terminaste 3.º de EMS el año anterior con buena escolaridad.', 'Concursables: hasta 50 %.', 'Beca Charlotte de Grünberg: 100 % de la carrera más $30.000 por mes.', 'Beca Mujer en Ingeniería: 80 % en Eléctrica, Electrónica o Telecomunicaciones.', 'Olimpíadas de Física o de Matemática: 100 %.', 'Para todas hay que rendir la Prueba de Aptitud Académica.'],
+      link: 'https://www.ort.edu.uy/becas/becas-para-carreras-universitarias', linkTxt: 'Becas en el sitio de ORT', src: 'Universidad ORT Uruguay' },
+    { id: 'um', name: 'Becas UM', para: 'Universidad de Montevideo', inst: ['um'], tipo: 'Descuento en la cuota',
+      items: ['Beca UM: 70 % (menores de 19, cursando 3.º de EMS, con la prueba de la UM).', 'Beca Liceos públicos: hasta 80 %.', 'Beca al mérito: hasta 90 % según tu necesidad (menores de 23).', 'Beca interior: 40 %.', 'Educadores para el cambio: desde 30 % para Magisterio o Profesorado de Matemática.', 'En 2026 los plazos fueron de abril a noviembre, según la beca.'],
+      link: 'https://www.um.edu.uy/admisiones-becas', linkTxt: 'Becas en el sitio de la UM', src: 'Universidad de Montevideo' },
+    { id: 'ude', name: 'Fondo de Becas UDE', para: 'Universidad de la Empresa', inst: ['ude'], tipo: 'Para quienes ingresan',
+      items: ['La UDE tiene un fondo de becas para nuevos ingresantes que lo necesiten.', 'El sitio no detalla porcentajes ni plazos: consultalos en la universidad.'],
+      link: 'https://ude.edu.uy/becas/', linkTxt: 'Becas en el sitio de UDE', src: 'Universidad de la Empresa' }
+  ];
+  function becasDe(instId) { return BECAS.filter(function (b) { return b.inst.indexOf(instId) >= 0; }); }
+
+  /* Ejemplos de la sección "Dudas al elegir", tomados de los datos de la app */
+  function esCorta(c) {
+    var d = shortDur(c); if (!d) return false;
+    if (/mes|hora/.test(d)) return true;
+    if (/semestre/.test(d)) return parseInt(d, 10) <= 4;
+    if (/^1 año( y medio)?$/.test(d)) return true;
+    return d === '2 años';
+  }
+  var RX_INTER = /intermedio|a los \d|al 1\.er|tras el 1\.er|al 3\.er semestre/i;
+  function ejemplos(pred, n) {
+    var seen = {}, out = [];
+    CAREERS.forEach(function (c) { if (out.length < n && pred(c) && !seen[c.inst]) { seen[c.inst] = 1; out.push(c); } });
+    return out;
+  }
+  var GUIA = [
+    { q: '¿Y si me equivoco de carrera?', a: '<p>Cambiar de carrera es más común de lo que parece y no significa que fallaste. Muchas veces es parte de conocerte mejor. Además, en muchas instituciones te pueden reconocer materias que ya aprobaste (se llama <strong>reválida</strong>).</p>' },
+    { q: 'Hay carreras cortas', a: function () { return '<p>No todo dura 4 o 5 años. Hay tecnicaturas y tecnólogos de <strong>2 años o menos</strong> que te dan un título para trabajar. En algunos casos después podés seguir estudiando.</p><div class="stack">' + ejemplos(function (c) { return esCorta(c) && c.req && c.req !== ASK; }, 3).map(card).join('') + '</div>'; } },
+    { q: 'Títulos en el camino', a: function () { return '<p>Algunas carreras te dan un <strong>título intermedio</strong> antes de terminar. Si a mitad de camino necesitás trabajar o querés frenar, ya tenés algo en la mano.</p><div class="stack">' + ejemplos(function (c) { return c.title && RX_INTER.test(c.title); }, 3).map(card).join('') + '</div>'; } },
+    { q: 'Podés probar antes de decidir', a: '<p>Hablá con alguien que estudie lo que te interesa, andá a las jornadas de puertas abiertas y mirá los planes de estudio. En algunas fichas ya vas a ver las <strong>materias de primer año</strong>.</p>' },
+    { q: 'El test es un punto de partida', a: '<p>Tu código Holland muestra intereses, no un destino. Usalo para descubrir opciones que no tenías en cuenta. Si querés profundizar, hablá con un orientador o una orientadora vocacional.</p>' },
+    { q: 'La plata no tiene que frenarte', a: '<p>La UdelaR, la UTEC, la UTU y Formación en Educación son <strong>públicas y gratuitas</strong>. Además hay becas para los gastos del día a día y descuentos en las privadas.</p><button type="button" class="btn ghost" data-go-view="becas">' + svg(P.coin, 18) + 'Ver becas y apoyos</button>' }
+  ];
+  function vGuia() {
+    return '<section class="g-head"><span class="g-ic">' + svg(P.compass, 26) + '</span><h1>Dudas al elegir</h1><p>Elegir carrera no es firmar de por vida. Muchas personas cambian, prueban o combinan caminos.</p></section>' +
+      '<div class="pad">' + GUIA.map(function (g, k) { return sec(k === 5 ? P.coin : k === 4 ? P.cube : k === 3 ? P.doc : k === 2 ? P.cap : k === 1 ? P.clock : P.redo, g.q, typeof g.a === 'function' ? g.a() : g.a, k === 0); }).join('') +
+      '<p class="src">Las carreras de ejemplo salen de los datos de la app. Confirmá los detalles en cada institución.</p></div>';
+  }
+  function becaCard(b, open) {
+    return '<details class="beca"' + (open ? ' open' : '') + '><summary><span class="t"><strong>' + b.name + '</strong><small>' + b.tipo + '</small><span class="chip brand">' + b.para + '</span></span>' + svg(P.down, 18).replace('<svg', '<svg class="down"') + '</summary>' +
+      '<div class="sec-body"><ul class="jobs">' + b.items.map(function (x) { return '<li>' + x + '</li>'; }).join('') + '</ul>' +
+      (b.dato ? '<p class="dato">' + b.dato + '</p>' : '') +
+      '<a class="btn ghost" href="' + b.link + '" target="_blank" rel="noopener">' + svg(P.ext, 18) + b.linkTxt + '</a><p class="src" style="text-align:left">Fuente: ' + b.src + '.</p></div></details>';
+  }
+  function vBecas() {
+    return '<section class="g-head"><span class="g-ic">' + svg(P.coin, 26) + '</span><h1>Becas y apoyos</h1><p>Hay ayudas para estudiar en públicas y privadas. Tocá cada una para ver de qué se trata.</p></section>' +
+      '<div class="pad"><div class="stack">' + BECAS.map(function (b) { return becaCard(b, false); }).join('') + '</div>' +
+      '<p class="muted" style="font-size:14px">Todavía no relevamos las becas de UCU, CLAEH y UNIFA: consultalas en sus sitios.</p>' +
+      '<p class="src">Montos y fechas publicados en 2026. Cambian cada año: confirmalos siempre en el sitio oficial.</p></div>';
+  }
+  function careerExtras(c) {
+    var pa = PRIMER[c.id], bs = becasDe(c.inst), i = instById[c.inst];
+    var h = pa ? sec(P.doc, 'Materias de primer año', '<ul class="jobs">' + pa.m.map(function (x) { return '<li>' + x + '</li>'; }).join('') + '</ul><p class="muted" style="margin-top:8px;font-size:14px">Según el plan de estudios publicado. Puede cambiar.</p>') : '';
+    var body = bs.length
+      ? '<div class="stack" style="gap:8px">' + bs.map(function (b) { return '<div class="bmini"><strong>' + b.name + '</strong><small>' + b.tipo + '</small></div>'; }).join('') + '</div>'
+      : '<p class="muted">Todavía no relevamos las becas de ' + i.full + '. Consultalas en su sitio.</p>';
+    return h + sec(P.coin, i.type === 'Pública' ? 'Becas para gastos' : 'Becas y descuentos', body + '<button type="button" class="btn ghost" data-go-view="becas" style="margin-top:10px">Ver todas las becas</button>');
+  }
+
+  /* ---------- Vistas ---------- */
+  function vHome() {
+    var n = answered(), pr = S.phase === 'done' ? profile() : null;
+    var testBlock = pr
+      ? '<button type="button" class="profile" data-tab="test"><span class="mini-code">' + pr.code.split('').map(function (l) { return '<b>' + l + '</b>'; }).join('') + '</span><span class="t"><strong>Tu perfil: ' + TYPES[pr.ranked[0]].name + '</strong><small>Ver carreras para vos</small></span>' + svg(P.chev, 18).replace('<svg', '<svg class="chev"') + '</button>'
+      : '';
+    var cta = pr ? '' : '<button type="button" class="hero-cta" data-tab="test">' + svg(P.cube, 22) + (n > 0 ? 'Seguir el test (' + n + '/90)' : 'Descubrí tu perfil') + '</button>';
+    var tiles = AREAS.slice(1).map(function (a, k) {
+      return '<button type="button" class="tile' + (k % 3 === 1 ? ' alt' : '') + '" data-area="' + a + '"><span class="ic">' + svg(AREA_IC[a], 22) + '</span><strong>' + a + '</strong><small>' + areaCount(a) + ' carreras</small></button>';
+    }).join('') + '<button type="button" class="tile" data-area="Todas"><span class="ic">' + svg(P.grid, 22) + '</span><strong>Ver todas</strong><small>Todas las áreas</small></button>';
+    var pills = INSTS.map(function (i) {
+      return '<button type="button" class="ipill" data-go-inst="' + i.id + '"><span class="mini ' + badgeCls(i) + '">' + i.short + '</span><span><strong>' + i.full.split(' · ')[0].replace('Universidad ', 'U. ').replace('Instituto Universitario ', '') + '</strong><small>' + (i.type === 'Pública' ? 'Pública · gratis' : 'Privada') + '</small></span></button>';
+    }).join('');
+    return '<section class="hero"><div class="stripes" aria-hidden="true"><i></i><i></i><i></i><i></i></div>' +
+      '<h1>¿Qué estudio después del liceo?</h1><p>Conocé tu perfil y explorá todas las carreras de Uruguay.</p>' + cta +
+      '<button type="button" class="hero-search" data-tab="search">' + svg(P.search, 20) + 'Buscar carrera o institución</button></section>' +
+      '<div class="pad" style="gap:22px;padding-block:18px 28px">' + testBlock +
+      '<div class="gcards"><button type="button" class="gcard" data-go-view="guia"><span class="ic">' + svg(P.compass, 22) + '</span><strong>Dudas al elegir</strong><small>Cambiar, probar y otros caminos</small></button>' +
+      '<button type="button" class="gcard alt" data-go-view="becas"><span class="ic">' + svg(P.coin, 22) + '</span><strong>Becas y apoyos</strong><small>Ayudas para estudiar</small></button></div>' +
+      '<div class="stack"><div class="sec-title"><h3>Explorá por área</h3></div><div class="tiles">' + tiles + '</div></div>' +
+      '<div class="stack"><div class="sec-title"><h3>Instituciones</h3></div><div class="hscroll">' + pills + '</div></div>' +
+      '<p class="credit">Hecho en Uruguay por <strong>Maag Studio</strong></p></div>';
+  }
+
+  function vInst() {
+    var i = instById[S.inst], list = careersOf(i.id);
+    return '<section class="inst-head"><span class="mini ' + badgeCls(i) + '">' + i.short + '</span><div class="stack" style="gap:6px"><h1>' + i.full + '</h1><span class="chips"><span class="chip' + (i.type === 'Pública' ? ' ok">Pública · gratis' : '">Privada') + '</span><span class="chip">' + i.place + '</span></span></div></section>' +
+      '<div class="pad"><div class="count">' + list.length + ' carreras</div><div class="stack">' + list.map(card).join('') + '</div>' +
+      '<a class="btn ghost" href="' + i.url + '" target="_blank" rel="noopener">' + svg(P.ext, 18) + 'Sitio oficial</a></div>';
+  }
+
+  function vCareer() {
+    var c = byId[S.career], i = instById[c.inst], on = favs.indexOf(c.id) >= 0, d = shortDur(c), z = zones(c);
+    function fact(ic, label, val) { return '<div class="fact3">' + svg(ic, 20) + '<small>' + label + '</small><strong' + (val ? '' : ' class="na"') + '>' + (val || 'Consultar') + '</strong></div>'; }
+    var also = c.also ? '<p style="margin-top:8px">También en ' + c.also.map(function (x) { return instById[x].full; }).join(' y ') + '.</p>' : '';
+    return '<section class="c-head"><span class="chips"><span class="chip brand">' + c.area + '</span>' + (c.nivel === 'Técnica' ? '<span class="chip sun">Carrera técnica</span>' : '') + '<span class="chip">Holland ' + c.code.split('').join('·') + '</span></span>' +
+      '<h1>' + c.name + '</h1><button type="button" class="linkbtn" data-go-inst="' + i.id + '"><span class="mini ' + badgeCls(i) + '" style="min-width:32px;height:32px;border-radius:9px;font-size:11px">' + i.short + '</span>' + i.full + '</button></section>' +
+      '<div class="pad">' +
+      '<div class="facts3">' + fact(P.clock, 'Duración', d) + fact(P.coin, 'Costo', costShort(c)) + fact(P.pin, 'Dónde', z.length ? z.join(' · ') : null) + '</div>' +
+      (function () { var e = elig(c);
+        if (!e) return '<button type="button" class="elig ask" data-bach-go>' + svg(P.check, 20) + '<span>¿Puedo entrar con mi bachillerato?<small>Indicá hasta dónde llegaste y te lo marcamos</small></span></button>';
+        var sub = { ok: 'Según lo que publica la institución para ' + bachLabel(), check: 'Hay condiciones que conviene confirmar. Mirá los requisitos abajo', no: 'Según los requisitos publicados, con ' + bachLabel(), na: 'La institución no publica los requisitos' }[e.s];
+        return '<div class="elig ' + e.s + '">' + svg(e.s === 'ok' ? P.check : P.info, 20) + '<span>' + e.msg + '<small>' + sub + '</small></span></div>'; })() +
+      (c.jobs ? sec(P.brief, 'De qué podés trabajar', '<ul class="jobs">' + c.jobs.map(function (j) { return '<li>' + j + '</li>'; }).join('') + '</ul>', true) : '') +
+      sec(P.check, 'Qué necesitás para entrar', c.req && c.req !== ASK ? '<p>' + c.req + '</p>' : NA, !!S.bach) +
+      careerExtras(c) +
+      sec(P.pin, 'Sedes y horarios', (c.sedes && c.sedes !== ASK ? '<p>' + c.sedes + '</p>' : NA) + also) +
+      (c.ingreso ? sec(P.clock, 'Próximos ingresos', '<p>' + c.ingreso + '</p>') : '') +
+      sec(P.cap, 'Título', c.title ? '<p>' + c.title + '</p>' : '<p>' + c.name + '</p><p class="muted" style="margin-top:6px">El nombre exacto del título no está publicado.</p>') +
+      (c.nota ? sec(P.info, 'A tener en cuenta', '<p>' + c.nota + '</p>') : '') +
+      '<p class="src">Datos del sitio oficial (oct. 2026). Pueden cambiar: confirmá antes de inscribirte.</p></div>' +
+      '<div class="actionbar"><button type="button" class="btn' + (on ? ' fav-on' : '') + '" data-fav="' + c.id + '" aria-pressed="' + on + '">' + svg(P.heart, 20).replace('fill="none"', on ? 'fill="currentColor"' : 'fill="none"') + (on ? 'Guardada' : 'Guardar') + '</button>' +
+      '<a class="btn ghost icon" href="' + (c.src || i.url) + '" target="_blank" rel="noopener" aria-label="Abrir el sitio oficial de la carrera">' + svg(P.ext, 20) + '</a></div>';
+  }
+
+  function vSearch() {
+    function chips(list, key) {
+      return list.map(function (v) { return '<button type="button" class="filter" data-filter="' + key + '" data-val="' + v + '" aria-pressed="' + (S[key] === v) + '">' + v + '</button>'; }).join('');
+    }
+    var active = S.area !== 'Todas' || S.zona !== 'Todo el país' || S.gratis || S.q;
+    return '<div class="searchbar"><div class="search-wrap">' + svg(P.search, 20) + '<label for="buscador" class="label" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Buscar carrera, institución o ciudad</label>' +
+      '<input id="buscador" class="search" type="search" autocomplete="off" placeholder="Carrera, institución o ciudad" value="' + S.q.replace(/"/g, '&quot;') + '"></div>' +
+      '<div class="hscroll"><button type="button" class="filter bach" data-bach-open aria-pressed="' + !!S.bach + '" aria-expanded="' + S.bachOpen + '">' + svg(P.cap, 16) + bachLabel() + '</button>' +
+      (S.bach ? '<button type="button" class="filter" data-canonly aria-pressed="' + S.canOnly + '">Ocultar las que no cumplo</button>' : '') + '</div>' +
+      (S.bachOpen ? bachPanel() : '') +
+      '<div class="hscroll">' + chips(['Todo el país', 'Montevideo', 'Interior', 'Virtual'], 'zona') +
+      '<button type="button" class="filter" data-gratis aria-pressed="' + S.gratis + '">Solo gratis</button>' +
+      (active ? '<button type="button" class="filter clear" data-clear>Limpiar</button>' : '') + '</div>' +
+      '<div class="hscroll">' + chips(AREAS, 'area') + '</div></div>' +
+      '<div class="pad" id="results"></div>';
+  }
+  function renderResults() {
+    var box = document.getElementById('results'); if (!box) return;
+    var q = norm(S.q.trim());
+    var res = CAREERS.filter(function (c) {
+      var i = instById[c.inst];
+      var hay = norm([c.name, c.sedes !== ASK ? c.sedes : '', i.short, i.full, i.place, c.area].concat((c.also || []).map(function (x) { return instById[x].short; })).join(' '));
+      return (S.area === 'Todas' || c.area === S.area) && (!S.gratis || c.cost === FREE) &&
+        (S.zona === 'Todo el país' || zones(c).indexOf(S.zona) >= 0) && (!q || hay.indexOf(q) >= 0) && (!S.canOnly || !S.bach || elig(c).s !== 'no');
+    });
+    box.innerHTML = '<div class="count">' + res.length + (res.length === 1 ? ' carrera' : ' carreras') + '</div>' +
+      (res.length ? '<div class="stack">' + res.map(card).join('') + '</div>'
+        : '<div class="empty"><strong>No encontramos carreras</strong><span>Probá con otra palabra o sacá algún filtro.</span><button type="button" class="btn ghost" style="width:auto" data-clear>Limpiar filtros</button></div>');
+  }
+
+  function vTest() {
+    if (S.phase === 'intro') {
+      var n = answered(), partial = n > 0 && n < ITEMS.length;
+      return '<div class="pad" style="padding-block:20px;gap:18px">' +
+        '<h1 class="big">¿Qué te mueve?</h1>' +
+        '<p class="lede">Respondé 90 frases y descubrí cuáles de estos seis perfiles de Holland se parecen más a vos.</p>' +
+        '<div class="types">' + ORDER.map(function (t) { return '<div class="type"><b>' + t + '</b>' + TYPES[t].name + '</div>'; }).join('') + '</div>' +
+        '<div class="meta"><span class="chip">' + svg(P.clock, 14).replace('<svg', '<svg style="vertical-align:-2px;margin-right:4px"') + '10 minutos</span><span class="chip">Podés pausar</span><span class="chip">No hay respuestas malas</span></div>' +
+        '<p class="lede" style="font-size:15px">Decí <strong>Sí</strong> solo si la frase te representa claramente.</p>' +
+        (partial ? '<div class="stack"><button type="button" class="btn" data-test="resume">Seguir donde quedé (' + n + '/90)</button><button type="button" class="btn ghost" data-test="start">Empezar de nuevo</button></div>'
+                 : '<button type="button" class="btn" data-test="start">Empezar</button>') + '</div>';
+    }
+    if (S.phase === 'q') {
+      var it = ITEMS[S.step], pct = Math.round(S.step / ITEMS.length * 100);
+      var cheer = S.step >= 85 ? '¡Últimas frases!' : S.step >= 70 ? '¡Ya casi!' : S.step >= 45 ? '¡Pasaste la mitad!' : S.step >= 30 ? '¡Un tercio listo!' : '';
+      return '<div class="qwrap">' +
+        '<div class="qtop">' + (S.step > 0 ? '<button type="button" data-test="prev">' + svg(P.back, 16).replace('<svg', '<svg style="vertical-align:-3px"') + ' Anterior</button>' : '<span></span>') + '<button type="button" data-test="pause">Pausar</button></div>' +
+        '<div class="pbar" role="progressbar" aria-label="Progreso del test" aria-valuemin="0" aria-valuemax="90" aria-valuenow="' + S.step + '"><span style="width:' + pct + '%"></span></div>' +
+        '<div class="qmeta"><span>' + (S.step + 1) + ' de 90</span><em>' + cheer + '</em></div>' +
+        '<div class="qcard" aria-live="polite">' + it.text + '</div>' +
+        '<div class="yesno"><button type="button" class="no" data-answer="0" aria-pressed="' + (S.answers[S.step] === 0) + '">No</button><button type="button" class="yes" data-answer="1" aria-pressed="' + (S.answers[S.step] === 1) + '">Sí</button></div></div>';
+    }
+    var pr = profile(), sc = pr.sc, r = pr.ranked, cons = consistency(r[0], r[1]), diff = sc[r[0]] - sc[r[5]];
+    var ties = [];
+    if (sc[r[0]] === sc[r[1]]) ties.push(TYPES[r[0]].name + ' y ' + TYPES[r[1]].name + ' empatan en el primer lugar.');
+    if (sc[r[2]] === sc[r[3]]) ties.push('Hay empate en el tercer lugar entre ' + TYPES[r[2]].name + ' y ' + TYPES[r[3]].name + ': tu código también podría ser ' + r[0] + r[1] + r[3] + '.');
+    var w = [3, 2, 1];
+    function match(c) { return c.code.split('').reduce(function (acc, t, k) { return acc + w[k] * sc[t]; }, 0) + (c.code[0] === r[0] ? 2 : 0); }
+    var seen = {};
+    var top = CAREERS.slice().sort(function (a, b) { return match(b) - match(a); }).filter(function (c) { if (seen[c.name]) return false; seen[c.name] = 1; return true; }).slice(0, 8);
+    var how = '<p><strong>Consistencia ' + cons[0].toLowerCase() + ':</strong> ' + cons[1] + '</p>' +
+      '<p style="margin-top:10px"><strong>Diferenciación: ' + diff + ' puntos.</strong> Es la distancia entre tu puntaje más alto y el más bajo. Cuanto mayor, más definido es tu perfil.</p>' +
+      (ties.length ? '<p style="margin-top:10px"><strong>Empates:</strong> ' + ties.join(' ') + '</p>' : '');
+    return '<div class="pad" style="padding-block:18px">' +
+      '<div class="result"><small>Tu código Holland</small><div class="code3">' + r.slice(0, 3).map(function (t) { return '<div><b>' + t + '</b>' + TYPES[t].name + '</div>'; }).join('') + '</div>' +
+      '<p>' + TYPES[r[0]].desc + '</p><button type="button" class="share" data-share>' + svg(P.share, 18) + 'Compartir resultado</button></div>' +
+      '<textarea id="sharebox" class="sharebox" readonly hidden aria-label="Texto para compartir"></textarea>' +
+      '<div class="bars"><div class="label">Tus puntajes (de 0 a 15)</div>' + ORDER.map(function (t) {
+        return '<div class="bar"><span>' + t + ' · ' + TYPES[t].name + '</span><span class="tr"><span class="fill' + (r.indexOf(t) < 3 ? ' top' : '') + '" style="width:' + (sc[t] / 15 * 100) + '%"></span></span><span>' + sc[t] + '</span></div>';
+      }).join('') + '</div>' +
+      sec(P.info, 'Cómo leer mi resultado', how) +
+      '<div class="sec-title" style="margin-top:6px"><h3>Carreras para vos</h3></div><div class="stack">' + top.map(function (c) { var more = CAREERS.filter(function (x) { return x.name === c.name && x.id !== c.id; }).length; var h = card(c); return more ? h.replace(/<\/span><\/button>$/, '<span class="chip brand">+' + more + (more === 1 ? ' institución' : ' instituciones') + '</span></span></button>') : h; }).join('') + '</div>' +
+      '<p class="src" style="text-align:left">Basado en el Inventario de Intereses de Holland. Es un punto de partida y no reemplaza un proceso de orientación vocacional con un profesional.</p>' +
+      '<button type="button" class="btn ghost" data-test="reset">Repetir el test</button></div>';
+  }
+  function shareText() {
+    var pr = profile();
+    return 'Mi código Holland en Orientarte UY es ' + pr.code + ' (' + pr.ranked.slice(0, 3).map(function (t) { return TYPES[t].name; }).join(', ') + '). Puntajes sobre 15: ' + ORDER.map(function (t) { return t + ' ' + pr.sc[t]; }).join(' · ') + '.';
+  }
+
+  function vFavs() {
+    var list = favs.map(function (id) { return byId[id]; });
+    if (!list.length) return '<div class="pad"><div class="empty"><strong>Todavía no guardaste carreras</strong><span>Tocá «Guardar» en una carrera para tenerla a mano y compararla.</span><button type="button" class="btn" style="width:auto" data-tab="search">Explorar carreras</button></div></div>';
+    S.cmp = S.cmp.filter(function (id) { return favs.indexOf(id) >= 0; });
+    var n = S.cmp.length;
+    return '<div class="pad"><div class="count">' + list.length + (list.length === 1 ? ' guardada' : ' guardadas') + ' · marcá hasta 3 para comparar</div><div class="stack">' +
+      list.map(function (c) { var on = S.cmp.indexOf(c.id) >= 0; return '<div class="favrow">' + card(c) + '<button type="button" class="cmp-toggle" data-cmp="' + c.id + '" aria-pressed="' + on + '" aria-label="Comparar ' + c.name + '">' + svg(on ? P.check : P.cols, 20) + 'Comparar</button></div>'; }).join('') + '</div></div>' +
+      (n >= 2 ? '<div class="actionbar" style="grid-template-columns:1fr"><button type="button" class="btn" data-compare>' + svg(P.cols, 20) + 'Comparar ' + n + ' carreras</button></div>' : '');
+  }
+  function vCompare() {
+    var list = S.cmp.map(function (id) { return byId[id]; }).filter(Boolean);
+    function row(label, fn) { return '<tr><th scope="row">' + label + '</th>' + list.map(function (c) { var v = fn(c); return '<td>' + (v || '<span class="muted">Consultar</span>') + '</td>'; }).join('') + '</tr>'; }
+    return '<div class="pad"><div class="cmp-scroll"><table class="cmp"><thead><tr><th scope="col"><span style="position:absolute;width:1px;height:1px;overflow:hidden">Dato</span></th>' + list.map(function (c) { return '<th scope="col">' + c.name + '</th>'; }).join('') + '</tr></thead><tbody>' +
+      row('Institución', function (c) { return instById[c.inst].full; }) +
+      row('Duración', function (c) { return c.dur !== ASK ? c.dur : null; }) +
+      row('Costo', function (c) { return c.cost; }) +
+      row('Dónde', function (c) { return c.sedes !== ASK ? c.sedes : null; }) +
+      row('Requisitos', function (c) { return c.req !== ASK ? c.req : null; }) +
+      row('Título', function (c) { return c.title || null; }) +
+      '</tbody></table></div><p class="src">Deslizá la tabla hacia los costados para ver todo.</p></div>';
+  }
+
+  /* ---------- Render ---------- */
+  var TITLES = { guia: 'Dudas al elegir', becas: 'Becas y apoyos', inst: 'Institución', career: 'Carrera', search: 'Buscar', test: 'Test vocacional', favs: 'Favoritos', compare: 'Comparar' };
+  var TAB_OF = { guia: 'home', becas: 'home', home: 'home', search: 'search', test: 'test', favs: 'favs', compare: 'favs' };
+  function render(keepScroll) {
+    var top = document.getElementById('top'), main = document.getElementById('main');
+    top.innerHTML = S.view === 'home'
+      ? '<div class="logo">' + LOGO + '<b>Orientarte</b><span>UY</span></div>'
+      : (S.stack.length ? '<button type="button" class="back" data-back aria-label="Volver">' + svg(P.back, 22) + '</button>' : '') + '<h2>' + TITLES[S.view] + '</h2>';
+    var html = { home: vHome, guia: vGuia, becas: vBecas, inst: vInst, career: vCareer, search: vSearch, test: vTest, favs: vFavs, compare: vCompare }[S.view]();
+    var y = main.scrollTop;
+    main.innerHTML = html;
+    main.scrollTop = keepScroll ? y : 0;
+    if (S.view === 'search') renderResults();
+    var tab = TAB_OF[S.view];
+    if (!tab) { for (var k = S.stack.length - 1; k >= 0 && !tab; k--) tab = TAB_OF[S.stack[k].view]; }
+    document.querySelectorAll('nav.tabs button').forEach(function (b) {
+      if (b.getAttribute('data-tab') === tab) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current');
+    });
+    var badge = document.getElementById('favbadge');
+    if (badge) { badge.textContent = favs.length; badge.hidden = !favs.length; }
+  }
+  function hpush() { try { history.pushState({ o: 1 }, ''); } catch (e) {} }
+  function goBack() {
+    var p = S.stack.pop();
+    if (p) { S.view = p.view; S.inst = p.inst; S.career = p.career; } else if (S.view !== 'home') { S.view = 'home'; }
+    render();
+  }
+  function push(patch) {
+    S.stack.push({ view: S.view, inst: S.inst, career: S.career });
+    for (var k in patch) S[k] = patch[k];
+    hpush(); render();
+  }
+  try { window.addEventListener('popstate', goBack); } catch (e) {}
+
+  document.addEventListener('click', function (e) {
+    var t = e.target.closest('button');
+    if (!t) return;
+    if (t.hasAttribute('data-tab')) { var tv = t.getAttribute('data-tab'); if (tv !== S.view || S.stack.length) { S.stack = []; S.view = tv; if (tv !== 'home') hpush(); render(); } return; }
+    if (t.hasAttribute('data-back')) { var used = false; try { if (history.state && history.state.o) { history.back(); used = true; } } catch (e) {} if (!used) goBack(); return; }
+    if (t.hasAttribute('data-go-view')) { push({ view: t.getAttribute('data-go-view') }); return; }
+    if (t.hasAttribute('data-go-inst')) { push({ view: 'inst', inst: t.getAttribute('data-go-inst') }); return; }
+    if (t.hasAttribute('data-go-career')) { push({ view: 'career', career: t.getAttribute('data-go-career') }); return; }
+    if (t.hasAttribute('data-area')) { S.area = t.getAttribute('data-area'); S.q = ''; push({ view: 'search' }); return; }
+    if (t.hasAttribute('data-fav')) {
+      var id = t.getAttribute('data-fav'), k = favs.indexOf(id);
+      if (k >= 0) { favs.splice(k, 1); toast('Quitada de favoritos'); } else { favs.push(id); toast('Guardada en favoritos'); }
+      saveFavs(); render(true); return;
+    }
+    if (t.hasAttribute('data-filter')) { S[t.getAttribute('data-filter')] = t.getAttribute('data-val'); render(true); return; }
+    if (t.hasAttribute('data-gratis')) { S.gratis = !S.gratis; render(true); return; }
+    if (t.hasAttribute('data-clear')) { S.area = 'Todas'; S.zona = 'Todo el país'; S.gratis = false; S.q = ''; S.canOnly = false; render(true); return; }
+    if (t.hasAttribute('data-bach-open')) { S.bachOpen = !S.bachOpen; S.draft = S.bach ? { lvl: S.bach.lvl, o: S.bach.o } : {}; render(true); return; }
+    if (t.hasAttribute('data-bach-go')) { S.bachOpen = true; S.draft = {}; push({ view: 'search' }); return; }
+    if (t.hasAttribute('data-lvl')) { S.draft = S.draft || {}; S.draft.lvl = t.getAttribute('data-lvl'); if (S.draft.lvl !== '6') S.draft.o = null; render(true); return; }
+    if (t.hasAttribute('data-ori')) { S.draft = S.draft || {}; S.draft.o = t.getAttribute('data-ori'); render(true); return; }
+    if (t.hasAttribute('data-bach-done')) { if (t.disabled) return; S.bach = { lvl: S.draft.lvl, o: S.draft.lvl === '6' ? S.draft.o : null }; S.bachOpen = false; saveBach(); toast('Listo: marcamos a qué carreras podés entrar'); render(true); return; }
+    if (t.hasAttribute('data-bach-clear')) { S.bach = null; S.bachOpen = false; S.canOnly = false; saveBach(); render(true); return; }
+    if (t.hasAttribute('data-bach-cancel')) { S.bachOpen = false; render(true); return; }
+    if (t.hasAttribute('data-canonly')) { S.canOnly = !S.canOnly; render(true); return; }
+    if (t.hasAttribute('data-cmp')) {
+      var cid = t.getAttribute('data-cmp'), ci = S.cmp.indexOf(cid);
+      if (ci >= 0) S.cmp.splice(ci, 1); else if (S.cmp.length < 3) S.cmp.push(cid); else toast('Podés comparar hasta 3 carreras');
+      render(true); return;
+    }
+    if (t.hasAttribute('data-compare')) { push({ view: 'compare' }); return; }
+    if (t.hasAttribute('data-share')) {
+      var text = shareText(), box = document.getElementById('sharebox');
+      var fallback = function () { if (box) { box.value = text; box.hidden = false; box.focus(); box.select(); } toast('Copiá el texto y pegalo donde quieras'); };
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(function () { toast('Copiado: pegalo en WhatsApp o donde quieras'); }, fallback);
+        else fallback();
+      } catch (err) { fallback(); }
+      return;
+    }
+    if (t.hasAttribute('data-answer')) {
+      S.answers[S.step] = +t.getAttribute('data-answer');
+      if (S.step >= ITEMS.length - 1) S.phase = 'done'; else S.step++;
+      saveTest(); render(); return;
+    }
+    var a = t.getAttribute('data-test');
+    if (a === 'start') { S.phase = 'q'; S.step = 0; S.answers = []; }
+    else if (a === 'resume') { S.phase = 'q'; var first = 0; while (first < ITEMS.length - 1 && (S.answers[first] === 0 || S.answers[first] === 1)) first++; S.step = first; }
+    else if (a === 'prev') { S.step = Math.max(0, S.step - 1); }
+    else if (a === 'pause') { S.phase = 'intro'; toast('Guardamos tu avance'); }
+    else if (a === 'reset') { S.phase = 'intro'; S.step = 0; S.answers = []; }
+    else return;
+    saveTest(); render();
+  });
+  document.addEventListener('input', function (e) {
+    if (e.target.id === 'buscador') { S.q = e.target.value; renderResults(); }
+  });
+
+  render();
+})();
+</script>
+<script>if ('serviceWorker' in navigator) { window.addEventListener('load', function () { navigator.serviceWorker.register('sw.js').catch(function () {}); }); }</script>
+</body>
+</html>
