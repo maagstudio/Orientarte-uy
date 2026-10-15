@@ -1,5 +1,5 @@
 /* Orientarte UY: guarda la app para que abra sin conexión. Cambiar V al publicar una versión nueva. */
-var V = 'orientarte-v1';
+var V = 'orientarte-v10';
 var FILES = ['./', './index.html', './manifest.json', './icon-192.png', './icon-512.png'];
 self.addEventListener('install', function (e) { e.waitUntil(caches.open(V).then(function (c) { return c.addAll(FILES); })); self.skipWaiting(); });
 self.addEventListener('activate', function (e) {

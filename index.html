@@ -13,7 +13,7 @@
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>Orientarte UY</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Figtree:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800&display=swap">
 <style>
 /* Layout: app de una pantalla — barra superior, contenido con scroll y barra inferior al alcance del pulgar. Paleta de la bandera: azul de las franjas y oro del Sol de Mayo. Poco texto, chips para escanear, detalles plegables. */
 :root {
@@ -37,8 +37,8 @@
   --warn-soft: #FDEBD3;
   --bad: #A3262E;
   --bad-soft: #FBE3E4;
-  --font-display: 'Bricolage Grotesque', 'Segoe UI', system-ui, sans-serif;
-  --font-body: 'Figtree', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font-display: 'Lexend', 'Segoe UI', system-ui, sans-serif;
+  --font-body: 'Lexend', 'Segoe UI', system-ui, -apple-system, sans-serif;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
@@ -159,11 +159,11 @@ main { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; }
 .c-head { padding: 18px 16px 16px; background: var(--surface); border-bottom: 1px solid var(--line); display: flex; flex-direction: column; gap: 10px; }
 .c-head h1 { margin: 0; font-family: var(--font-display); font-weight: 800; font-size: 26px; line-height: 1.1; }
 .linkbtn { border: 0; background: transparent; padding: 0; color: var(--brand); font-weight: 600; text-align: left; display: inline-flex; align-items: center; gap: 8px; min-height: 32px; }
-.facts3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
-.fact3 { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 12px 10px; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.facts3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(96px, 1fr)); gap: 8px; }
+.fact3 { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 12px 8px; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
 .fact3 svg { color: var(--brand); }
 .fact3 small { font-size: 12px; color: var(--muted); font-weight: 600; }
-.fact3 strong { font-size: 14px; line-height: 1.25; overflow-wrap: break-word; hyphens: auto; }
+.fact3 strong { font-size: 13px; line-height: 1.3; overflow-wrap: break-word; hyphens: manual; }
 .fact3 strong.na { color: var(--faint); font-weight: 600; font-size: 13px; }
 details.sec { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; }
 details.sec summary { list-style: none; display: flex; align-items: center; gap: 12px; padding: 14px; min-height: 52px; font-weight: 700; cursor: pointer; }
@@ -177,7 +177,7 @@ details.sec[open] summary .down { transform: rotate(180deg); }
 .jobs { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
 .jobs li { display: flex; gap: 10px; align-items: baseline; }
 .jobs li::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--sun); flex-shrink: 0; transform: translateY(-2px); }
-.actionbar { position: sticky; bottom: 0; background: var(--bg); border-top: 1px solid var(--line); padding: 10px 16px; display: grid; grid-template-columns: 1fr auto; gap: 10px; }
+.actionbar { position: sticky; bottom: 0; background: var(--bg); border-top: 1px solid var(--line); padding: 10px 16px; display: grid; grid-template-columns: 1fr auto auto; gap: 10px; }
 .btn { min-height: 52px; border-radius: 14px; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center; gap: 8px; border: 1.5px solid var(--brand); background: var(--brand); color: var(--brand-fg); width: 100%; padding: 0 16px; text-decoration: none; }
 .btn.ghost { background: transparent; color: var(--brand); }
 .btn.fav-on { background: transparent; color: var(--heart); border-color: var(--heart); }
@@ -224,7 +224,7 @@ details.sec[open] summary .down { transform: rotate(180deg); }
 
 /* Favoritos y comparar */
 .favrow { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px; align-items: stretch; }
-.cmp-toggle { width: 56px; border-radius: 16px; border: 1.5px solid var(--line); background: var(--surface); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 11px; font-weight: 700; color: var(--muted); }
+.cmp-toggle { width: 66px; border-radius: 16px; border: 1.5px solid var(--line); background: var(--surface); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 11px; font-weight: 700; color: var(--muted); }
 .cmp-toggle[aria-pressed="true"] { border-color: var(--brand); background: var(--brand-soft); color: var(--brand); }
 .cmp-scroll { overflow-x: auto; margin: 0 -16px; padding: 0 16px 6px; }
 .cmp { border-collapse: separate; border-spacing: 0; min-width: 100%; font-size: 14px; }
@@ -238,10 +238,55 @@ nav.tabs button[aria-current="page"] { color: var(--brand); }
 nav.tabs button[aria-current="page"]::before { content: ""; position: absolute; top: 0; left: 30%; right: 30%; height: 3px; border-radius: 0 0 3px 3px; background: var(--brand); }
 nav.tabs .badge { position: absolute; top: 8px; left: 56%; min-width: 18px; height: 18px; border-radius: 9px; background: var(--heart); color: #FFFFFF; font-size: 11px; display: grid; place-items: center; padding: 0 4px; }
 .toast { position: absolute; left: 16px; right: 16px; top: 66px; background: var(--fg); color: var(--bg); padding: 12px 16px; border-radius: 14px; font-weight: 600; font-size: 14px; text-align: center; z-index: 5; }
+main > * { zoom: var(--z, 1); }
 @media (prefers-reduced-motion: no-preference) {
-  main > * { animation: in .18s ease-out; }
-  @keyframes in { from { opacity: .4; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+  main.anim > * { animation: in .26s cubic-bezier(.2,.8,.2,1); }
+  main.anim .qcard { animation: qin .28s cubic-bezier(.2,.8,.2,1); }
+  @keyframes in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+  @keyframes qin { from { opacity: 0; transform: translateX(24px) scale(.98); } to { opacity: 1; transform: none; } }
+  button, .btn { transition: transform .12s ease, background-color .15s ease, border-color .15s ease, color .15s ease; }
+  button:active, .btn:active { transform: scale(.96); }
+  details[open] > .sec-body, details[open] > .plan-body { animation: in .2s ease-out; }
+  .btn.fav-on svg { animation: pop .35s cubic-bezier(.3,1.6,.5,1); }
+  @keyframes pop { 0% { transform: scale(.6); } 100% { transform: scale(1); } }
+  .pgauge i { transition: width .3s ease; }
 }
+.gear { margin-left: auto; width: 44px; height: 44px; margin-right: -8px; border: 0; background: transparent; border-radius: 12px; display: grid; place-items: center; color: var(--muted); }
+.paths { padding: 18px 16px 14px; display: flex; flex-direction: column; gap: 10px; }
+.path { width: 100%; display: flex; align-items: center; gap: 14px; text-align: left; padding: 14px 14px 14px 12px; min-height: 76px; border-radius: 20px; border: 1.5px solid var(--line); background: var(--surface); color: var(--fg); }
+.path .ic { width: 48px; height: 48px; border-radius: 15px; flex-shrink: 0; display: grid; place-items: center; background: var(--brand-soft); color: var(--brand); }
+.path.p1 { background: #F2B705; border-color: #F2B705; color: #0E1B3D; }
+.path.p1 .ic { background: rgba(255,255,255,.55); color: #0E1B3D; }
+.path.p1 small { color: #3D3000; }
+.path.p3 .ic { color: var(--heart); }
+.path .t { flex: 1; min-width: 0; }
+.path strong { display: block; font-family: var(--font-display); font-size: 17px; font-weight: 700; line-height: 1.2; }
+.path small { display: block; margin-top: 3px; font-size: 13.5px; color: var(--muted); line-height: 1.35; }
+.path .chev { flex-shrink: 0; opacity: .6; }
+.introw { display: flex; flex-direction: column; gap: 6px; }
+.filter.int { border-color: var(--sun); }
+.filter.int[aria-pressed="true"] { background: var(--sun); border-color: var(--sun); color: #0E1B3D; }
+.favitem { display: flex; flex-direction: column; gap: 6px; }
+details.plan { border-radius: 14px; background: var(--brand-soft); }
+details.plan summary { list-style: none; display: flex; align-items: center; gap: 10px; min-height: 46px; padding: 0 12px; font-weight: 700; font-size: 14px; color: var(--brand); cursor: pointer; }
+details.plan summary::-webkit-details-marker { display: none; }
+details.plan summary > span:not(.pgauge) { flex-shrink: 0; }
+.pgauge { flex: 1; height: 6px; border-radius: 3px; background: var(--surface); overflow: hidden; }
+.pgauge i { display: block; height: 100%; background: var(--brand); border-radius: 3px; }
+details.plan summary b { font-size: 13px; min-width: 34px; text-align: right; }
+details.plan summary b.full { color: var(--ok); }
+details.plan summary .down { transition: transform .15s; }
+details.plan[open] summary .down { transform: rotate(180deg); }
+.plan-body { padding: 0 8px 10px; display: flex; flex-direction: column; gap: 4px; }
+.step { display: flex; align-items: center; gap: 12px; text-align: left; min-height: 48px; padding: 6px 8px; border: 0; border-radius: 12px; background: transparent; color: var(--fg); font-size: 15px; line-height: 1.3; }
+.step .box { width: 24px; height: 24px; flex-shrink: 0; border-radius: 7px; border: 2px solid var(--brand); display: grid; place-items: center; background: var(--surface); color: var(--brand-fg); }
+.step[aria-pressed="true"] .box { background: var(--brand); }
+.step[aria-pressed="true"] { color: var(--muted); text-decoration: line-through; text-decoration-color: var(--faint); }
+.plan-links { display: flex; gap: 16px; padding: 4px 8px 0; }
+.plan-links .linkbtn { font-size: 14px; font-weight: 700; color: var(--brand); background: transparent; border: 0; padding: 8px 0; min-height: 40px; }
+.set { display: flex; flex-direction: column; gap: 10px; }
+.set .chips .filter { flex: 0 0 auto; }
+.set-demo { margin: 0; padding: 12px 14px; border-radius: 14px; background: var(--surface); border: 1px solid var(--line); font-size: 16px; }
 .gcards { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .gcard { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; padding: 14px; border-radius: 18px; border: 0; background: var(--brand-soft); color: var(--fg); text-align: left; min-height: 112px; }
 .gcard .ic { width: 42px; height: 42px; border-radius: 13px; display: grid; place-items: center; background: var(--surface); color: var(--brand); }
@@ -268,6 +313,48 @@ nav.tabs .badge { position: absolute; top: 8px; left: 56%; min-width: 18px; heig
 .bmini { padding: 10px 12px; border-radius: 12px; background: var(--brand-soft); }
 .bmini strong { display: block; font-size: 14px; }
 .bmini small { color: var(--muted); font-size: 13px; }
+.srcline { display: flex; gap: 10px; align-items: flex-start; padding: 12px 14px; border-radius: 14px; background: var(--surface); border: 1px dashed var(--line); color: var(--muted); font-size: 13.5px; line-height: 1.45; }
+.srcline > svg { flex-shrink: 0; margin-top: 1px; color: var(--brand); }
+.srcline div { display: flex; flex-wrap: wrap; gap: 2px 10px; align-items: baseline; }
+.srcline span { display: block; width: 100%; }
+.srcline b { color: var(--fg); font-weight: 600; overflow-wrap: anywhere; }
+.srcline a { display: inline-flex; align-items: center; gap: 4px; font-weight: 700; color: var(--brand); text-decoration: none; padding: 6px 0 0; min-height: 32px; }
+.absel { display: flex; gap: 6px; }
+.abopt { height: 34px; padding: 0 12px; border-radius: 999px; border: 1.5px solid var(--line); background: var(--surface); color: var(--muted); font-size: 13px; font-weight: 700; }
+.abopt.a[aria-pressed="true"] { background: #F2B705; border-color: #F2B705; color: #0E1B3D; }
+.abopt.b[aria-pressed="true"] { background: var(--brand); border-color: var(--brand); color: var(--brand-fg); }
+.abopt[data-v=""][aria-pressed="true"] { border-color: var(--faint); color: var(--fg); }
+.favitem.is-a .card { border: 2px solid #F2B705; }
+.favitem.is-b .card { border: 2px solid var(--brand); }
+.abtag { display: inline-block; font-size: 12px; font-weight: 800; padding: 3px 9px; border-radius: 999px; }
+.abtag.a { background: #F2B705; color: #0E1B3D; }
+.abtag.b { background: var(--brand); color: var(--brand-fg); }
+.resumen-cta { width: 100%; display: flex; align-items: center; gap: 12px; text-align: left; padding: 14px; border-radius: 18px; border: 0; background: var(--brand-soft); color: var(--brand); }
+.resumen-cta span { flex: 1; min-width: 0; }
+.resumen-cta strong { display: block; font-size: 15px; color: var(--fg); }
+.resumen-cta small { display: block; font-size: 13px; color: var(--muted); margin-top: 2px; }
+.resumen { border-radius: 20px; overflow: hidden; border: 1px solid var(--line); background: var(--surface); }
+.rs-head { background: #1A3C8F; color: #FFFFFF; padding: 16px; display: flex; flex-direction: column; gap: 2px; }
+.rs-head span { font-family: var(--font-display); font-weight: 800; font-size: 20px; }
+.rs-head small { color: #DCE5FA; font-size: 13px; }
+.rs-sec { padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; border-top: 1px solid var(--line); }
+.rs-sec:first-of-type { border-top: 0; }
+.rs-code { display: flex; gap: 6px; }
+.rs-code b { width: 44px; height: 44px; border-radius: 50%; background: #1A3C8F; color: #FFFFFF; display: grid; place-items: center; font-family: var(--font-display); font-size: 20px; }
+.rs-code b:first-child { background: #F2B705; color: #0E1B3D; }
+.rs-types { margin: 0; font-weight: 700; }
+.rs-sc { margin: 0; font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.rs-sc span { font-size: 12px; }
+.rs-plan { display: flex; flex-direction: column; gap: 4px; padding: 12px; border-radius: 14px; background: var(--bg); align-items: flex-start; }
+.rs-plan strong { font-size: 15px; line-height: 1.3; }
+.rs-plan small { color: var(--muted); font-size: 13px; }
+.rs-steps { list-style: none; margin: 6px 0 0; padding: 0; display: flex; flex-direction: column; gap: 4px; font-size: 13px; color: var(--muted); }
+.rs-steps li { display: flex; gap: 8px; align-items: center; }
+.rs-steps li i { width: 14px; height: 14px; border-radius: 4px; border: 1.5px solid var(--faint); flex-shrink: 0; }
+.rs-steps li svg { color: var(--ok); flex-shrink: 0; }
+.rs-steps li.on { color: var(--fg); }
+.rs-otras { margin: 0; font-size: 14px; color: var(--muted); }
+.rs-otras b { color: var(--fg); }
 </style>
 </head>
 <body>
@@ -549,7 +636,7 @@ nav.tabs .badge { position: absolute; top: 8px; left: 56%; min-width: 18px; heig
     'ude-t-analista-en-ingenieria-informatica': { dur: '3 años (6 semestres)', sedes: 'Montevideo', req: UDE_ING_REQ, jobs: ['Mantenimiento de sistemas y centros de datos', 'Desarrollo de software', 'Docencia técnica e investigación'], src: UDE_ING + 'analista-en-ingenieria-informatica/' },
     'ude-t-tecnico-en-informatica': { dur: '5 semestres (según el plan de estudios)', title: 'Técnico en Informática · tras el 1.er año: Programador Java/.NET', sedes: 'Montevideo', req: 'Bachillerato en cualquier orientación; las previas se aprueban antes de terminar el 1.er semestre', jobs: ['Desarrollo de software en empresas públicas y privadas', 'Pymes'], src: UDE_ING + 'tecnico-en-informatica/' },
     'ude-t-analista-en-tecnologia-informatica': { dur: '5 semestres (según el plan de estudios)', title: 'Analista en Tecnología Informática · tras el 1.er año: Programador Java/.NET', sedes: 'Montevideo', req: 'EBI aprobada', jobs: ['Empresas de software públicas y privadas', 'Equipos interdisciplinarios', 'Pymes del sector TI'], src: UDE_ING + 'analista-en-tecnologia-informatica/' },
-    'ude-t-analista-en-ciberseguridad': { dur: '123 horas', sedes: 'Campus virtual · 100 % virtual con clases en vivo', req: 'EBI aprobada', ingreso: 'Consultar', src: UDE_ING + 'analista-en-ciberseguridad/' },
+    'ude-t-analista-en-ciberseguridad': { dur: '123 horas', sedes: 'Campus virtual · 100 % virtual con clases en vivo', req: 'EBI aprobada', ingreso: 'Consultar', src: UDE_ING + 'analista-en-ciberseguridad/' },
     'ude-t-analista-en-logistica': { dur: '3 semestres', sedes: 'Montevideo · clases virtuales en vivo y 2 evaluaciones presenciales por semestre en Pocitos', req: 'EBI aprobada o equivalente', jobs: ['Logística de cadenas de suministro', 'Centros de distribución', 'Emprendimiento o consultoría técnica'], nota: 'Según el sitio, estos estudios pueden reconocerse en carreras universitarias afines', src: UDE_ING + 'analista-en-logistica/' }
   };
   /* UDE resto de facultades: datos de cada página de carrera (13/10/2026). ingreso: null = las fechas publicadas ya pasaron */
@@ -588,7 +675,7 @@ nav.tabs .badge { position: absolute; top: 8px; left: 56%; min-width: 18px; heig
     'ude-t-analista-en-recursos-humanos': { dur: '1 año (2 semestres)', sedes: 'Campus virtual', req: '1.º de EMS aprobado', jobs: ['Selección de personal', 'Formación y desarrollo', 'Gestión de remuneraciones'], src: U + 'escuela-desarrollo-empresarial/analista-en-recursos-humanos/' },
     'ude-t-tecnico-en-gerencia': { dur: '2 años (4 semestres)', sedes: 'Campus virtual', req: 'Bachillerato finalizado, o 1.º de EMS con 2 años de experiencia laboral en el área', jobs: ['Mandos medios en planificación y control de gestión', 'Organización y dirección de empresas'], src: U + 'escuela-desarrollo-empresarial/tecnico-en-gerencia/' },
     'ude-t-experto-en-turismo-y-entretenimiento': { dur: '4 meses (132 horas)', sedes: 'Punta del Este y Colonia · híbrida: martes, jueves y sábados', src: U + 'escuela-desarrollo-empresarial/turismo-hospitality/' },
-    'ude-t-analista-de-negocios-digitales-e-inteligencia-artificial': { dur: '1 año', sedes: '100 % virtual · martes y jueves de 19:00 a 21:45', src: U + 'escuela-desarrollo-empresarial/analista-de-negocios-digitales-e-inteligencia-artificial/' },
+    'ude-t-analista-de-negocios-digitales-e-inteligencia-artificial': { dur: '1 año', sedes: '100 % virtual · martes y jueves de 19:00 a 21:45', src: U + 'escuela-desarrollo-empresarial/analista-de-negocios-digitales-e-inteligencia-artificial/' },
     'ude-t-analista-en-periodismo': { name: 'Analista en Periodismo en la Era Digital', dur: '1 año', sedes: 'Montevideo · híbrida', jobs: ['Medios digitales y agencias de noticias', 'Comunicación institucional', 'Redacción digital y periodismo de datos'], src: U + 'escuela-desarrollo-empresarial/analista-en-periodismo-en-la-era-digital/' },
 
     /* CLAEH: datos de las capturas del sitio que envió Chris (13/10/2026) */
@@ -699,8 +786,9 @@ nav.tabs .badge { position: absolute; top: 8px; left: 56%; min-width: 18px; heig
 
   /* UdelaR: sitios de cada facultad (13/10/2026). El portal udelar.edu.uy bloquea lectores automáticos. */
   var MVF = 'Montevideo (sede de la facultad)';
+  var UR_REV = '2026-10-13'; /* fecha en que se revisaron estas carreras */
   function UR(id, name, area, code, dur, sedes, src, extra) {
-    var c = { id: 'udelar-' + id, inst: 'udelar', name: name, area: area, code: code, dur: dur || ASK, cost: FREE, sedes: sedes || MVF, req: ASK, src: src };
+    var c = { id: 'udelar-' + id, inst: 'udelar', name: name, area: area, code: code, dur: dur || ASK, cost: FREE, sedes: sedes || MVF, req: ASK, src: src, rev: UR_REV };
     if (extra) for (var k in extra) c[k] = extra[k];
     CAREERS.push(c);
   }
@@ -743,6 +831,130 @@ nav.tabs .badge { position: absolute; top: 8px; left: 56%; min-width: 18px; heig
   UR('museologia', 'Tecnicatura Universitaria en Museología', 'Social y educación', 'SAC', null, null, FHCE + 'tecnicatura-universitaria-en-museologia/', { nivel: 'Técnica' });
   UR('correccion', 'Tecnicatura Universitaria en Corrección de Estilo', 'Social y educación', 'CAI', null, null, FHCE + 'tecnicatura-universitaria-en-correccion-de-estilo/', { nivel: 'Técnica', jobs: ['Editoriales', 'Medios de comunicación', 'Agencias publicitarias'] });
   UR('lsu', 'Tecnólogo en Interpretación y Traducción LSU – Español', 'Social y educación', 'SAC', null, null, FHCE + 'tecnologo-en-interpretacion-y-traduccion-lsu-espanol/', { nivel: 'Técnica', req: 'Prueba de ingreso de comprensión y expresión en Lengua de Señas Uruguaya y en español (preinscripción en febrero)' });
+  UR_REV = '2026-10-14';
+  /* Ciencias Económicas y de Administración (FCEA), sitio de la facultad, 14/10/2026. Requisitos: fcea.udelar.edu.uy/bedelia/ingreso-a-facultad.html */
+  var FCEA = 'https://fcea.udelar.edu.uy/';
+  var FCEA_PRE = 'En 2026 la preinscripción fue del 3 al 7 de agosto. Hay otras vías de ingreso (por ejemplo, desde otras carreras de UdelaR): ver Ingreso a la facultad en el sitio de FCEA.';
+  var FCEA_AE = 'Bachillerato finalizado en una de las orientaciones habilitadas. De 3.º de EMS: Ciencias y Tecnología, Ciencias Sociales y Humanidades';
+  var FCEA_AE2 = '; también Reformulación 2006 o equivalente 2023 y varios bachilleratos tecnológicos de UTU (por ejemplo Gestión y Administración, Tecnologías de la Información o Electromecánica). La lista completa está en el sitio de la facultad.';
+  UR('contador', 'Contador Público', 'Negocios', 'CEI', '4 años (8 semestres)', 'Montevideo', FCEA + 'ensenanza/las-carreras-de-fcea/7538-contador-publico-2024.html', { req: 'Bachillerato finalizado en cualquier orientación (Secundaria o UTU).', nota: FCEA_PRE });
+  UR('economia', 'Licenciatura en Economía', 'Negocios', 'IEC', '4 años (8 semestres)', 'Montevideo', FCEA + 'ensenanza-dpto-economia/licenciatura-en-economia.html', { req: FCEA_AE + ' (Especialización General figura «a confirmar»)' + FCEA_AE2, jobs: ['Área financiera', 'Empresas', 'Políticas públicas'], nota: FCEA_PRE });
+  UR('administracion', 'Licenciatura en Administración', 'Negocios', 'ECS', '4 años (8 semestres)', 'Montevideo', FCEA + 'depto-adm-ensenanza/lic-adm-ciencias-adm.html', { req: FCEA_AE + ' y Especialización General' + FCEA_AE2, jobs: ['Cargos gerenciales en distintas áreas de las organizaciones', 'Consultoría', 'Creación de empresas', 'Docencia e investigación'], nota: FCEA_PRE });
+  UR('estadistica', 'Licenciatura en Estadística', 'Tecnología', 'ICR', '4 años', 'Montevideo', FCEA + 'depto-met-cuant-ensenanza/licenciatura-en-estadistica.html', { req: 'Bachillerato finalizado (Secundaria o UTU) que tenga Matemática en el último año.', jobs: ['Análisis de datos y métodos estadísticos', 'Programas de investigación', 'Docencia universitaria'], nota: FCEA_PRE });
+  UR('tec-administracion', 'Tecnicatura en Administración', 'Negocios', 'CES', '5 semestres', 'Montevideo', FCEA + 'depto-adm-ensenanza/tecnicatura-admin-ciencias-adm.html', { req: 'Bachillerato finalizado en cualquier orientación (Secundaria o UTU).', title: 'Técnico/a en Administración', nota: 'Las materias de la tecnicatura se reconocen en las otras carreras de la facultad y se puede seguir estudiando una licenciatura. ' + FCEA_PRE });
+  UR('gestion-universitaria', 'Tecnólogo en Gestión Universitaria', 'Negocios', 'CES', '5 semestres', 'Montevideo', FCEA + 'ensenanza/las-carreras-de-fcea/243-tecnico-en-gestion-universitaria.html', { req: 'Bachillerato finalizado en cualquier orientación (Secundaria o UTU), cursos equivalentes, o egreso de una institución terciaria habilitada.', nota: FCEA_PRE });
+  UR('tac', 'Tecnólogo en Administración y Contabilidad', 'Negocios', 'CEI', '5 semestres', 'Completa en Tacuarembó y Maldonado; en Rocha, Treinta y Tres y Lavalleja se dictan 4 semestres, semipresenciales; en Mercedes y Colonia se implementa de forma gradual desde marzo de 2025', FCEA + 'depto-adm-ensenanza/tac-ciencias-adm.html', { req: 'Bachillerato aprobado completo de Secundaria o UTU, en cualquier orientación. También hay otras vías (por ejemplo, desde el Ciclo Inicial Optativo del Área Social).', nota: 'En las sedes con modalidad semipresencial algunas clases son por videoconferencia y puede haber que viajar para pruebas o clases obligatorias.' });
+  UR('economia-agricola', 'Licenciatura en Economía Agrícola y Gestión de Agronegocios', 'Agro y ambiente', 'ECI', '4 años', 'Tacuarembó (CENUR Noreste)', FCEA + 'ensenanza/carreras-en-centros-universitarios-regionales/6743-licenciatura-en-economia-agricola-y-gestion-de-agronegocios.html');
+  /* Ingeniería (FING), sitio de la facultad, 14/10/2026. Requisitos: documento «Requisitos 2024» de FING */
+  var FING = 'https://www.fing.edu.uy/es/carrera/grado/';
+  var ING_REQ = 'Bachillerato finalizado con orientación habilitada. En Secundaria: Diversificación Científica opción Físico-Matemática (Reformulación 2006) o sus equivalentes de planes anteriores. En UTU: varios bachilleratos tecnológicos y EMT (por ejemplo Informática, Electromecánica, Electrónica o Construcción). También se puede entrar por el Ciclo Inicial Optativo o con un año aprobado en otra carrera de UdelaR. La lista completa está en el sitio de la facultad.';
+  var ING_SED = 'Montevideo (sede de la facultad)';
+  [['civil', 'Ingeniería Civil', 'RIC', 'ingenier%C3%ADa-civil', 'Perfiles: Estructuras, Construcción, Transporte y Vías de Comunicación, e Hidráulico-Ambiental.'],
+   ['produccion', 'Ingeniería de Producción', 'IEC', 'ingenier%C3%ADa-de-producci%C3%B3n'],
+   ['electrica', 'Ingeniería Eléctrica', 'RIC', 'https://www.fing.edu.uy/es/carreras/grado/ingenieriaelectrica'],
+   ['agrimensura', 'Ingeniería en Agrimensura', 'RCI', 'agrimensura'],
+   ['computacion', 'Ingeniería en Computación', 'IRC', 'ingenier%C3%ADa-en-computaci%C3%B3n'],
+   ['sistemas-comunicacion', 'Ingeniería en Sistemas de Comunicación', 'IRC', 'https://www.fing.edu.uy/es/categoria/grupo/carrera-ingenieria-en-sistemas-de-comunicacion'],
+   ['fisico-matematica', 'Ingeniería Físico-Matemática', 'IRC', 'https://www.fing.edu.uy/es/node/45266'],
+   ['industrial-mecanica', 'Ingeniería Industrial Mecánica', 'RIC', 'ingenier%C3%ADa-industrial-mec%C3%A1nica'],
+   ['naval', 'Ingeniería Naval', 'RIC', 'ingenier%C3%ADa-naval']
+  ].forEach(function (r) {
+    var x = { req: ING_REQ, title: r[1] };
+    if (r[4]) x.nota = r[4];
+    if (r[0] === 'computacion') { x.title = 'Ingeniero/a en Computación · intermedio: Analista en Computación (3 años)'; }
+    UR(r[0], r[1], 'Tecnología', r[2], '5 años', r[0] === 'computacion' ? 'Montevideo (sede de la facultad); también se puede cursar total o parcialmente en Colonia, Paysandú, Salto y Tacuarembó' : ING_SED, /^https/.test(r[3]) ? r[3] : FING + r[3], x);
+  });
+  UR('quimica-ing', 'Ingeniería Química', 'Tecnología', 'IRC', '5 años', 'Montevideo', FING + 'ingenier%C3%ADa-qu%C3%ADmica', { req: 'Las mismas orientaciones que Ingeniería (en Reformulación 2006, Físico-Matemática), más las orientaciones biológicas de planes anteriores. El ingreso se puede pedir en la Facultad de Ingeniería o en la de Química.' });
+  UR('alimentos', 'Ingeniería de Alimentos', 'Tecnología', 'IRC', '5 años', 'Montevideo (Facultades de Química, Ingeniería, Agronomía y Veterinaria)', FING + 'ingenier%C3%ADa-de-alimentos', { req: 'Se ingresa por la Facultad de Química. Bachillerato Diversificado de Orientación Científica (opción Ingeniería) u Orientación Biológica (opción Medicina o Agronomía), o las condiciones que fijen los consejos de las facultades.' });
+  UR('forestal', 'Ingeniería Forestal', 'Agro y ambiente', 'RIC', '5 años', 'Tacuarembó (CENUR Noreste)', FING + 'ingenier%C3%ADa-forestal-tacuaremb%C3%B3');
+  UR('atmosfera', 'Licenciatura en Ciencias de la Atmósfera', 'Agro y ambiente', 'IRC', '4 años', 'Montevideo (Facultad de Ciencias y Facultad de Ingeniería)', FING + 'lic-en-ciencias-de-la-atm%C3%B3sfera', { req: 'Bachillerato de Secundaria con Matemática en el último año (Arte y Expresión del Plan 2006 no la tiene), o bachillerato tecnológico o EMT de UTU con Matemática en el último año. También profesorados del IPA en Astronomía, Física o Matemática.' });
+  UR('lic-computacion', 'Licenciatura en Computación', 'Tecnología', 'IRC', '4 años', 'Montevideo; también trayectorias en Tacuarembó, Colonia, Salto y Paysandú', FING + 'lic-en-computaci%C3%B3n', { req: 'Se entra habiendo cumplido los requisitos del título intermedio Analista en Computación (de Ingeniería en Computación) o formación equivalente aprobada por la facultad.' });
+  UR('ing-biologica', 'Licenciatura en Ingeniería Biológica', 'Tecnología', 'IRC', '4 años (8 semestres)', '1.º y 2.º año en Montevideo, Salto o Paysandú; 3.º y 4.º en Paysandú', FING + 'lic-en-ingenier%C3%ADa-biol%C3%B3gica-salto-y-paysand%C3%BA', { req: 'En Secundaria, bachilleratos científicos o biológicos (en Reformulación 2006, Diversificación Científica); en UTU, opciones similares a las de Ingeniería. La lista completa está en el sitio de la facultad.' });
+  UR('recursos-hidricos', 'Licenciatura en Recursos Hídricos y Riego', 'Agro y ambiente', 'RIC', '4 años', 'Salto (Regional Norte); algunas materias en la Universidad Tecnológica Nacional de Concordia (Argentina)', FING + 'lic-en-recursos-hidricos-y-riego-rn-salto');
+  UR('carnico', 'Tecnólogo Cárnico', 'Agro y ambiente', 'RIC', '3 años (6 semestres)', 'Tacuarembó (Escuela Agraria, INIA Tacuarembó y Laboratorio de Carnes de UdelaR)', FING + 'tecn%C3%B3logo-c%C3%A1rnico', { nota: 'Prácticas y pasantías coordinadas con el Frigorífico Tacuarembó.' });
+  UR('cartografia', 'Tecnólogo en Cartografía', 'Tecnología', 'RCI', '2 años (4 semestres)', ING_SED, FING + 'tecn%C3%B3logo-en-cartograf%C3%ADa', { req: 'Cualquier bachillerato de Secundaria o bachillerato tecnológico con Matemática en el último año (Arte y Expresión del Plan 2006 no la tiene).' });
+  UR('madera', 'Tecnólogo en Madera', 'Agro y ambiente', 'RIC', '3 años (6 semestres)', 'Rivera (CENUR Noreste, Polo Educativo Tecnológico y Escuela Técnica Superior de Rivera)', FING + 'tecn%C3%B3logo-en-madera-rivera');
+  UR('telecomunicaciones', 'Tecnólogo en Telecomunicaciones', 'Tecnología', 'RIC', '2 años y medio (5 semestres)', 'Rocha (CURE); el primer año también se puede cursar en Montevideo', FING + 'tecn%C3%B3logo-en-telecomunicaciones-rocha', { req: 'Cualquier bachillerato de Secundaria con Matemática en el último año (Arte y Expresión del Plan 2006 no la tiene), o cualquier bachillerato tecnológico o EMT de UTU.' });
+  UR('minero', 'Tecnólogo Minero', 'Tecnología', 'RIC', '3 años (6 semestres)', 'Treinta y Tres (CURE)', FING + 'tecn%C3%B3logo-minero-treinta-y-tres', { nota: 'El plan facilita seguir después la Licenciatura en Geología de la Facultad de Ciencias.' });
+  /* Medicina (FMED), páginas de ingreso 2026 de Bedelía, 14/10/2026 */
+  var FMED = 'https://www.fmed.edu.uy/gestion/bedelia/';
+  var MED_REQ = 'Bachillerato aprobado de Secundaria opción Medicina (Orientación Biológica) o 3.º de EMS orientación Ciencias de la Vida con la materia Biología Humana. También el bachillerato tecnológico Deporte y Recreación de UTU.';
+  UR('medicina', 'Doctor en Medicina', 'Salud', 'ISR', '5 años (60 meses, plan 2008)', 'Montevideo', FMED + 'dr-en-medicina/ingreso-la-carrera-dr-en-medicina-ano-2026', { req: MED_REQ + ' Se admite empezar con hasta una materia previa del liceo (ingreso provisorio, a aprobar en abril).', ingreso: 'En 2026 la inscripción fue del 2 al 27 de febrero y las clases empezaron el 2 de marzo.', title: 'Doctor/a en Medicina' });
+  UR('partera', 'Obstetra Partera', 'Salud', 'SIR', null, 'Montevideo', FMED + 'parque-batlle/ingreso-2026-carrera-obstetra-parteras', { req: MED_REQ + ' No tiene prueba de ingreso.', ingreso: 'En 2026 hubo un único período de inscripción, del 4 al 24 de febrero.' });
+  var EUTM_REQ = 'Bachillerato o equivalente, en cualquier orientación. Hay cupos: si hay más inscriptos que lugares, se ordena por una prueba de conocimientos (en 2026 fue el 25 de febrero).';
+  var EUTM_ING = 'En 2026 la preinscripción fue del 2 al 19 de febrero, por el portal de UdelaR, eligiendo una sola carrera.';
+  [['anatomia-patologica', 'Anatomía Patológica', 'IRC', 90], ['cosmetologia', 'Cosmetología Médica', 'SAR', 60], ['fisioterapia', 'Fisioterapia', 'SRI', 225],
+   ['fonoaudiologia', 'Fonoaudiología', 'SIA', 90], ['hemoterapia', 'Hemoterapia', 'IRC', 113], ['imagenologia', 'Imagenología', 'RIC', 340],
+   ['instrumentacion', 'Instrumentación Quirúrgica', 'RSC', 80], ['laboratorio-clinico', 'Laboratorio Clínico', 'IRC', 297], ['neumocardiologia', 'Neumocardiología', 'IRS', 112],
+   ['neurofisiologia', 'Neurofisiología Clínica', 'IRS', 90], ['oftalmologia', 'Oftalmología (Tecnología Médica)', 'RIS', 90], ['podologia', 'Podología', 'RSC', 148],
+   ['psicomotricidad', 'Psicomotricidad', 'SAI', 170], ['radioterapia', 'Radioterapia', 'RIS', 75], ['radioisotopos', 'Radioisótopos', 'IRC', 68],
+   ['registros-medicos', 'Registros Médicos', 'CSI', 180], ['terapia-ocupacional', 'Terapia Ocupacional', 'SAR', 90], ['salud-ocupacional', 'Salud Ocupacional', 'ISC', 63]
+  ].forEach(function (r) {
+    UR('eutm-' + r[0], r[1], 'Salud', r[2], null, 'Montevideo (cupos 2026: ' + r[3] + ')', FMED + 'parque-batlle/ingreso-2026-licenciaturas-tecnicaturas-facultad-de-medicina',
+      { req: EUTM_REQ, ingreso: EUTM_ING, nota: 'Carrera de la Escuela Universitaria de Tecnología Médica (Facultad de Medicina). La página de ingreso no indica la duración ni si es licenciatura o tecnicatura. Para cursar en Paysandú, consultá el CENUR Litoral Norte.' });
+  });
+  /* Enfermería: el sitio de la facultad lista sus sedes; duración y requisitos no figuran en las páginas que se pudieron abrir */
+  UR('enfermeria', 'Licenciatura en Enfermería', 'Salud', 'SIR', null, 'Montevideo (Facultad de Enfermería); también en el CURE, el CENUR Noreste (Rivera) y el CENUR Litoral Norte', 'https://www.fenf.edu.uy/');
+  /* Odontología: capturas del sitio de la facultad enviadas por Chris, 14/10/2026 */
+  var ODON = 'https://odon.edu.uy/sitio/';
+  var ODON_REQ = 'Bachillerato aprobado en alguna de estas opciones: orientación Biológica opción Medicina, orientación Ciencias de la Vida y la Salud opción Salud, u orientación tecnólogo en Deporte y Recreación (auxiliar técnico).';
+  var ODON_COND = ' Se puede entrar de forma condicional con una materia del liceo pendiente, a aprobar durante el año.';
+  var ODON_AGR = ' Para esta carrera también sirve el bachillerato completo de Ciencias Agrarias (o similares de planes anteriores).';
+  UR('odontologia', 'Doctor en Odontología', 'Salud', 'IRS', '5 años y medio', ASK, ODON + 'carrera-de-odontologia/', { req: ODON_REQ + ODON_COND, title: 'Doctor/a en Odontología' });
+  UR('asistente-odontologia', 'Asistente en Odontología', 'Salud', 'SRC', '2 años (24 meses)', 'Facultad de Odontología', ODON + 'asistente-en-odontologia/', { req: ODON_REQ + ODON_AGR + ODON_COND });
+  UR('higienista-odontologia', 'Higienista en Odontología', 'Salud', 'SIR', '2 años', ASK, ODON + 'higienista-en-odontologia/', { req: ODON_REQ + ODON_AGR + ODON_COND, nota: 'Comparte el primer año con Asistente en Odontología. Su trabajo es sobre todo educativo y preventivo, en salud bucal individual y comunitaria.' });
+  UR('laboratorista-odontologia', 'Laboratorista en Odontología', 'Salud', 'RIA', '3 años', ASK, ODON + 'laboratorista-en-odontologia/', { req: ODON_REQ + ODON_AGR + ODON_COND, nota: 'Fabricación y reparación de prótesis dentales y aparatos ortodónticos, también con diseño digital.' });
+  /* Ciencias (FCIEN), páginas de cada carrera y Resolución 88 (requisitos 2025), 14/10/2026 */
+  var FCIEN = 'https://www.fcien.edu.uy/ensenanza/carreras-de-grado/';
+  var CIEN_MAT = 'Bachillerato con Matemática en el último año (Secundaria), o bachillerato tecnológico de UTU con Matemática en el último año; también bachilleratos técnicos de UTU en Mecánica Automotriz, Mecánica General, Electrónica o Electrotecnia. Se puede empezar con una materia previa, a aprobar antes del 30 de abril.';
+  var CIEN_ANY = 'Bachillerato completo en cualquier orientación. Se puede empezar con una materia previa, a aprobar antes del 30 de abril.';
+  var CIEN_ING = 'En 2025 la inscripción fue del 5 al 26 de febrero.';
+  [['astronomia', 'Licenciatura en Astronomía', 'IRC', 'licenciatura-en-astronomia/2332-licenciatura-en-astronomia', CIEN_MAT],
+   ['bioquimica', 'Licenciatura en Bioquímica', 'IRC', 'licenciatura-en-bioquimica/2329-licenciatura-en-bioquimica-2', CIEN_ANY],
+   ['biologia', 'Licenciatura en Ciencias Biológicas', 'IRS', 'licenciatura-en-ciencias-biologicas/2327-licenciatura-en-ciencias-biologicas', CIEN_ANY],
+   ['fisica', 'Licenciatura en Física', 'IRC', 'licenciatura-en-ciencias-fisicas/2334-licenciatura-en-ciencias-fisicas', CIEN_MAT],
+   ['fisica-medica', 'Licenciatura en Física Médica', 'IRS', 'licenciatura-en-fisica-medica/2335-licenciatura-en-fisica-medica-2', CIEN_MAT],
+   ['geografia', 'Licenciatura en Geografía', 'IRS', 'licenciatura-en-geografia/2337-licenciatura-en-geografia', CIEN_ANY],
+   ['geologia', 'Licenciatura en Geología', 'IRC', 'licenciatura-en-geologia/2336-licenciatura-en-geologia-2', 'Bachillerato con Matemática, Física o Química en los dos últimos años, o bachilleratos de UTU como Agrario, Construcción, Electrónica, Informática, Química o Termodinámica (lista completa en el sitio). También con un año aprobado en otra carrera de UdelaR.'],
+   ['matematica', 'Licenciatura en Matemática', 'ICR', 'licenciatura-en-matematica/2330-licenciatura-en-matematica-2', CIEN_MAT]
+  ].forEach(function (r) {
+    UR(r[0], r[1], r[0] === 'geografia' ? 'Agro y ambiente' : r[0] === 'biologia' ? 'Agro y ambiente' : r[0] === 'fisica-medica' ? 'Salud' : 'Tecnología', r[2], '4 años', 'Montevideo', FCIEN + r[3], { req: r[4], ingreso: CIEN_ING });
+  });
+  UR('biotecnologia', 'Licenciatura en Biotecnología', 'Tecnología', 'IRC', '4 años', 'Montevideo, o en el CENUR Litoral Norte (Salto o Paysandú)', FCIEN + '243-ensenanza/licenciaturas/licenciatura-en-biotecnologia/2771-licenciatura-en-biotecnologia', {
+    req: 'Bachillerato de Secundaria en Físico-Matemática, Ciencias Biológicas o Ciencias Agrarias (Reformulación 2006) o equivalentes de otros planes; varios bachilleratos tecnológicos y EMT de UTU (por ejemplo Informática, Química Industrial o Agrario). En el CENUR Litoral Norte se entra por el Ciclo Biología-Bioquímica o el Ciclo Inicial Optativo Científico-Tecnológico.',
+    nota: 'Carrera compartida por las facultades de Ciencias, Química, Agronomía, Veterinaria, Arquitectura e Ingeniería, y el CENUR Litoral Norte.' });
+  UR('recursos-naturales', 'Licenciatura en Recursos Naturales', 'Agro y ambiente', 'RIS', '4 años', 'Rivera (Centro Universitario de Rivera)', FCIEN + 'licenciatura-en-recursos-naturales/2339-licenciatura-en-recursos-naturales', { ingreso: 'Inscripción en febrero, en la Bedelía del Centro Universitario de Rivera.' });
+  UR('tec-recursos-naturales', 'Tecnicatura en Gestión de Recursos Naturales y Desarrollo Sustentable', 'Agro y ambiente', 'RSE', '2 años y medio', 'Rivera (Centro Universitario de Rivera)', FCIEN + 'tecnicatura-gestion-recursos-naturales/2338-tecnicatura-en-gestion-de-recursos-naturales-y-desarrollo-sustentable', { ingreso: 'Inscripción en la Bedelía del Centro Universitario de Rivera.' });
+  /* Veterinaria y Agronomía, 14/10/2026 */
+  UR('veterinaria', 'Médico/a Veterinario/a', 'Agro y ambiente', 'IRS', '5 años', 'Sur: Montevideo (Ruta 8 km 18) y el Instituto de Producción Animal en San José. Norte: Salto (semestres 1 a 7) y Paysandú (8.º y 9.º)', 'https://www.fvet.edu.uy/ensenanza/grado/medico-veterinario-a/', { title: 'Médico/a Veterinario/a', ingreso: 'Las inscripciones abren una vez al año, en febrero.' });
+  UR('tesipa', 'Tecnólogo en Sistemas Integrados de Producción Agropecuaria', 'Agro y ambiente', 'REC', '3 años', 'Cerro Largo (CENUR Noreste)', 'https://www.fvet.edu.uy/ensenanza/grado/tecnologo-en-sistemas-integrados-de-produccion-agropecuaria/', { nota: 'La dictan juntas las facultades de Veterinaria y Agronomía.' });
+  UR('agronomia', 'Ingeniería Agronómica', 'Agro y ambiente', 'RIE', '5 años', ASK, 'https://portal.fagro.edu.uy/ensenanza/carreras-agrariaS/');
+  /* Artes (Bellas Artes, Música y Artes Escénicas), páginas de cada carrera, 14/10/2026 */
+  var ART = 'https://www.artes.udelar.edu.uy/carrera/';
+  var ART_MVD = 'Montevideo (Facultad de Artes, 18 de Julio 1772)';
+  [['artes-plasticas', 'Licenciatura en Artes – Artes Plásticas y Visuales', 'licenciatura-en-artes-plasticas-y-visuales/'],
+   ['ceramica', 'Licenciatura en Artes – Cerámica', 'licenciatura-en-ceramica/'],
+   ['dibujo-pintura', 'Licenciatura en Artes – Dibujo y Pintura', 'licenciatura-en-dibujo-y-pintura/'],
+   ['escultura', 'Licenciatura en Artes – Escultura y Volumen en el Espacio', 'licenciatura-en-escultura-y-volumen-en-el-espacio/'],
+   ['fotografia', 'Licenciatura en Artes – Fotografía', 'licenciatura-en-fotografia/']
+  ].forEach(function (r) { UR(r[0], r[1], 'Arte y diseño', 'AIR', null, ART_MVD, ART + r[2]); });
+  UR('diseno-grafico-artes', 'Licenciatura en Artes – Diseño Gráfico', 'Arte y diseño', 'AEC', null, 'Montevideo (Área de Artes Gráficas, José Martí 3328)', ART + 'licenciatura-en-diseno-grafico/');
+  UR('arte-digital', 'Licenciatura en Arte Digital y Electrónico', 'Arte y diseño', 'AIR', null, ART_MVD, ART + 'licenciatura-en-arte-digital-y-electronico/', { title: 'Licenciado/a en Artes – Arte Digital y Electrónico' });
+  UR('medios-audiovisuales', 'Licenciatura en Lenguajes y Medios Audiovisuales', 'Arte y diseño', 'AIE', '4 años', 'Maldonado (CURE)', ART + 'licenciatura-en-lenguajes-y-medios-audiovisuales/');
+  UR('tec-artes-rocha', 'Tecnicatura en Artes Plásticas y Visuales (Rocha)', 'Arte y diseño', 'ARS', null, 'Rocha (CURE)', ART + 'tecnicatura-en-artes-plasticas-y-visuales-2/');
+  UR('tec-artes-rivera', 'Tecnicatura en Artes Plásticas y Visuales (Rivera)', 'Arte y diseño', 'ARS', '3 años (6 semestres)', 'Rivera (Centro Universitario de Rivera)', ART + 'tecnicatura-en-artes-plasticas-y-visuales/', { title: 'Técnico/a Universitario/a en Artes – Artes Plásticas y Visuales' });
+  UR('imagen-fotografica', 'Tecnicatura en Tecnologías de la Imagen Fotográfica', 'Arte y diseño', 'ARI', null, 'Paysandú (CENUR Litoral Norte)', ART + 'tecnicatura-en-tecnologias-de-la-imagen-fotografica/');
+  var MUS_REQ = 'Estudios preuniversitarios terminados y dos pruebas de conocimientos y habilidades musicales: una general y una específica (instrumento u opción). Quienes egresan del Ciclo de Introducción a la Música quedan exonerados de parte de las pruebas.';
+  UR('musica', 'Licenciatura en Música', 'Arte y diseño', 'AIS', '4 años (8 semestres)', ART_MVD, 'https://www.artes.udelar.edu.uy/licenciaturas-instituto-de-musica', { req: MUS_REQ, title: 'Licenciado/a en Música, con mención en Composición, Musicología, Dirección de Orquesta o Dirección de Coro' });
+  UR('interpretacion-musical', 'Licenciatura en Interpretación Musical', 'Arte y diseño', 'ARS', '4 años (8 semestres)', ART_MVD, 'https://www.artes.udelar.edu.uy/licenciaturas-instituto-de-musica', { req: MUS_REQ, title: 'Licenciado/a en Interpretación Musical, con mención en el instrumento o canto' });
+  UR('cim', 'Ciclo de Introducción a la Música (CIM)', 'Arte y diseño', 'ARS', '3 años', ART_MVD, ART + 'ciclo-de-introduccion-a-la-musica-cim/', { req: 'EBI terminada (los tres primeros años del liceo) y una prueba de ingreso: aptitud musical, conocimientos musicales e instrumento, y un cuestionario. La admisión definitiva se da después de un primer período de trabajo.', nota: 'Es un ciclo de formación musical, no una carrera con título. Al terminarlo, con bachillerato completo, se puede entrar a la Licenciatura en Interpretación Musical sin rendir las pruebas de ingreso.', nivel: 'Técnica' });
+  var MUS_SALTO = 'Cualquier bachillerato de Secundaria o UTU y pruebas de conocimientos musicales (lectura y escritura musical, e instrumento o canto). Los detalles de las pruebas se publican cada año.';
+  UR('tec-coros-salto', 'Tecnicatura en Dirección de Coros', 'Arte y diseño', 'ASE', '4 años (8 semestres)', 'Salto (Regional Norte)', ART + 'tecnicaturas-instituto-de-musica-salto/', { req: MUS_SALTO, title: 'Técnico/a en Dirección de Coros' });
+  UR('tec-interpretacion-salto', 'Tecnicatura en Interpretación', 'Arte y diseño', 'ARS', '4 años (8 semestres)', 'Salto (Regional Norte)', ART + 'tecnicaturas-instituto-de-musica-salto/', { req: MUS_SALTO, title: 'Técnico/a en Interpretación (opción Guitarra u opción Piano)' });
+  UR('danza', 'Licenciatura en Danza Contemporánea', 'Arte y diseño', 'ARS', '4 años', ART_MVD, ART + 'licenciatura-en-danza-contemporanea/', { req: 'Haber egresado de cualquier bachillerato (Secundaria o UTU).' });
+  /* Nutrición, sitio de la Escuela de Nutrición, 14/10/2026 */
+  UR('nutricion', 'Licenciatura en Nutrición', 'Salud', 'ISR', '4 años (8 semestres)', ASK, 'https://www.nutricion.edu.uy/?page_id=11002');
+  UR('operador-alimentos', 'Técnico Operador de Alimentos', 'Salud', 'RCS', null, ASK, 'https://www.nutricion.edu.uy/?page_id=2062', { nota: 'Según la Escuela de Nutrición, la información sobre sedes e inscripción está en el sitio del CENUR.' });
   /* Psicología: cursado en el interior */
   ORT_FIX['udelar-psico'] = { sedes: 'Montevideo, Salto y Paysandú (completa). En Maldonado y en otros ciclos iniciales del interior se puede hacer el primer año', src: 'https://www.psico.edu.uy/ensenanza/grado/estudiar-interior-pais' };
 
@@ -998,6 +1210,45 @@ nav.tabs .badge { position: absolute; top: 8px; left: 56%; min-width: 18px; heig
   var ITEMS = ITEM_TEXTS.map(function (text, k) { return { t: ORDER[k % 6], text: text }; });
   var AREAS = ['Todas', 'Salud', 'Tecnología', 'Arte y diseño', 'Negocios', 'Derecho y política', 'Social y educación', 'Agro y ambiente'];
 
+  /* Tipo principal según el PDF del Inventario de Intereses de Holland (sección "Tipos de Personalidad", punto 5: profesiones de ejemplo).
+     Si el nombre de la carrera coincide con una profesión de ejemplo, ese tipo va primero y el resto del código se mantiene en su orden. */
+  var HOLLAND_PDF = [
+    ['S', /profesorado|profesor\/a tecnico|magisterio|maestro|educacion inicial|ciencias de la educacion|educador/],
+    ['R', /^ingenier|mecanic|carpinter/],
+    ['I', /^doctor en medicina$/],
+    ['I', /^licenciatura en (fisica|matematica|ciencias biologicas)$/],
+    ['I', /^licenciatura en letras$|correccion de estilo/],
+    ['A', /music|escultur|actuacion|teatro|dramaturg|danza/],
+    ['A', /interiores|moda|indumentaria/],
+    ['S', /trabajo social/],
+    ['S', /psicolog/],
+    ['E', /gerencia|direccion de empresas/],
+    ['E', /ciencia politica/],
+    ['C', /secretariado/]
+  ];
+  CAREERS.forEach(function (c) {
+    var n = norm(c.name);
+    for (var k = 0; k < HOLLAND_PDF.length; k++) {
+      if (HOLLAND_PDF[k][1].test(n)) { var L = HOLLAND_PDF[k][0]; if (c.code[0] !== L) c.code = (L + c.code.replace(L, '')).slice(0, 3); break; }
+    }
+  });
+  /* Carreras compartidas con UdelaR (sitio de FING, 14/10/2026) */
+  CAREERS.forEach(function (c) {
+    if (c.id === 'utu-tecnologo-industrial-mecanico') {
+      c.also = ['udelar']; c.sedes = 'Montevideo (Facultad de Ingeniería e Instituto Tecnológico Superior de UTU) y Paysandú (Instituto Tecnológico Superior de UTU)'; c.dur = '3 años';
+      c.req = 'En Secundaria: Diversificación Científica opción Físico-Matemática (Reformulación 2006) o equivalentes de planes anteriores. En UTU: varios bachilleratos tecnológicos (por ejemplo Termodinámica, Electromecánica o Electrónica). Título compartido UTU y UdelaR.';
+    }
+    if (c.id === 'udelar-estadistica') c.nota = 'Carrera compartida entre Ciencias Económicas (FCEA) y la Facultad de Ciencias. ' + c.nota;
+    if (c.id === 'udelar-biologia-humana') c.nota = (c.nota ? c.nota + ' ' : '') + 'Carrera compartida entre cuatro facultades: Ciencias, Humanidades, Medicina y Odontología.';
+    if (c.id === 'udelar-cartografia') c.nota = 'Carrera compartida entre las facultades de Ingeniería y Ciencias.';
+    if (c.id === 'utu-tecnologo-en-produccion-equina') {
+      c.also = ['udelar']; c.dur = '6 semestres';
+      c.req = 'Bachillerato de Secundaria o de UTU con formación científica o biológica, o cursos de articulación autorizados. Carrera compartida entre UTU y la Facultad de Veterinaria.';
+    }
+    if (c.id === 'utu-tecnologo-industrial-mecanico') c.nota = (c.nota ? c.nota + ' ' : '') + 'Sedes, duración y requisitos tomados del sitio de la Facultad de Ingeniería (fing.edu.uy) el 14/10/2026.';
+    if (c.id === 'utu-tecnologo-en-produccion-equina') c.nota = (c.nota ? c.nota + ' ' : '') + 'Duración y requisitos tomados del sitio de la Facultad de Veterinaria (fvet.edu.uy) el 14/10/2026.';
+    if (c.id === 'ti-inf') c.sedes = 'Montevideo (Escuela Técnica del Buceo, inscripción por UTU); Maldonado, San José y Florida (presencial) y Paysandú (híbrida), inscripción por UTEC';
+  });
   /* ---------- Estado ---------- */
   var instById = {}; INSTS.forEach(function (i) { instById[i.id] = i; });
   var byId = {}; CAREERS.forEach(function (c) { byId[c.id] = c; });
@@ -1005,7 +1256,26 @@ nav.tabs .badge { position: absolute; top: 8px; left: 56%; min-width: 18px; heig
   try { favs = JSON.parse(localStorage.getItem('orientarte-favs') || '[]').filter(function (id) { return byId[id]; }); } catch (e) { favs = []; }
   function saveFavs() { try { localStorage.setItem('orientarte-favs', JSON.stringify(favs)); } catch (e) {} }
 
-  var S = { view: 'home', inst: null, career: null, stack: [], q: '', area: 'Todas', zona: 'Todo el país', gratis: false, phase: 'intro', step: 0, answers: [], cmp: [], bach: null, bachOpen: false, draft: null, canOnly: false };
+  var plan = {};
+  try { plan = JSON.parse(localStorage.getItem('orientarte-plan') || '{}') || {}; } catch (e) { plan = {}; }
+  function savePlan() { try { localStorage.setItem('orientarte-plan', JSON.stringify(plan)); } catch (e) {} }
+  var AB = { a: null, b: [] };
+  try { var sab = JSON.parse(localStorage.getItem('orientarte-ab') || 'null'); if (sab && Array.isArray(sab.b)) AB = { a: sab.a || null, b: sab.b }; } catch (e) {}
+  function saveAB() { try { localStorage.setItem('orientarte-ab', JSON.stringify(AB)); } catch (e) {} }
+  function cleanAB() { if (AB.a && favs.indexOf(AB.a) < 0) AB.a = null; AB.b = AB.b.filter(function (id) { return favs.indexOf(id) >= 0 && id !== AB.a; }); saveAB(); }
+  function abOf(id) { return AB.a === id ? 'a' : AB.b.indexOf(id) >= 0 ? 'b' : ''; }
+  var PREF = { size: '1', theme: 'auto', vib: true };
+  try { var sp = JSON.parse(localStorage.getItem('orientarte-prefs') || 'null'); if (sp) { for (var pk in sp) PREF[pk] = sp[pk]; } } catch (e) {}
+  function savePrefs() { try { localStorage.setItem('orientarte-prefs', JSON.stringify(PREF)); } catch (e) {} }
+  function applyPrefs() {
+    try {
+      var de = document.documentElement;
+      if (PREF.theme === 'auto') de.removeAttribute('data-theme'); else de.setAttribute('data-theme', PREF.theme);
+      de.style.setProperty('--z', PREF.size);
+    } catch (e) {}
+  }
+  function buzz(ms) { try { if (PREF.vib && navigator.vibrate) navigator.vibrate(ms); } catch (e) {} }
+  var S = { int: null, planOpen: null, view: 'home', inst: null, career: null, stack: [], q: '', area: 'Todas', zona: 'Todo el país', gratis: false, phase: 'intro', step: 0, answers: [], cmp: [], bach: null, bachOpen: false, draft: null, canOnly: false };
   try { var sb = JSON.parse(localStorage.getItem('orientarte-bach') || 'null'); if (sb && sb.lvl) S.bach = sb; } catch (e) {}
   try {
     var savedTest = JSON.parse(localStorage.getItem('orientarte-test') || 'null');
@@ -1015,6 +1285,8 @@ nav.tabs .badge { position: absolute; top: 8px; left: 56%; min-width: 18px; heig
   /* ---------- Íconos ---------- */
   function svg(paths, size) { return '<svg width="' + (size || 22) + '" height="' + (size || 22) + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + paths + '</svg>'; }
   var P = {
+    gear: '<path d="M4 7h9M19 7h1M4 17h3M13 17h7"/><circle cx="16" cy="7" r="2.5"/><circle cx="10" cy="17" r="2.5"/>',
+    list: '<path d="M9 6h11M9 12h11M9 18h11"/><path d="M4 6l1 1 2-2M4 12l1 1 2-2M4 18l1 1 2-2"/>',
     redo: '<path d="M20 7v5h-5"/><path d="M20 12a8 8 0 1 1-2.3-5.7L20 8.5"/>',
     compass: '<circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/>',
     chev: '<path d="M9 6l6 6-6 6"/>', back: '<path d="M15 18l-6-6 6-6"/>', down: '<path d="M6 9l6 6 6-6"/>',
@@ -1049,7 +1321,7 @@ nav.tabs .badge { position: absolute; top: 8px; left: 56%; min-width: 18px; heig
   function shortDur(c) { return c.dur && c.dur !== ASK ? c.dur.split(' (')[0].split(' +')[0].split(' · ')[0] : null; }
   function costShort(c) { return c.cost === FREE ? 'Gratis' : 'Arancel'; }
   var RX_INT = /maldonado|punta del este|salto|paysand|rivera|tacuaremb|colonia|durazno|fray bentos|mercedes|minas|melo|florida|san jos|la paloma|ciudad de la costa|cenur|cure\b|interior|cerro largo|rocha|artigas/i;
-  var RX_VIR = /virtual|online|100 %/i;
+  var RX_VIR = /virtual|online|100 %/i;
   function zones(c) {
     var s = c.sedes && c.sedes !== ASK ? c.sedes : '', z = [];
     if (/montevideo/i.test(s)) z.push('Montevideo');
@@ -1083,6 +1355,23 @@ nav.tabs .badge { position: absolute; top: 8px; left: 56%; min-width: 18px; heig
   ['ti-inf', 'ude-ingeniero-agronomo', 'udelar-traduccion', 'udelar-lsu', 'utu-ingeniero-tecnologico-aeronautico', 'utu-ingeniero-tecnologico-en-electronica', 'utu-ingeniero-tecnologico-en-electrotecnia', 'utu-ingeniero-tecnologico-prevencionista'].forEach(function (id) { RULES[id] = ALLCHECK; });
   RULES['udelar-ing-medios'] = { def06: 'check', defN: 'check', tec: 'ok' };
   RULES['udelar-biologia-humana'] = { never: true };
+  RULES['udelar-administracion'] = { ok: ['CT', 'CSH', 'GEN'], tec: 'check' };
+  RULES['udelar-economia'] = { ok: ['CT', 'CSH'], tec: 'check' };
+  RULES['udelar-estadistica'] = ALLCHECK;
+  ['civil', 'produccion', 'electrica', 'agrimensura', 'computacion', 'sistemas-comunicacion', 'fisico-matematica', 'industrial-mecanica', 'naval'].forEach(function (id) { RULES['udelar-' + id] = { ok: ['FM'], def06: 'no', tec: 'check' }; });
+  RULES['utu-tecnologo-industrial-mecanico'] = { ok: ['FM'], def06: 'no', tec: 'check' };
+  RULES['udelar-quimica-ing'] = { ok: ['FM'], tec: 'check' };
+  RULES['udelar-ing-biologica'] = { ok: ['FM'], tec: 'check' };
+  RULES['udelar-alimentos'] = ALLCHECK;
+  RULES['udelar-atmosfera'] = { deny: ['AE'], tec: 'check' };
+  RULES['udelar-cartografia'] = { deny: ['AE'], tec: 'check' };
+  RULES['udelar-telecomunicaciones'] = { deny: ['AE'], tec: 'ok' };
+  RULES['udelar-lic-computacion'] = { never: true };
+  RULES['udelar-medicina'] = RULES['udelar-partera'] = RULES['udelar-odontologia'] = { chk: ['CB'], def06: 'no', tec: 'check' };
+  ['asistente', 'higienista', 'laboratorista'].forEach(function (k) { RULES['udelar-' + k + '-odontologia'] = { chk: ['CB'], ok: ['CA'], def06: 'no', tec: 'check' }; });
+  ['astronomia', 'fisica', 'fisica-medica', 'matematica'].forEach(function (id) { RULES['udelar-' + id] = { deny: ['AE'], tec: 'check' }; });
+  RULES['udelar-geologia'] = ALLCHECK;
+  RULES['udelar-biotecnologia'] = { ok: ['FM', 'CB', 'CA'], def06: 'no', tec: 'check' };
 
   function minLevel(req) {
     if (/^Bachillerato finalizado, o 1\.º de EMS/.test(req)) return 4;
@@ -1105,6 +1394,7 @@ nav.tabs .badge { position: absolute; top: 8px; left: 56%; min-width: 18px; heig
     else if (o === 'TEC') st = r.tec || 'check';
     else if (r.deny && r.deny.indexOf(o) >= 0) st = 'no';
     else if (r.ok && r.ok.indexOf(o) >= 0) st = 'ok';
+    else if (r.chk && r.chk.indexOf(o) >= 0) st = 'check';
     else st = PLAN06.indexOf(o) >= 0 ? (r.def06 || 'check') : (r.defN || 'check');
     return st === 'ok' ? { s: 'ok', msg: 'Podés entrar' } : st === 'no' ? { s: 'no', msg: 'Pide otra orientación' } : { s: 'check', msg: 'Revisá los requisitos' };
   }
@@ -1180,7 +1470,7 @@ nav.tabs .badge { position: absolute; top: 8px; left: 56%; min-width: 18px; heig
   var BECAS = [
     { id: 'fondo', name: 'Becas del Fondo de Solidaridad', para: 'UdelaR · UTEC · UTU', inst: ['udelar', 'utec', 'utu'], tipo: 'Apoyo mensual en dinero',
       items: ['2 BPC por mes: unos $13.728 en 2026.', 'Se otorga según la situación económica de tu hogar.', 'Te podés postular mientras terminás el bachillerato, aunque todavía no te hayas inscripto en la carrera.', 'Hay límite de edad: entre 25 y 28 años según el tipo de beca.', 'En 2026 la inscripción cerró el 28 de febrero.'],
-      dato: 'En 2026 se dieron 11.168 becas, y 85 % de quienes las reciben son la primera generación de su familia en llegar a estudios terciarios.',
+      dato: 'En 2026 se dieron 11.168 becas, y 85 % de quienes las reciben son la primera generación de su familia en llegar a estudios terciarios.',
       link: 'https://becas.fondodesolidaridad.edu.uy/inscripciones/', linkTxt: 'Portal de becas', src: 'Presidencia de Uruguay, feb. y jul. 2026' },
     { id: 'bienestar', name: 'Bienestar Universitario', para: 'UdelaR', inst: ['udelar'], tipo: 'Comida, transporte y alojamiento',
       items: ['Becas y apoyos de alimentación, transporte y alojamiento para estudiantes de la UdelaR, según su situación económica.', 'Montos, edades y fechas cambian: confirmalos en el sitio.'],
@@ -1192,10 +1482,10 @@ nav.tabs .badge { position: absolute; top: 8px; left: 56%; min-width: 18px; heig
       items: ['Apoyos de alimentación y traslado para estudiantes de hogares de ingresos bajos o medio-bajos.', 'Becas comunitarias y becas de oportunidad.', 'Becas con empleo: 2 BPC por mes durante 9 meses (se puede extender), una vez que aprobaste un semestre.'],
       link: 'https://www.gub.uy/presidencia/comunicacion/noticias/becas-empleo-utec-promueven-culminacion-carreras-generan-primera-experiencia', linkTxt: 'Ver la nota oficial', src: 'Presidencia de Uruguay, jul. 2026' },
     { id: 'ort', name: 'Becas ORT', para: 'Universidad ORT', inst: ['ort'], tipo: 'Descuento en la cuota',
-      items: ['Excelencia Académica: hasta 60 % si terminaste 3.º de EMS el año anterior con buena escolaridad.', 'Concursables: hasta 50 %.', 'Beca Charlotte de Grünberg: 100 % de la carrera más $30.000 por mes.', 'Beca Mujer en Ingeniería: 80 % en Eléctrica, Electrónica o Telecomunicaciones.', 'Olimpíadas de Física o de Matemática: 100 %.', 'Para todas hay que rendir la Prueba de Aptitud Académica.'],
+      items: ['Excelencia Académica: hasta 60 % si terminaste 3.º de EMS el año anterior con buena escolaridad.', 'Concursables: hasta 50 %.', 'Beca Charlotte de Grünberg: 100 % de la carrera más $30.000 por mes.', 'Beca Mujer en Ingeniería: 80 % en Eléctrica, Electrónica o Telecomunicaciones.', 'Olimpíadas de Física o de Matemática: 100 %.', 'Para todas hay que rendir la Prueba de Aptitud Académica.'],
       link: 'https://www.ort.edu.uy/becas/becas-para-carreras-universitarias', linkTxt: 'Becas en el sitio de ORT', src: 'Universidad ORT Uruguay' },
     { id: 'um', name: 'Becas UM', para: 'Universidad de Montevideo', inst: ['um'], tipo: 'Descuento en la cuota',
-      items: ['Beca UM: 70 % (menores de 19, cursando 3.º de EMS, con la prueba de la UM).', 'Beca Liceos públicos: hasta 80 %.', 'Beca al mérito: hasta 90 % según tu necesidad (menores de 23).', 'Beca interior: 40 %.', 'Educadores para el cambio: desde 30 % para Magisterio o Profesorado de Matemática.', 'En 2026 los plazos fueron de abril a noviembre, según la beca.'],
+      items: ['Beca UM: 70 % (menores de 19, cursando 3.º de EMS, con la prueba de la UM).', 'Beca Liceos públicos: hasta 80 %.', 'Beca al mérito: hasta 90 % según tu necesidad (menores de 23).', 'Beca interior: 40 %.', 'Educadores para el cambio: desde 30 % para Magisterio o Profesorado de Matemática.', 'En 2026 los plazos fueron de abril a noviembre, según la beca.'],
       link: 'https://www.um.edu.uy/admisiones-becas', linkTxt: 'Becas en el sitio de la UM', src: 'Universidad de Montevideo' },
     { id: 'ude', name: 'Fondo de Becas UDE', para: 'Universidad de la Empresa', inst: ['ude'], tipo: 'Para quienes ingresan',
       items: ['La UDE tiene un fondo de becas para nuevos ingresantes que lo necesiten.', 'El sitio no detalla porcentajes ni plazos: consultalos en la universidad.'],
@@ -1206,8 +1496,8 @@ nav.tabs .badge { position: absolute; top: 8px; left: 56%; min-width: 18px; heig
   /* Ejemplos de la sección "Dudas al elegir", tomados de los datos de la app */
   function esCorta(c) {
     var d = shortDur(c); if (!d) return false;
-    if (/mes|hora/.test(d)) return true;
     if (/semestre/.test(d)) return parseInt(d, 10) <= 4;
+    if (/\bmes(es)?\b|hora/.test(d)) return parseInt(d, 10) <= 24 || /hora/.test(d);
     if (/^1 año( y medio)?$/.test(d)) return true;
     return d === '2 años';
   }
@@ -1251,13 +1541,125 @@ nav.tabs .badge { position: absolute; top: 8px; left: 56%; min-width: 18px; heig
     return h + sec(P.coin, i.type === 'Pública' ? 'Becas para gastos' : 'Becas y descuentos', body + '<button type="button" class="btn ghost" data-go-view="becas" style="margin-top:10px">Ver todas las becas</button>');
   }
 
+
+  /* ---------- Buscar por intereses ----------
+     Agrupaciones propuestas por la app (no son datos oficiales): por área, por la primera letra del código Holland o por palabras del nombre. */
+  function nm(c) { return norm(c.name); }
+  var INTERESES = [
+    { k: 'ayudar', t: 'Ayudar a otras personas', f: function (c) { return c.code[0] === 'S'; } },
+    { k: 'crear', t: 'Crear y diseñar', f: function (c) { return c.code[0] === 'A' || c.area === 'Arte y diseño'; } },
+    { k: 'tec', t: 'La tecnología', f: function (c) { return c.area === 'Tecnología'; } },
+    { k: 'salud', t: 'La salud', f: function (c) { return c.area === 'Salud'; } },
+    { k: 'manos', t: 'Hacer cosas con las manos', f: function (c) { return c.code[0] === 'R'; } },
+    { k: 'investigar', t: 'Investigar y entender', f: function (c) { return c.code[0] === 'I'; } },
+    { k: 'emprender', t: 'Liderar y emprender', f: function (c) { return c.code[0] === 'E'; } },
+    { k: 'ordenar', t: 'Organizar y los números', f: function (c) { return c.code[0] === 'C' || /contad|econom|finanz|actuar|estadist/.test(nm(c)); } },
+    { k: 'naturaleza', t: 'La naturaleza y el ambiente', f: function (c) { return c.area === 'Agro y ambiente'; } },
+    { k: 'animales', t: 'Los animales', f: function (c) { return /veterin|animal|zootec|equin|acuicult|apicult|ganad|lecher/.test(nm(c)); } },
+    { k: 'ensenar', t: 'Enseñar', f: function (c) { return /profesor|magisterio|maestro|maestra|educacion|educador|docen/.test(nm(c)); } },
+    { k: 'comunicar', t: 'Comunicar y los idiomas', f: function (c) { var x = nm(c); return /comunicac|periodis|publicid|traduc|idioma|lenguaje|interpret|audiovisual|profesorado de (ingles|frances|italiano|portugues)|bilingue/.test(x) && !/telecomunic|redes/.test(x); } },
+    { k: 'deporte', t: 'El deporte y el cuerpo', f: function (c) { return /deport|educacion fisica|fisioter|nutric|entrenad|recreac/.test(nm(c)); } },
+    { k: 'justicia', t: 'La justicia y la sociedad', f: function (c) { return c.area === 'Derecho y política'; } }
+  ];
+  var INT_BY = {}; INTERESES.forEach(function (x) { INT_BY[x.k] = x; });
+
+  /* ---------- Mi plan ---------- */
+  var PLAN_STEPS = ['Leí qué necesito para entrar', 'Me fijé si hay becas para mí', 'Averigüé cuándo son las inscripciones', 'Hablé con alguien que la estudia o fui a una jornada'];
+  function planDone(id) { return (plan[id] || []).filter(Boolean).length; }
+
+  /* ---------- Compartir una carrera ---------- */
+  function shareCareer(id) {
+    var c = byId[id], i = instById[c.inst], d = shortDur(c);
+    var text = c.name + ' en ' + i.full + (d ? ' (' + d + ')' : '') + '. Más info: ' + (c.src || i.url);
+    try { if (location.protocol === 'https:' && /github\.io$/.test(location.hostname)) text += '\nLa encontré en Orientarte UY: ' + location.origin + location.pathname; } catch (e) {}
+    var wa = function () { try { window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank', 'noopener'); } catch (e) {} };
+    try {
+      if (navigator.share) { navigator.share({ title: c.name, text: text }).catch(function (err) { if (!err || err.name !== 'AbortError') wa(); }); return; }
+    } catch (e) {}
+    wa();
+  }
+
+  /* ---------- Ajustes ---------- */
+  function vAjustes() {
+    function opt(key, val, label) { return '<button type="button" class="filter" data-pref="' + key + '" data-val="' + val + '" aria-pressed="' + (String(PREF[key]) === String(val)) + '">' + label + '</button>'; }
+    return '<div class="pad" style="gap:22px;padding-block:20px">' +
+      '<div class="set"><div class="label">Tamaño de la letra</div><div class="chips">' + opt('size', '1', 'Normal') + opt('size', '1.12', 'Grande') + opt('size', '1.25', 'Muy grande') + '</div>' +
+      '<p class="set-demo">Así se ve el texto de la app.</p></div>' +
+      '<div class="set"><div class="label">Modo de color</div><div class="chips">' + opt('theme', 'auto', 'Como el teléfono') + opt('theme', 'light', 'Claro') + opt('theme', 'dark', 'Oscuro') + '</div></div>' +
+      '<div class="set"><div class="label">Vibración al tocar</div><div class="chips">' + opt('vib', 'true', 'Sí') + opt('vib', 'false', 'No') + '</div><p class="muted" style="margin:0;font-size:14px">Funciona en teléfonos Android.</p></div>' +
+      '<p class="credit">Orientarte UY · Hecho en Uruguay por <strong>Maag Studio</strong></p></div>';
+  }
+
+
+  /* ---------- De dónde sale el dato ---------- */
+  var HOST_LABEL = { 'sites.google.com': 'sitio de oferta educativa del CFE', 'elobservador.com.uy': 'El Observador (nota de prensa)' };
+  function srcHost(u) { return String(u || '').replace(/^https?:\/\//, '').split('/')[0].replace(/^www\./, ''); }
+  function fmtRev(d) { var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(d || ''); return m ? 'Revisado el ' + m[3] + '/' + m[2] + '/' + m[1] : 'Revisado en octubre de 2026'; }
+  function srcLine(c) {
+    var u = c.src || instById[c.inst].url, h = srcHost(u);
+    return '<div class="srcline">' + svg(P.info, 18) + '<div><span>Fuente: <b>' + (HOST_LABEL[h] || h) + '</b></span><span>' + fmtRev(c.rev) + '</span>' +
+      '<a href="' + u + '" target="_blank" rel="noopener">Ver página' + svg(P.ext, 14) + '</a></div></div>' +
+      '<p class="src">Los datos pueden cambiar de un año a otro: confirmalos antes de inscribirte.</p>';
+  }
+
+
+  /* ---------- Resumen para el orientador ---------- */
+  function hoy() { var d = new Date(); function z(n) { return (n < 10 ? '0' : '') + n; } return z(d.getDate()) + '/' + z(d.getMonth() + 1) + '/' + d.getFullYear(); }
+  function resumenData() {
+    cleanAB();
+    var pr = S.phase === 'done' ? profile() : null;
+    var a = AB.a ? byId[AB.a] : null, b = AB.b.map(function (id) { return byId[id]; }).filter(Boolean);
+    var otras = favs.filter(function (id) { return id !== AB.a && AB.b.indexOf(id) < 0; }).map(function (id) { return byId[id]; }).filter(Boolean);
+    return { pr: pr, a: a, b: b, otras: otras };
+  }
+  function cname(c) { return c.name + ' (' + instById[c.inst].short + ')'; }
+  function resumenText() {
+    var r = resumenData(), L = ['Mi resumen de Orientarte UY · ' + hoy(), ''];
+    if (r.pr) {
+      L.push('Código Holland: ' + r.pr.code + ' (' + r.pr.ranked.slice(0, 3).map(function (t) { return TYPES[t].name; }).join(', ') + ')');
+      L.push('Puntajes de 0 a 15: ' + ORDER.map(function (t) { return t + ' ' + r.pr.sc[t]; }).join(' · '));
+    } else L.push('Todavía no terminé el test vocacional (' + answered() + ' de 90 respuestas).');
+    L.push('');
+    L.push('Plan A: ' + (r.a ? cname(r.a) + ' · Mi plan: ' + planDone(r.a.id) + ' de ' + PLAN_STEPS.length + ' pasos' : 'sin elegir'));
+    if (r.b.length) r.b.forEach(function (c, k) { L.push((k ? '        ' : 'Plan B: ') + cname(c) + ' · Mi plan: ' + planDone(c.id) + ' de ' + PLAN_STEPS.length + ' pasos'); });
+    else L.push('Plan B: sin elegir');
+    if (r.otras.length) L.push('Otras carreras guardadas: ' + r.otras.map(cname).join('; '));
+    return L.join('\n');
+  }
+  function vResumen() {
+    var r = resumenData();
+    function stepsOf(c) { var st = plan[c.id] || []; return '<ul class="rs-steps">' + PLAN_STEPS.map(function (t, k) { return '<li class="' + (st[k] ? 'on' : '') + '">' + (st[k] ? svg(P.check, 14) : '<i></i>') + t + '</li>'; }).join('') + '</ul>'; }
+    function plan1(c, tag) { return '<div class="rs-plan"><span class="abtag ' + tag + '">Plan ' + tag.toUpperCase() + '</span><strong>' + c.name + '</strong><small>' + instById[c.inst].full + '</small>' + stepsOf(c) + '</div>'; }
+    var holland = r.pr
+      ? '<div class="rs-code">' + r.pr.code.split('').map(function (l) { return '<b>' + l + '</b>'; }).join('') + '</div><p class="rs-types">' + r.pr.ranked.slice(0, 3).map(function (t) { return TYPES[t].name; }).join(' · ') + '</p>' +
+        '<p class="rs-sc">' + ORDER.map(function (t) { return t + ' ' + r.pr.sc[t]; }).join(' · ') + ' <span>(de 0 a 15)</span></p>'
+      : '<p class="muted" style="margin:0">Todavía no terminaste el test (' + answered() + ' de 90). <button type="button" class="linkbtn" data-tab="test">Ir al test</button></p>';
+    return '<div class="pad" style="gap:16px">' +
+      '<p class="lede" style="font-size:15px">Mandáselo a tu orientador/a o mostralo en la entrevista. También podés sacarle una captura.</p>' +
+      '<div class="resumen"><div class="rs-head"><span>Mi resumen</span><small>' + hoy() + ' · Orientarte UY</small></div>' +
+      '<div class="rs-sec"><div class="label">Código Holland</div>' + holland + '</div>' +
+      '<div class="rs-sec"><div class="label">Mis opciones</div>' +
+      (r.a ? plan1(r.a, 'a') : '<p class="muted" style="margin:0">Todavía no elegiste un Plan A. Hacelo desde Favoritos.</p>') +
+      r.b.map(function (c) { return plan1(c, 'b'); }).join('') +
+      (r.otras.length ? '<p class="rs-otras"><b>También guardé:</b> ' + r.otras.map(cname).join(' · ') + '</p>' : '') + '</div></div>' +
+      '<div class="stack"><button type="button" class="btn" data-resumen-share>' + svg(P.share, 20) + 'Compartir resumen</button>' +
+      '<button type="button" class="btn ghost" data-resumen-copy>Copiar texto</button></div>' +
+      '<textarea id="sharebox" class="sharebox" readonly hidden aria-label="Texto del resumen"></textarea></div>';
+  }
+  function shareTextOut(text, title) {
+    var wa = function () { try { window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank', 'noopener'); } catch (e) {} };
+    try { if (navigator.share) { navigator.share({ title: title, text: text }).catch(function (err) { if (!err || err.name !== 'AbortError') wa(); }); return; } } catch (e) {}
+    wa();
+  }
+
   /* ---------- Vistas ---------- */
   function vHome() {
     var n = answered(), pr = S.phase === 'done' ? profile() : null;
-    var testBlock = pr
-      ? '<button type="button" class="profile" data-tab="test"><span class="mini-code">' + pr.code.split('').map(function (l) { return '<b>' + l + '</b>'; }).join('') + '</span><span class="t"><strong>Tu perfil: ' + TYPES[pr.ranked[0]].name + '</strong><small>Ver carreras para vos</small></span>' + svg(P.chev, 18).replace('<svg', '<svg class="chev"') + '</button>'
-      : '';
-    var cta = pr ? '' : '<button type="button" class="hero-cta" data-tab="test">' + svg(P.cube, 22) + (n > 0 ? 'Seguir el test (' + n + '/90)' : 'Descubrí tu perfil') + '</button>';
+    function path(attr, ic, cls, title, sub) {
+      return '<button type="button" class="path ' + cls + '" ' + attr + '><span class="ic">' + svg(ic, 24) + '</span><span class="t"><strong>' + title + '</strong><small>' + sub + '</small></span>' + svg(P.chev, 20).replace('<svg', '<svg class="chev"') + '</button>';
+    }
+    var testSub = pr ? 'Tu perfil: ' + TYPES[pr.ranked[0]].name + ' · ver carreras para vos' : n > 0 ? 'Seguí el test donde quedaste (' + n + '/90)' : 'Descubrí tu perfil con el test';
+    var favSub = favs.length ? (favs.length === 1 ? '1 carrera guardada' : favs.length + ' carreras guardadas') + ' · tu plan' : 'Guardá carreras, comparalas y armá tu plan';
     var tiles = AREAS.slice(1).map(function (a, k) {
       return '<button type="button" class="tile' + (k % 3 === 1 ? ' alt' : '') + '" data-area="' + a + '"><span class="ic">' + svg(AREA_IC[a], 22) + '</span><strong>' + a + '</strong><small>' + areaCount(a) + ' carreras</small></button>';
     }).join('') + '<button type="button" class="tile" data-area="Todas"><span class="ic">' + svg(P.grid, 22) + '</span><strong>Ver todas</strong><small>Todas las áreas</small></button>';
@@ -1265,9 +1667,12 @@ nav.tabs .badge { position: absolute; top: 8px; left: 56%; min-width: 18px; heig
       return '<button type="button" class="ipill" data-go-inst="' + i.id + '"><span class="mini ' + badgeCls(i) + '">' + i.short + '</span><span><strong>' + i.full.split(' · ')[0].replace('Universidad ', 'U. ').replace('Instituto Universitario ', '') + '</strong><small>' + (i.type === 'Pública' ? 'Pública · gratis' : 'Privada') + '</small></span></button>';
     }).join('');
     return '<section class="hero"><div class="stripes" aria-hidden="true"><i></i><i></i><i></i><i></i></div>' +
-      '<h1>¿Qué estudio después del liceo?</h1><p>Conocé tu perfil y explorá todas las carreras de Uruguay.</p>' + cta +
-      '<button type="button" class="hero-search" data-tab="search">' + svg(P.search, 20) + 'Buscar carrera o institución</button></section>' +
-      '<div class="pad" style="gap:22px;padding-block:18px 28px">' + testBlock +
+      '<h1>¿Qué estudio después del liceo?</h1><p>Conocé tu perfil y explorá todas las carreras de Uruguay.</p></section>' +
+      '<div class="paths"><div class="label">¿Por dónde empezás?</div>' +
+      path('data-tab="test"', P.cube, 'p1', 'No sé qué estudiar', testSub) +
+      path('data-tab="search"', P.search, 'p2', 'Tengo algo en mente', 'Buscá una carrera o elegí lo que te gusta') +
+      path('data-tab="favs"', P.heart, 'p3', 'Ya estoy decidiendo', favSub) + '</div>' +
+      '<div class="pad" style="gap:22px;padding-block:8px 28px">' +
       '<div class="gcards"><button type="button" class="gcard" data-go-view="guia"><span class="ic">' + svg(P.compass, 22) + '</span><strong>Dudas al elegir</strong><small>Cambiar, probar y otros caminos</small></button>' +
       '<button type="button" class="gcard alt" data-go-view="becas"><span class="ic">' + svg(P.coin, 22) + '</span><strong>Becas y apoyos</strong><small>Ayudas para estudiar</small></button></div>' +
       '<div class="stack"><div class="sec-title"><h3>Explorá por área</h3></div><div class="tiles">' + tiles + '</div></div>' +
@@ -1301,8 +1706,9 @@ nav.tabs .badge { position: absolute; top: 8px; left: 56%; min-width: 18px; heig
       (c.ingreso ? sec(P.clock, 'Próximos ingresos', '<p>' + c.ingreso + '</p>') : '') +
       sec(P.cap, 'Título', c.title ? '<p>' + c.title + '</p>' : '<p>' + c.name + '</p><p class="muted" style="margin-top:6px">El nombre exacto del título no está publicado.</p>') +
       (c.nota ? sec(P.info, 'A tener en cuenta', '<p>' + c.nota + '</p>') : '') +
-      '<p class="src">Datos del sitio oficial (oct. 2026). Pueden cambiar: confirmá antes de inscribirte.</p></div>' +
+      srcLine(c) + '</div>' +
       '<div class="actionbar"><button type="button" class="btn' + (on ? ' fav-on' : '') + '" data-fav="' + c.id + '" aria-pressed="' + on + '">' + svg(P.heart, 20).replace('fill="none"', on ? 'fill="currentColor"' : 'fill="none"') + (on ? 'Guardada' : 'Guardar') + '</button>' +
+      '<button type="button" class="btn ghost icon" data-share-career="' + c.id + '" aria-label="Compartir esta carrera">' + svg(P.share, 20) + '</button>' +
       '<a class="btn ghost icon" href="' + (c.src || i.url) + '" target="_blank" rel="noopener" aria-label="Abrir el sitio oficial de la carrera">' + svg(P.ext, 20) + '</a></div>';
   }
 
@@ -1310,7 +1716,7 @@ nav.tabs .badge { position: absolute; top: 8px; left: 56%; min-width: 18px; heig
     function chips(list, key) {
       return list.map(function (v) { return '<button type="button" class="filter" data-filter="' + key + '" data-val="' + v + '" aria-pressed="' + (S[key] === v) + '">' + v + '</button>'; }).join('');
     }
-    var active = S.area !== 'Todas' || S.zona !== 'Todo el país' || S.gratis || S.q;
+    var active = S.area !== 'Todas' || S.zona !== 'Todo el país' || S.gratis || S.q || S.int;
     return '<div class="searchbar"><div class="search-wrap">' + svg(P.search, 20) + '<label for="buscador" class="label" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Buscar carrera, institución o ciudad</label>' +
       '<input id="buscador" class="search" type="search" autocomplete="off" placeholder="Carrera, institución o ciudad" value="' + S.q.replace(/"/g, '&quot;') + '"></div>' +
       '<div class="hscroll"><button type="button" class="filter bach" data-bach-open aria-pressed="' + !!S.bach + '" aria-expanded="' + S.bachOpen + '">' + svg(P.cap, 16) + bachLabel() + '</button>' +
@@ -1319,7 +1725,8 @@ nav.tabs .badge { position: absolute; top: 8px; left: 56%; min-width: 18px; heig
       '<div class="hscroll">' + chips(['Todo el país', 'Montevideo', 'Interior', 'Virtual'], 'zona') +
       '<button type="button" class="filter" data-gratis aria-pressed="' + S.gratis + '">Solo gratis</button>' +
       (active ? '<button type="button" class="filter clear" data-clear>Limpiar</button>' : '') + '</div>' +
-      '<div class="hscroll">' + chips(AREAS, 'area') + '</div></div>' +
+      '<div class="hscroll">' + chips(AREAS, 'area') + '</div>' +
+      '<div class="introw"><span class="label">Lo que te gusta</span><div class="hscroll">' + INTERESES.slice().sort(function (a, b) { return (b.k === S.int) - (a.k === S.int); }).map(function (x) { return '<button type="button" class="filter int" data-int="' + x.k + '" aria-pressed="' + (S.int === x.k) + '">' + x.t + '</button>'; }).join('') + '</div></div></div>' +
       '<div class="pad" id="results"></div>';
   }
   function renderResults() {
@@ -1329,7 +1736,7 @@ nav.tabs .badge { position: absolute; top: 8px; left: 56%; min-width: 18px; heig
       var i = instById[c.inst];
       var hay = norm([c.name, c.sedes !== ASK ? c.sedes : '', i.short, i.full, i.place, c.area].concat((c.also || []).map(function (x) { return instById[x].short; })).join(' '));
       return (S.area === 'Todas' || c.area === S.area) && (!S.gratis || c.cost === FREE) &&
-        (S.zona === 'Todo el país' || zones(c).indexOf(S.zona) >= 0) && (!q || hay.indexOf(q) >= 0) && (!S.canOnly || !S.bach || elig(c).s !== 'no');
+        (S.zona === 'Todo el país' || zones(c).indexOf(S.zona) >= 0) && (!q || hay.indexOf(q) >= 0) && (!S.canOnly || !S.bach || elig(c).s !== 'no') && (!S.int || INT_BY[S.int].f(c));
     });
     box.innerHTML = '<div class="count">' + res.length + (res.length === 1 ? ' carrera' : ' carreras') + '</div>' +
       (res.length ? '<div class="stack">' + res.map(card).join('') + '</div>'
@@ -1379,6 +1786,7 @@ nav.tabs .badge { position: absolute; top: 8px; left: 56%; min-width: 18px; heig
       sec(P.info, 'Cómo leer mi resultado', how) +
       '<div class="sec-title" style="margin-top:6px"><h3>Carreras para vos</h3></div><div class="stack">' + top.map(function (c) { var more = CAREERS.filter(function (x) { return x.name === c.name && x.id !== c.id; }).length; var h = card(c); return more ? h.replace(/<\/span><\/button>$/, '<span class="chip brand">+' + more + (more === 1 ? ' institución' : ' instituciones') + '</span></span></button>') : h; }).join('') + '</div>' +
       '<p class="src" style="text-align:left">Basado en el Inventario de Intereses de Holland. Es un punto de partida y no reemplaza un proceso de orientación vocacional con un profesional.</p>' +
+      '<button type="button" class="btn ghost" data-go-view="resumen">' + svg(P.doc, 20) + 'Resumen para tu orientador/a</button>' +
       '<button type="button" class="btn ghost" data-test="reset">Repetir el test</button></div>';
   }
   function shareText() {
@@ -1387,12 +1795,27 @@ nav.tabs .badge { position: absolute; top: 8px; left: 56%; min-width: 18px; heig
   }
 
   function vFavs() {
-    var list = favs.map(function (id) { return byId[id]; });
+    cleanAB();
+    var rank = function (id) { return AB.a === id ? 0 : AB.b.indexOf(id) >= 0 ? 1 : 2; };
+    var list = favs.slice().sort(function (x, y) { return rank(x) - rank(y); }).map(function (id) { return byId[id]; });
     if (!list.length) return '<div class="pad"><div class="empty"><strong>Todavía no guardaste carreras</strong><span>Tocá «Guardar» en una carrera para tenerla a mano y compararla.</span><button type="button" class="btn" style="width:auto" data-tab="search">Explorar carreras</button></div></div>';
     S.cmp = S.cmp.filter(function (id) { return favs.indexOf(id) >= 0; });
     var n = S.cmp.length;
-    return '<div class="pad"><div class="count">' + list.length + (list.length === 1 ? ' guardada' : ' guardadas') + ' · marcá hasta 3 para comparar</div><div class="stack">' +
-      list.map(function (c) { var on = S.cmp.indexOf(c.id) >= 0; return '<div class="favrow">' + card(c) + '<button type="button" class="cmp-toggle" data-cmp="' + c.id + '" aria-pressed="' + on + '" aria-label="Comparar ' + c.name + '">' + svg(on ? P.check : P.cols, 20) + 'Comparar</button></div>'; }).join('') + '</div></div>' +
+    function planBox(c) {
+      var st = plan[c.id] || [], d = planDone(c.id), full = d === PLAN_STEPS.length;
+      return '<details class="plan"' + (S.planOpen === c.id ? ' open' : '') + ' data-plan-box="' + c.id + '"><summary>' + svg(P.list, 18) + '<span>Mi plan</span>' +
+        '<span class="pgauge" aria-hidden="true"><i style="width:' + (d / PLAN_STEPS.length * 100) + '%"></i></span><b' + (full ? ' class="full"' : '') + '>' + (full ? '¡Listo!' : d + '/' + PLAN_STEPS.length) + '</b>' + svg(P.down, 16).replace('<svg', '<svg class="down"') + '</summary>' +
+        '<div class="plan-body">' + PLAN_STEPS.map(function (txt, k) { var on = !!st[k]; return '<button type="button" class="step" data-plan="' + c.id + '" data-step="' + k + '" aria-pressed="' + on + '"><span class="box">' + (on ? svg(P.check, 16) : '') + '</span>' + txt + '</button>'; }).join('') +
+        '<div class="plan-links"><button type="button" class="linkbtn" data-go-career="' + c.id + '">Ver requisitos</button><button type="button" class="linkbtn" data-go-view="becas">Ver becas</button></div></div></details>';
+    }
+    function abSel(c) {
+      var v = abOf(c.id);
+      function o(val, label) { return '<button type="button" class="abopt ' + val + '" data-ab="' + c.id + '" data-v="' + val + '" aria-pressed="' + (v === val) + '">' + label + '</button>'; }
+      return '<div class="absel" role="group" aria-label="Prioridad de ' + c.name + '">' + o('a', 'Plan A') + o('b', 'Plan B') + o('', 'Sin marcar') + '</div>';
+    }
+    return '<div class="pad"><button type="button" class="resumen-cta" data-go-view="resumen">' + svg(P.doc, 22) + '<span><strong>Resumen para tu orientador/a</strong><small>Tu código Holland, tu Plan A y B y cómo vas</small></span>' + svg(P.chev, 18) + '</button>' +
+      '<p class="lede" style="font-size:15px">Elegí tu Plan A y tus Planes B, armá tu plan con cada carrera y marcá hasta 3 para compararlas.</p><div class="count">' + list.length + (list.length === 1 ? ' guardada' : ' guardadas') + '</div><div class="stack">' +
+      list.map(function (c) { var on = S.cmp.indexOf(c.id) >= 0; return '<div class="favitem' + (abOf(c.id) ? ' is-' + abOf(c.id) : '') + '">' + abSel(c) + '<div class="favrow">' + card(c) + '<button type="button" class="cmp-toggle" data-cmp="' + c.id + '" aria-pressed="' + on + '" aria-label="Comparar ' + c.name + '">' + svg(on ? P.check : P.cols, 20) + 'Comparar</button></div>' + planBox(c) + '</div>'; }).join('') + '</div></div>' +
       (n >= 2 ? '<div class="actionbar" style="grid-template-columns:1fr"><button type="button" class="btn" data-compare>' + svg(P.cols, 20) + 'Comparar ' + n + ' carreras</button></div>' : '');
   }
   function vCompare() {
@@ -1409,17 +1832,18 @@ nav.tabs .badge { position: absolute; top: 8px; left: 56%; min-width: 18px; heig
   }
 
   /* ---------- Render ---------- */
-  var TITLES = { guia: 'Dudas al elegir', becas: 'Becas y apoyos', inst: 'Institución', career: 'Carrera', search: 'Buscar', test: 'Test vocacional', favs: 'Favoritos', compare: 'Comparar' };
-  var TAB_OF = { guia: 'home', becas: 'home', home: 'home', search: 'search', test: 'test', favs: 'favs', compare: 'favs' };
+  var TITLES = { resumen: 'Resumen', ajustes: 'Ajustes', guia: 'Dudas al elegir', becas: 'Becas y apoyos', inst: 'Institución', career: 'Carrera', search: 'Buscar', test: 'Test vocacional', favs: 'Favoritos', compare: 'Comparar' };
+  var TAB_OF = { resumen: 'favs', ajustes: 'home', guia: 'home', becas: 'home', home: 'home', search: 'search', test: 'test', favs: 'favs', compare: 'favs' };
   function render(keepScroll) {
     var top = document.getElementById('top'), main = document.getElementById('main');
     top.innerHTML = S.view === 'home'
-      ? '<div class="logo">' + LOGO + '<b>Orientarte</b><span>UY</span></div>'
+      ? '<div class="logo">' + LOGO + '<b>Orientarte</b><span>UY</span></div><button type="button" class="gear" data-settings aria-label="Ajustes: letra y modo oscuro">' + svg(P.gear, 22) + '</button>'
       : (S.stack.length ? '<button type="button" class="back" data-back aria-label="Volver">' + svg(P.back, 22) + '</button>' : '') + '<h2>' + TITLES[S.view] + '</h2>';
-    var html = { home: vHome, guia: vGuia, becas: vBecas, inst: vInst, career: vCareer, search: vSearch, test: vTest, favs: vFavs, compare: vCompare }[S.view]();
+    var html = { home: vHome, resumen: vResumen, ajustes: vAjustes, guia: vGuia, becas: vBecas, inst: vInst, career: vCareer, search: vSearch, test: vTest, favs: vFavs, compare: vCompare }[S.view]();
     var y = main.scrollTop;
     main.innerHTML = html;
     main.scrollTop = keepScroll ? y : 0;
+    if (main.classList) { main.classList.remove('anim'); if (!keepScroll) { void main.offsetWidth; main.classList.add('anim'); } }
     if (S.view === 'search') renderResults();
     var tab = TAB_OF[S.view];
     if (!tab) { for (var k = S.stack.length - 1; k >= 0 && !tab; k--) tab = TAB_OF[S.stack[k].view]; }
@@ -1453,12 +1877,13 @@ nav.tabs .badge { position: absolute; top: 8px; left: 56%; min-width: 18px; heig
     if (t.hasAttribute('data-area')) { S.area = t.getAttribute('data-area'); S.q = ''; push({ view: 'search' }); return; }
     if (t.hasAttribute('data-fav')) {
       var id = t.getAttribute('data-fav'), k = favs.indexOf(id);
-      if (k >= 0) { favs.splice(k, 1); toast('Quitada de favoritos'); } else { favs.push(id); toast('Guardada en favoritos'); }
+      if (k >= 0) { favs.splice(k, 1); cleanAB(); toast('Quitada de favoritos'); buzz(10); } else { favs.push(id); toast('Guardada en favoritos'); buzz([12, 40, 12]); }
       saveFavs(); render(true); return;
     }
     if (t.hasAttribute('data-filter')) { S[t.getAttribute('data-filter')] = t.getAttribute('data-val'); render(true); return; }
     if (t.hasAttribute('data-gratis')) { S.gratis = !S.gratis; render(true); return; }
-    if (t.hasAttribute('data-clear')) { S.area = 'Todas'; S.zona = 'Todo el país'; S.gratis = false; S.q = ''; S.canOnly = false; render(true); return; }
+    if (t.hasAttribute('data-clear')) { S.area = 'Todas'; S.zona = 'Todo el país'; S.gratis = false; S.q = ''; S.canOnly = false; S.int = null; render(true); return; }
+    if (t.hasAttribute('data-int')) { var ik = t.getAttribute('data-int'); S.int = S.int === ik ? null : ik; buzz(8); render(true); return; }
     if (t.hasAttribute('data-bach-open')) { S.bachOpen = !S.bachOpen; S.draft = S.bach ? { lvl: S.bach.lvl, o: S.bach.o } : {}; render(true); return; }
     if (t.hasAttribute('data-bach-go')) { S.bachOpen = true; S.draft = {}; push({ view: 'search' }); return; }
     if (t.hasAttribute('data-lvl')) { S.draft = S.draft || {}; S.draft.lvl = t.getAttribute('data-lvl'); if (S.draft.lvl !== '6') S.draft.o = null; render(true); return; }
@@ -1467,6 +1892,31 @@ nav.tabs .badge { position: absolute; top: 8px; left: 56%; min-width: 18px; heig
     if (t.hasAttribute('data-bach-clear')) { S.bach = null; S.bachOpen = false; S.canOnly = false; saveBach(); render(true); return; }
     if (t.hasAttribute('data-bach-cancel')) { S.bachOpen = false; render(true); return; }
     if (t.hasAttribute('data-canonly')) { S.canOnly = !S.canOnly; render(true); return; }
+    if (t.hasAttribute('data-plan')) {
+      var pid = t.getAttribute('data-plan'), ps = +t.getAttribute('data-step'), arr = (plan[pid] || []).slice();
+      arr[ps] = !arr[ps]; plan[pid] = arr; savePlan(); S.planOpen = pid; buzz(10);
+      if (planDone(pid) === PLAN_STEPS.length) toast('¡Completaste tu plan para esta carrera!');
+      render(true); return;
+    }
+    if (t.hasAttribute('data-pref')) {
+      var pkey = t.getAttribute('data-pref'), pv = t.getAttribute('data-val');
+      PREF[pkey] = pkey === 'vib' ? pv === 'true' : pv; savePrefs(); applyPrefs(); buzz(10); render(true); return;
+    }
+    if (t.hasAttribute('data-ab')) {
+      var aid = t.getAttribute('data-ab'), av = t.getAttribute('data-v');
+      if (AB.a === aid) AB.a = null; AB.b = AB.b.filter(function (x) { return x !== aid; });
+      if (av === 'a') { AB.a = aid; toast('Es tu Plan A'); } else if (av === 'b') { AB.b.push(aid); toast('Agregada a tus Planes B'); }
+      saveAB(); buzz(10); render(true); return;
+    }
+    if (t.hasAttribute('data-resumen-share')) { shareTextOut(resumenText(), 'Mi resumen de Orientarte UY'); return; }
+    if (t.hasAttribute('data-resumen-copy')) {
+      var rt = resumenText(), rbox = document.getElementById('sharebox');
+      var rfb = function () { if (rbox) { rbox.value = rt; rbox.hidden = false; rbox.focus(); rbox.select(); } toast('Copiá el texto de la caja'); };
+      try { if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(rt).then(function () { toast('Resumen copiado'); }, rfb); else rfb(); } catch (err) { rfb(); }
+      return;
+    }
+    if (t.hasAttribute('data-share-career')) { shareCareer(t.getAttribute('data-share-career')); return; }
+    if (t.hasAttribute('data-settings')) { push({ view: 'ajustes' }); return; }
     if (t.hasAttribute('data-cmp')) {
       var cid = t.getAttribute('data-cmp'), ci = S.cmp.indexOf(cid);
       if (ci >= 0) S.cmp.splice(ci, 1); else if (S.cmp.length < 3) S.cmp.push(cid); else toast('Podés comparar hasta 3 carreras');
@@ -1483,7 +1933,7 @@ nav.tabs .badge { position: absolute; top: 8px; left: 56%; min-width: 18px; heig
       return;
     }
     if (t.hasAttribute('data-answer')) {
-      S.answers[S.step] = +t.getAttribute('data-answer');
+      S.answers[S.step] = +t.getAttribute('data-answer'); buzz(8);
       if (S.step >= ITEMS.length - 1) S.phase = 'done'; else S.step++;
       saveTest(); render(); return;
     }
@@ -1500,6 +1950,7 @@ nav.tabs .badge { position: absolute; top: 8px; left: 56%; min-width: 18px; heig
     if (e.target.id === 'buscador') { S.q = e.target.value; renderResults(); }
   });
 
+  applyPrefs();
   render();
 })();
 </script>
