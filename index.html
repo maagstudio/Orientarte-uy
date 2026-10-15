@@ -237,7 +237,7 @@ nav.tabs button { position: relative; height: 64px; border: 0; background: trans
 nav.tabs button[aria-current="page"] { color: var(--brand); }
 nav.tabs button[aria-current="page"]::before { content: ""; position: absolute; top: 0; left: 30%; right: 30%; height: 3px; border-radius: 0 0 3px 3px; background: var(--brand); }
 nav.tabs .badge { position: absolute; top: 8px; left: 56%; min-width: 18px; height: 18px; border-radius: 9px; background: var(--heart); color: #FFFFFF; font-size: 11px; display: grid; place-items: center; padding: 0 4px; }
-.toast { position: absolute; left: 16px; right: 16px; top: 66px; background: var(--fg); color: var(--bg); padding: 12px 16px; border-radius: 14px; font-weight: 600; font-size: 14px; text-align: center; z-index: 5; }
+.toast { pointer-events: none; position: absolute; left: 16px; right: 16px; top: 66px; background: var(--fg); color: var(--bg); padding: 12px 16px; border-radius: 14px; font-weight: 600; font-size: 14px; text-align: center; z-index: 5; }
 main > * { zoom: var(--z, 1); }
 @media (prefers-reduced-motion: no-preference) {
   main.anim > * { animation: in .26s cubic-bezier(.2,.8,.2,1); }
@@ -266,7 +266,6 @@ main > * { zoom: var(--z, 1); }
 .introw { display: flex; flex-direction: column; gap: 6px; }
 .filter.int { border-color: var(--sun); }
 .filter.int[aria-pressed="true"] { background: var(--sun); border-color: var(--sun); color: #0E1B3D; }
-.favitem { display: flex; flex-direction: column; gap: 6px; }
 details.plan { border-radius: 14px; background: var(--brand-soft); }
 details.plan summary { list-style: none; display: flex; align-items: center; gap: 10px; min-height: 46px; padding: 0 12px; font-weight: 700; font-size: 14px; color: var(--brand); cursor: pointer; }
 details.plan summary::-webkit-details-marker { display: none; }
@@ -319,13 +318,6 @@ details.plan[open] summary .down { transform: rotate(180deg); }
 .srcline span { display: block; width: 100%; }
 .srcline b { color: var(--fg); font-weight: 600; overflow-wrap: anywhere; }
 .srcline a { display: inline-flex; align-items: center; gap: 4px; font-weight: 700; color: var(--brand); text-decoration: none; padding: 6px 0 0; min-height: 32px; }
-.absel { display: flex; gap: 6px; }
-.abopt { height: 34px; padding: 0 12px; border-radius: 999px; border: 1.5px solid var(--line); background: var(--surface); color: var(--muted); font-size: 13px; font-weight: 700; }
-.abopt.a[aria-pressed="true"] { background: #F2B705; border-color: #F2B705; color: #0E1B3D; }
-.abopt.b[aria-pressed="true"] { background: var(--brand); border-color: var(--brand); color: var(--brand-fg); }
-.abopt[data-v=""][aria-pressed="true"] { border-color: var(--faint); color: var(--fg); }
-.favitem.is-a .card { border: 2px solid #F2B705; }
-.favitem.is-b .card { border: 2px solid var(--brand); }
 .abtag { display: inline-block; font-size: 12px; font-weight: 800; padding: 3px 9px; border-radius: 999px; }
 .abtag.a { background: #F2B705; color: #0E1B3D; }
 .abtag.b { background: var(--brand); color: var(--brand-fg); }
@@ -355,6 +347,43 @@ details.plan[open] summary .down { transform: rotate(180deg); }
 .rs-steps li.on { color: var(--fg); }
 .rs-otras { margin: 0; font-size: 14px; color: var(--muted); }
 .rs-otras b { color: var(--fg); }
+.favgroup { display: flex; flex-direction: column; gap: 10px; margin-top: 6px; }
+.favgroup-h { display: flex; align-items: baseline; gap: 8px; }
+.favgroup-h h3 { margin: 0; font-family: var(--font-display); font-size: 18px; font-weight: 700; }
+.favgroup-h small { color: var(--muted); font-size: 13px; }
+.favbox { display: flex; flex-direction: column; gap: 10px; padding: 10px; border-radius: 20px; background: var(--surface); border: 1.5px solid var(--line); }
+.favbox .card { border: 0; padding: 4px 4px 0; background: transparent; }
+.favbox .cmp-toggle { background: var(--bg); }
+.favbox.is-a { border: 2px solid #F2B705; }
+.favbox.is-b { border: 2px solid var(--brand); }
+.favbox.flash { animation: flash 1.2s ease-out; }
+@keyframes flash { 0% { box-shadow: 0 0 0 6px rgba(242,183,5,.55); } 100% { box-shadow: 0 0 0 0 rgba(242,183,5,0); } }
+.absel { display: flex; align-items: center; gap: 8px; padding: 0 4px; flex-wrap: wrap; }
+.absel span { font-size: 13px; font-weight: 600; color: var(--muted); margin-right: 2px; }
+.abopt { display: inline-flex; align-items: center; gap: 4px; height: 38px; padding: 0 14px; border-radius: 999px; border: 1.5px solid var(--line); background: var(--surface); color: var(--fg); font-size: 14px; font-weight: 700; }
+.abopt.a[aria-pressed="true"] { background: #F2B705; border-color: #F2B705; color: #0E1B3D; }
+.abopt.b[aria-pressed="true"] { background: var(--brand); border-color: var(--brand); color: var(--brand-fg); }
+.absel.inficha { padding: 12px 14px; border-radius: 16px; background: var(--surface); border: 1px solid var(--line); }
+.abhint { display: flex; gap: 10px; align-items: flex-start; margin: 0; padding: 12px 14px; border-radius: 14px; background: var(--sun-soft); font-size: 14px; line-height: 1.45; }
+.abhint svg { flex-shrink: 0; color: var(--sun-ink); margin-top: 1px; }
+.frena-cta { width: 100%; display: flex; align-items: center; gap: 12px; text-align: left; padding: 14px; border-radius: 18px; border: 1.5px dashed var(--brand); background: transparent; color: var(--brand); }
+.frena-cta .ic { width: 42px; height: 42px; border-radius: 13px; flex-shrink: 0; display: grid; place-items: center; background: var(--brand-soft); }
+.frena-cta > span:nth-child(2) { flex: 1; min-width: 0; }
+.frena-cta strong { display: block; font-size: 15px; color: var(--fg); }
+.frena-cta small { display: block; font-size: 13px; color: var(--muted); margin-top: 2px; }
+.frenos { display: flex; flex-direction: column; gap: 8px; }
+.freno { display: flex; align-items: center; gap: 12px; text-align: left; min-height: 56px; padding: 10px 14px; border-radius: 16px; border: 1.5px solid var(--line); background: var(--surface); color: var(--fg); font-size: 15px; font-weight: 600; line-height: 1.3; }
+.freno .box { width: 24px; height: 24px; flex-shrink: 0; border-radius: 7px; border: 2px solid var(--brand); display: grid; place-items: center; color: var(--brand-fg); }
+.freno[aria-pressed="true"] { border-color: var(--brand); background: var(--brand-soft); }
+.freno[aria-pressed="true"] .box { background: var(--brand); }
+.btn[disabled] { opacity: .45; }
+.frenres { display: flex; flex-direction: column; gap: 8px; padding: 14px; border-radius: 18px; background: var(--surface); border: 1px solid var(--line); }
+.frenres strong { font-size: 16px; }
+.frenres p { margin: 0; color: var(--muted); line-height: 1.5; font-size: 15px; }
+.frenres.alt { background: var(--sun-soft); border-color: transparent; }
+.frenres.alt p { color: var(--fg); }
+.frenacc { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
+.frenacc .btn { min-height: 46px; font-size: 15px; }
 </style>
 </head>
 <body>
@@ -1232,6 +1261,13 @@ details.plan[open] summary .down { transform: rotate(180deg); }
       if (HOLLAND_PDF[k][1].test(n)) { var L = HOLLAND_PDF[k][0]; if (c.code[0] !== L) c.code = (L + c.code.replace(L, '')).slice(0, 3); break; }
     }
   });
+  /* UCU: links de cada carrera tomados de carreras.ucu.edu.uy/programas/ (14/10/2026). Las que no tienen página propia van a esa lista. */
+  var UCU_LINK = {"ucu-agronomia": "carrera-en-agronomia", "ucu-arquitectura": "carrera-en-arquitectura", "ucu-artes-escenicas": "licenciatura-en-artes-escenicas", "ucu-artes-visuales": "licenciatura-en-artes-visuales", "ucu-ciencia-politica": "carrera-en-ciencia-politica", "ucu-ciencias-del-comportamiento": "licenciatura-en-ciencias-del-comportamiento", "ucu-cine": "licenciatura-en-cine", "ucu-comunicacion": "carrera-en-comunicacion", "ucu-comunicacion-y-marketing": "carrera-en-comunicacion-y-marketing", "ucu-criminologia": "carrera-en-criminologia", "ucu-deporte-y-actividad-fisica": "carrera-en-deporte-y-actividad-fisica", "ucu-educacion": "licenciatura-en-educacion", "ucu-educacion-inicial": "licenciatura-en-educacion-inicial", "ucu-filosofia": "licenciatura-en-filosofia", "ucu-fisioterapia": "licenciatura-en-fisioterapia", "ucu-fonoaudiologia": "licenciatura-en-fonoaudiologia", "ucu-ingenieria-ambiental": "carrera-en-ingenieria-ambiental", "ucu-ingenieria-biomedica": "carrera-en-ingenieria-biomedica", "ucu-ingenieria-civil": "carrera-en-ingenieria-civil", "ucu-ingenieria-en-alimentos": "carrera-en-ingenieria-en-alimentos", "ucu-ingenieria-en-electronica": "carrera-en-ingenieria-en-electronica", "ucu-ingenieria-en-sistemas-electricos-de-potencia": "carrera-en-ingenieria-en-sistemas-electricos-de-potencia", "ucu-ingenieria-en-telecomunicaciones": "carrera-en-ingenieria-en-telecomunicaciones", "ucu-ingenieria-industrial": "carrera-en-ingenieria-industrial", "ucu-ingenieria-mecanica": "carrera-en-ingenieria-mecanica", "ucu-ingenieria-quimica": "carrera-en-ingenieria-quimica", "ucu-inteligencia-artificial-y-ciencia-de-datos": "carrera-en-inteligencia-artificial-y-ciencia-de-datos", "ucu-licenciatura-en-enfermeria": "licenciatura-en-enfermeria", "ucu-licenciatura-en-enfermeria-profesionalizacion": "carrera-en-licenciatura-en-enfermeria-(profesionalizacion)", "ucu-medicina": "carrera-en-medicina", "ucu-negocios-digitales-y-gestion-tecnologica": "carrera-en-negocios-digitales-y-gestion-tecnologica", "ucu-negocios-y-economia": "carrera-en-negocios-y-economia", "ucu-nutricion": "licenciatura-en-nutricion", "ucu-odontologia": "carrera-en-odontologia", "ucu-psicomotricidad": "licenciatura-en-psicomotricidad", "ucu-quimica-farmaceutica": "carrera-en-quimica-farmaceutica", "ucu-relaciones-internacionales": "carrera-en-relaciones-internacionales", "ucu-sociologia": "carrera-en-sociologia", "ucu-tecnicatura-en-educacion-y-recreacion": "tecnicatura-en-educacion-y-recreacion", "ucu-trabajo-social": "licenciatura-en-trabajo-social", "ucu-veterinaria": "carrera-en-veterinaria"};
+  CAREERS.forEach(function (c) {
+    if (c.inst !== 'ucu') return;
+    if (UCU_LINK[c.id]) c.src = 'https://carreras.ucu.edu.uy/programas/ver/' + UCU_LINK[c.id];
+    else if (/^https?:\/\/(www\.)?ucu\.edu\.uy\/?$/.test(c.src || '')) c.src = 'https://carreras.ucu.edu.uy/programas/';
+  });
   /* Carreras compartidas con UdelaR (sitio de FING, 14/10/2026) */
   CAREERS.forEach(function (c) {
     if (c.id === 'utu-tecnologo-industrial-mecanico') {
@@ -1285,6 +1321,7 @@ details.plan[open] summary .down { transform: rotate(180deg); }
   /* ---------- Íconos ---------- */
   function svg(paths, size) { return '<svg width="' + (size || 22) + '" height="' + (size || 22) + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + paths + '</svg>'; }
   var P = {
+    globe: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 3.8 5.5 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.5-3.8-9S9.5 5.5 12 3z"/>',
     gear: '<path d="M4 7h9M19 7h1M4 17h3M13 17h7"/><circle cx="16" cy="7" r="2.5"/><circle cx="10" cy="17" r="2.5"/>',
     list: '<path d="M9 6h11M9 12h11M9 18h11"/><path d="M4 6l1 1 2-2M4 12l1 1 2-2M4 18l1 1 2-2"/>',
     redo: '<path d="M20 7v5h-5"/><path d="M20 12a8 8 0 1 1-2.3-5.7L20 8.5"/>',
@@ -1517,7 +1554,7 @@ details.plan[open] summary .down { transform: rotate(180deg); }
   ];
   function vGuia() {
     return '<section class="g-head"><span class="g-ic">' + svg(P.compass, 26) + '</span><h1>Dudas al elegir</h1><p>Elegir carrera no es firmar de por vida. Muchas personas cambian, prueban o combinan caminos.</p></section>' +
-      '<div class="pad">' + GUIA.map(function (g, k) { return sec(k === 5 ? P.coin : k === 4 ? P.cube : k === 3 ? P.doc : k === 2 ? P.cap : k === 1 ? P.clock : P.redo, g.q, typeof g.a === 'function' ? g.a() : g.a, k === 0); }).join('') +
+      '<div class="pad"><button type="button" class="frena-cta" data-go-view="frena"><span class="ic">' + svg(P.compass, 22) + '</span><span><strong>¿Qué te frena?</strong><small>Marcá lo que sentís y te damos ideas</small></span>' + svg(P.chev, 18) + '</button>' + GUIA.map(function (g, k) { return sec(k === 5 ? P.coin : k === 4 ? P.cube : k === 3 ? P.doc : k === 2 ? P.cap : k === 1 ? P.clock : P.redo, g.q, typeof g.a === 'function' ? g.a() : g.a, k === 0); }).join('') +
       '<p class="src">Las carreras de ejemplo salen de los datos de la app. Confirmá los detalles en cada institución.</p></div>';
   }
   function becaCard(b, open) {
@@ -1652,6 +1689,59 @@ details.plan[open] summary .down { transform: rotate(180deg); }
     wa();
   }
 
+
+  /* ---------- ¿Qué te frena? ----------
+     Frases propias (no son ítems de un instrumento publicado). Se apoyan en las dificultades para decidir descritas por Gati y colegas
+     (falta de preparación, falta de información, información contradictoria) y en las barreras del contexto (teoría social cognitiva de carrera).
+     Textos en borrador para que Chris los revise. */
+  var FRENOS = [
+    { k: 'gustos', t: 'No sé bien qué me gusta', d: 'Es muy común a esta edad. Conocerte un poco más ayuda: qué actividades disfrutás, en qué te sentís capaz, qué te da curiosidad.', acc: [['data-tab="test"', 'Hacer el test vocacional'], ['data-go-search="int"', 'Explorar por lo que te gusta']] },
+    { k: 'opciones', t: 'No conozco las opciones que hay', d: 'Hay muchas más carreras de las que solemos escuchar, en lugares y duraciones muy distintas. Mirarlas con calma ya es avanzar.', acc: [['data-go-search="todas"', 'Ver todas las carreras'], ['data-go-search="cortas"', 'Ver carreras cortas']] },
+    { k: 'varias', t: 'Me gustan varias cosas y no puedo elegir', d: 'Tener varios intereses no es un problema. Guardalas, comparalas lado a lado y elegí un Plan A y alternativas.', acc: [['data-tab="favs"', 'Ir a mis favoritos'], ['data-go-view="guia"', 'Leer «Dudas al elegir»']] },
+    { k: 'miedo', t: 'Tengo miedo de equivocarme', d: 'Elegir no es para siempre: mucha gente cambia de carrera y lo que aprendiste no se pierde. Algunas carreras además dan títulos en el camino.', acc: [['data-go-view="guia"', 'Leer «Dudas al elegir»']] },
+    { k: 'presion', t: 'Siento presión de mi familia o de otras personas', d: 'Es importante escuchar a quienes te quieren, pero la decisión es tuya. Contarles qué te gusta y por qué, con información concreta, puede ayudar a la conversación.', acc: [['data-go-view="resumen"', 'Armar mi resumen para mostrar']] },
+    { k: 'plata', t: 'Me preocupa la plata o tener que mudarme', d: 'Hay opciones públicas y gratuitas en todo el país y becas para comida, transporte y alojamiento. También hay carreras en el interior.', acc: [['data-go-view="becas"', 'Ver becas y apoyos'], ['data-go-search="gratis"', 'Ver carreras gratuitas'], ['data-go-search="interior"', 'Ver carreras en el interior']] },
+    { k: 'listo', t: 'Todavía no me siento listo/a para decidir', d: 'No tenés que decidir todo hoy. Podés ir de a pasos chicos: explorar, guardar lo que te interese y hablarlo con alguien.', acc: [['data-tab="search"', 'Explorar sin apuro']] },
+    { k: 'info', t: 'Encuentro información que se contradice', d: 'Pasa seguido. En la app cada carrera muestra de qué sitio oficial sale el dato y cuándo se revisó, con el link para confirmarlo.', acc: [['data-tab="search"', 'Buscar una carrera']] }
+  ];
+  function vFrena() {
+    S.frena = S.frena || [];
+    if (!S.frenaRes) {
+      return '<section class="g-head"><span class="g-ic">' + svg(P.compass, 26) + '</span><h1>¿Qué te frena?</h1><p>Marcá todo lo que sientas cuando pensás en elegir. No hay respuestas buenas ni malas.</p></section>' +
+        '<div class="pad"><div class="frenos">' + FRENOS.map(function (f) { var on = S.frena.indexOf(f.k) >= 0; return '<button type="button" class="freno" data-freno="' + f.k + '" aria-pressed="' + on + '"><span class="box">' + (on ? svg(P.check, 16) : '') + '</span>' + f.t + '</button>'; }).join('') + '</div>' +
+        '<button type="button" class="btn" data-frena-ver' + (S.frena.length ? '' : ' disabled') + '>Ver qué puedo hacer</button></div>';
+    }
+    var sel = FRENOS.filter(function (f) { return S.frena.indexOf(f.k) >= 0; });
+    return '<section class="g-head"><span class="g-ic">' + svg(P.compass, 26) + '</span><h1>Algunas ideas para vos</h1><p>Para cada cosa que marcaste, algo que podés hacer hoy.</p></section>' +
+      '<div class="pad">' + sel.map(function (f) {
+        return '<div class="frenres"><strong>' + f.t + '</strong><p>' + f.d + '</p><div class="frenacc">' + f.acc.map(function (a) { return '<button type="button" class="btn ghost" ' + a[0] + '>' + a[1] + '</button>'; }).join('') + '</div></div>';
+      }).join('') +
+      '<div class="frenres alt"><strong>Hablarlo ayuda</strong><p>Un orientador u orientadora vocacional, alguien de tu liceo o una persona de confianza te puede acompañar a pensar. Si sentís mucha angustia con esto, no te lo guardes: contale a alguien.</p></div>' +
+      '<button type="button" class="btn ghost" data-frena-otra>Volver a elegir</button></div>';
+  }
+
+
+  /* ---------- Intercambios (sitios oficiales, revisado el 14/10/2026) ---------- */
+  var INTERC = {
+    udelar: { items: ['Podés estudiar un semestre en una universidad extranjera con convenio, sin pagar los costos académicos allá.', 'Requisito general: tener aprobado al menos el 50 % de los créditos de tu carrera, más lo que pida tu facultad.', 'Programa UDELAR 360 (convocatoria 2027): 21 lugares, uno por facultad o centro, con un apoyo único de $120.000 para pasaje, visa, seguro y alojamiento.', 'Movilidad por convenio: el pasaje, el seguro y la estadía los pagás vos.', 'Para viajar en el 1.er semestre de 2027, las postulaciones cerraron en agosto y septiembre de 2026.'],
+      link: 'https://fhce.edu.uy/wp-content/uploads/2026/07/Convocatoria-UDELAR360.pdf', linkTxt: 'Ver la convocatoria UDELAR 360', src: 'Convocatorias UDELAR 360 y Movilidad por convenio 1-2027 (Servicio de Relaciones Internacionales de UdelaR). Consultas: movilidad@internacionales.udelar.edu.uy' },
+    ort: { items: ['Convenios de intercambio con más de 130 universidades del mundo.', 'Programas Erasmus+, MARCA y Movilidad Mercosur, además de convenios bilaterales.', 'La oficina de intercambio acompaña a más de 200 estudiantes por año, entre los que se van y los que llegan.', 'Requisitos, plazos y costos: consultalos en ORT.'],
+      link: 'https://ort.edu.uy/innovaportal/file/102981/1/fact-sheet-espanol-2025.pdf', linkTxt: 'Ver la ficha internacional de ORT', src: 'Fact sheet 2025 de la Universidad ORT Uruguay' },
+    ucu: { items: ['Más de 300 universidades socias.', 'Podés hacer un semestre afuera sin atrasarte en la carrera, o quedarte hasta un año.', 'También hay programas cortos de verano e invierno (de 2 a 6 semanas), intercambio virtual (AUSJAL) y prácticas internacionales.', 'Algunas carreras tienen doble titulación con universidades del exterior.', 'Requisitos y costos: consultalos en la UCU.'],
+      link: 'https://carreras.ucu.edu.uy/categoria/Internacionales-332', linkTxt: 'Ver experiencias internacionales UCU', src: 'Sección Internacionales de carreras.ucu.edu.uy' },
+    utec: { items: ['El Centro Global de UTEC abre convocatorias de movilidad que financian pasantías, cursos, visitas técnicas o congresos en el exterior.', 'Pueden postularse estudiantes con el 50 % de la carrera aprobado y egresados recientes.', 'En 2026: hasta USD 2.500 por persona; la postulación fue del 13 al 24 de abril.'],
+      link: 'https://utec.edu.uy/uploads/internacional/BASES Estudiantes y Egresados - Abril 2026.pdf', linkTxt: 'Ver las bases 2026', src: 'XVI Convocatoria de Movilidad Internacional de UTEC (2026)' },
+    um: { items: ['La UM tiene universidades socias en todo el mundo donde sus estudiantes pueden hacer un intercambio.', 'El sitio no detalla la cantidad de convenios, la duración ni los costos: consultalos en internacional@um.edu.uy.'],
+      link: 'https://um.edu.uy/internacional', linkTxt: 'Ver la sección internacional de la UM', src: 'Sitio de la Universidad de Montevideo' }
+  };
+  function intercBody(instId) {
+    var x = INTERC[instId], i = instById[instId];
+    if (!x) return '<p class="muted">Todavía no encontramos información publicada sobre intercambios en ' + i.full + '. Consultalo directamente en la institución.</p>';
+    return '<ul class="jobs">' + x.items.map(function (t) { return '<li>' + t + '</li>'; }).join('') + '</ul>' +
+      '<a class="btn ghost" style="margin-top:10px" href="' + encodeURI(x.link) + '" target="_blank" rel="noopener">' + svg(P.ext, 18) + x.linkTxt + '</a>' +
+      '<p class="src" style="text-align:left;margin-top:8px">Fuente: ' + x.src + '. Revisado el 14/10/2026.</p>';
+  }
+
   /* ---------- Vistas ---------- */
   function vHome() {
     var n = answered(), pr = S.phase === 'done' ? profile() : null;
@@ -1673,6 +1763,7 @@ details.plan[open] summary .down { transform: rotate(180deg); }
       path('data-tab="search"', P.search, 'p2', 'Tengo algo en mente', 'Buscá una carrera o elegí lo que te gusta') +
       path('data-tab="favs"', P.heart, 'p3', 'Ya estoy decidiendo', favSub) + '</div>' +
       '<div class="pad" style="gap:22px;padding-block:8px 28px">' +
+      '<button type="button" class="frena-cta" data-go-view="frena"><span class="ic">' + svg(P.compass, 22) + '</span><span><strong>¿Te cuesta decidir?</strong><small>Descubrí qué te frena y qué podés hacer</small></span>' + svg(P.chev, 18) + '</button>' +
       '<div class="gcards"><button type="button" class="gcard" data-go-view="guia"><span class="ic">' + svg(P.compass, 22) + '</span><strong>Dudas al elegir</strong><small>Cambiar, probar y otros caminos</small></button>' +
       '<button type="button" class="gcard alt" data-go-view="becas"><span class="ic">' + svg(P.coin, 22) + '</span><strong>Becas y apoyos</strong><small>Ayudas para estudiar</small></button></div>' +
       '<div class="stack"><div class="sec-title"><h3>Explorá por área</h3></div><div class="tiles">' + tiles + '</div></div>' +
@@ -1684,6 +1775,7 @@ details.plan[open] summary .down { transform: rotate(180deg); }
     var i = instById[S.inst], list = careersOf(i.id);
     return '<section class="inst-head"><span class="mini ' + badgeCls(i) + '">' + i.short + '</span><div class="stack" style="gap:6px"><h1>' + i.full + '</h1><span class="chips"><span class="chip' + (i.type === 'Pública' ? ' ok">Pública · gratis' : '">Privada') + '</span><span class="chip">' + i.place + '</span></span></div></section>' +
       '<div class="pad"><div class="count">' + list.length + ' carreras</div><div class="stack">' + list.map(card).join('') + '</div>' +
+      sec(P.globe, 'Intercambio en el exterior', intercBody(i.id)) +
       '<a class="btn ghost" href="' + i.url + '" target="_blank" rel="noopener">' + svg(P.ext, 18) + 'Sitio oficial</a></div>';
   }
 
@@ -1702,6 +1794,8 @@ details.plan[open] summary .down { transform: rotate(180deg); }
       (c.jobs ? sec(P.brief, 'De qué podés trabajar', '<ul class="jobs">' + c.jobs.map(function (j) { return '<li>' + j + '</li>'; }).join('') + '</ul>', true) : '') +
       sec(P.check, 'Qué necesitás para entrar', c.req && c.req !== ASK ? '<p>' + c.req + '</p>' : NA, !!S.bach) +
       careerExtras(c) +
+      sec(P.globe, 'Intercambio en el exterior', intercBody(c.inst)) +
+      (on ? '<div class="absel inficha" role="group" aria-label="Prioridad"><span>Marcar como</span><button type="button" class="abopt a" data-ab="' + c.id + '" data-v="a" aria-pressed="' + (abOf(c.id) === 'a') + '">' + (abOf(c.id) === 'a' ? svg(P.check, 14) : '') + 'Plan A</button><button type="button" class="abopt b" data-ab="' + c.id + '" data-v="b" aria-pressed="' + (abOf(c.id) === 'b') + '">' + (abOf(c.id) === 'b' ? svg(P.check, 14) : '') + 'Plan B</button></div>' : '') +
       sec(P.pin, 'Sedes y horarios', (c.sedes && c.sedes !== ASK ? '<p>' + c.sedes + '</p>' : NA) + also) +
       (c.ingreso ? sec(P.clock, 'Próximos ingresos', '<p>' + c.ingreso + '</p>') : '') +
       sec(P.cap, 'Título', c.title ? '<p>' + c.title + '</p>' : '<p>' + c.name + '</p><p class="muted" style="margin-top:6px">El nombre exacto del título no está publicado.</p>') +
@@ -1716,7 +1810,7 @@ details.plan[open] summary .down { transform: rotate(180deg); }
     function chips(list, key) {
       return list.map(function (v) { return '<button type="button" class="filter" data-filter="' + key + '" data-val="' + v + '" aria-pressed="' + (S[key] === v) + '">' + v + '</button>'; }).join('');
     }
-    var active = S.area !== 'Todas' || S.zona !== 'Todo el país' || S.gratis || S.q || S.int;
+    var active = S.area !== 'Todas' || S.zona !== 'Todo el país' || S.gratis || S.q || S.int || S.corta;
     return '<div class="searchbar"><div class="search-wrap">' + svg(P.search, 20) + '<label for="buscador" class="label" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Buscar carrera, institución o ciudad</label>' +
       '<input id="buscador" class="search" type="search" autocomplete="off" placeholder="Carrera, institución o ciudad" value="' + S.q.replace(/"/g, '&quot;') + '"></div>' +
       '<div class="hscroll"><button type="button" class="filter bach" data-bach-open aria-pressed="' + !!S.bach + '" aria-expanded="' + S.bachOpen + '">' + svg(P.cap, 16) + bachLabel() + '</button>' +
@@ -1724,6 +1818,7 @@ details.plan[open] summary .down { transform: rotate(180deg); }
       (S.bachOpen ? bachPanel() : '') +
       '<div class="hscroll">' + chips(['Todo el país', 'Montevideo', 'Interior', 'Virtual'], 'zona') +
       '<button type="button" class="filter" data-gratis aria-pressed="' + S.gratis + '">Solo gratis</button>' +
+      '<button type="button" class="filter" data-corta aria-pressed="' + !!S.corta + '">Hasta 2 años</button>' +
       (active ? '<button type="button" class="filter clear" data-clear>Limpiar</button>' : '') + '</div>' +
       '<div class="hscroll">' + chips(AREAS, 'area') + '</div>' +
       '<div class="introw"><span class="label">Lo que te gusta</span><div class="hscroll">' + INTERESES.slice().sort(function (a, b) { return (b.k === S.int) - (a.k === S.int); }).map(function (x) { return '<button type="button" class="filter int" data-int="' + x.k + '" aria-pressed="' + (S.int === x.k) + '">' + x.t + '</button>'; }).join('') + '</div></div></div>' +
@@ -1736,7 +1831,7 @@ details.plan[open] summary .down { transform: rotate(180deg); }
       var i = instById[c.inst];
       var hay = norm([c.name, c.sedes !== ASK ? c.sedes : '', i.short, i.full, i.place, c.area].concat((c.also || []).map(function (x) { return instById[x].short; })).join(' '));
       return (S.area === 'Todas' || c.area === S.area) && (!S.gratis || c.cost === FREE) &&
-        (S.zona === 'Todo el país' || zones(c).indexOf(S.zona) >= 0) && (!q || hay.indexOf(q) >= 0) && (!S.canOnly || !S.bach || elig(c).s !== 'no') && (!S.int || INT_BY[S.int].f(c));
+        (S.zona === 'Todo el país' || zones(c).indexOf(S.zona) >= 0) && (!q || hay.indexOf(q) >= 0) && (!S.canOnly || !S.bach || elig(c).s !== 'no') && (!S.int || INT_BY[S.int].f(c)) && (!S.corta || esCorta(c));
     });
     box.innerHTML = '<div class="count">' + res.length + (res.length === 1 ? ' carrera' : ' carreras') + '</div>' +
       (res.length ? '<div class="stack">' + res.map(card).join('') + '</div>'
@@ -1796,26 +1891,31 @@ details.plan[open] summary .down { transform: rotate(180deg); }
 
   function vFavs() {
     cleanAB();
-    var rank = function (id) { return AB.a === id ? 0 : AB.b.indexOf(id) >= 0 ? 1 : 2; };
-    var list = favs.slice().sort(function (x, y) { return rank(x) - rank(y); }).map(function (id) { return byId[id]; });
-    if (!list.length) return '<div class="pad"><div class="empty"><strong>Todavía no guardaste carreras</strong><span>Tocá «Guardar» en una carrera para tenerla a mano y compararla.</span><button type="button" class="btn" style="width:auto" data-tab="search">Explorar carreras</button></div></div>';
+    if (!favs.length) return '<div class="pad"><div class="empty"><strong>Todavía no guardaste carreras</strong><span>Tocá «Guardar» en una carrera para tenerla a mano y compararla.</span><button type="button" class="btn" style="width:auto" data-tab="search">Explorar carreras</button></div></div>';
     S.cmp = S.cmp.filter(function (id) { return favs.indexOf(id) >= 0; });
     var n = S.cmp.length;
     function planBox(c) {
       var st = plan[c.id] || [], d = planDone(c.id), full = d === PLAN_STEPS.length;
-      return '<details class="plan"' + (S.planOpen === c.id ? ' open' : '') + ' data-plan-box="' + c.id + '"><summary>' + svg(P.list, 18) + '<span>Mi plan</span>' +
+      return '<details class="plan"' + (S.planOpen === c.id ? ' open' : '') + '><summary>' + svg(P.list, 18) + '<span>Mi plan</span>' +
         '<span class="pgauge" aria-hidden="true"><i style="width:' + (d / PLAN_STEPS.length * 100) + '%"></i></span><b' + (full ? ' class="full"' : '') + '>' + (full ? '¡Listo!' : d + '/' + PLAN_STEPS.length) + '</b>' + svg(P.down, 16).replace('<svg', '<svg class="down"') + '</summary>' +
         '<div class="plan-body">' + PLAN_STEPS.map(function (txt, k) { var on = !!st[k]; return '<button type="button" class="step" data-plan="' + c.id + '" data-step="' + k + '" aria-pressed="' + on + '"><span class="box">' + (on ? svg(P.check, 16) : '') + '</span>' + txt + '</button>'; }).join('') +
         '<div class="plan-links"><button type="button" class="linkbtn" data-go-career="' + c.id + '">Ver requisitos</button><button type="button" class="linkbtn" data-go-view="becas">Ver becas</button></div></div></details>';
     }
-    function abSel(c) {
-      var v = abOf(c.id);
-      function o(val, label) { return '<button type="button" class="abopt ' + val + '" data-ab="' + c.id + '" data-v="' + val + '" aria-pressed="' + (v === val) + '">' + label + '</button>'; }
-      return '<div class="absel" role="group" aria-label="Prioridad de ' + c.name + '">' + o('a', 'Plan A') + o('b', 'Plan B') + o('', 'Sin marcar') + '</div>';
+    function box(c) {
+      var v = abOf(c.id), on = S.cmp.indexOf(c.id) >= 0;
+      return '<div class="favbox' + (v ? ' is-' + v : '') + (S.flash === c.id ? ' flash' : '') + '" id="fav-' + c.id + '">' +
+        '<div class="favrow">' + card(c) + '<button type="button" class="cmp-toggle" data-cmp="' + c.id + '" aria-pressed="' + on + '" aria-label="Comparar ' + c.name + '">' + svg(on ? P.check : P.cols, 20) + 'Comparar</button></div>' +
+        '<div class="absel" role="group" aria-label="Prioridad de ' + c.name + '"><span>Marcar como</span>' +
+        '<button type="button" class="abopt a" data-ab="' + c.id + '" data-v="a" aria-pressed="' + (v === 'a') + '">' + (v === 'a' ? svg(P.check, 14) : '') + 'Plan A</button>' +
+        '<button type="button" class="abopt b" data-ab="' + c.id + '" data-v="b" aria-pressed="' + (v === 'b') + '">' + (v === 'b' ? svg(P.check, 14) : '') + 'Plan B</button></div>' +
+        planBox(c) + '</div>';
     }
-    return '<div class="pad"><button type="button" class="resumen-cta" data-go-view="resumen">' + svg(P.doc, 22) + '<span><strong>Resumen para tu orientador/a</strong><small>Tu código Holland, tu Plan A y B y cómo vas</small></span>' + svg(P.chev, 18) + '</button>' +
-      '<p class="lede" style="font-size:15px">Elegí tu Plan A y tus Planes B, armá tu plan con cada carrera y marcá hasta 3 para compararlas.</p><div class="count">' + list.length + (list.length === 1 ? ' guardada' : ' guardadas') + '</div><div class="stack">' +
-      list.map(function (c) { var on = S.cmp.indexOf(c.id) >= 0; return '<div class="favitem' + (abOf(c.id) ? ' is-' + abOf(c.id) : '') + '">' + abSel(c) + '<div class="favrow">' + card(c) + '<button type="button" class="cmp-toggle" data-cmp="' + c.id + '" aria-pressed="' + on + '" aria-label="Comparar ' + c.name + '">' + svg(on ? P.check : P.cols, 20) + 'Comparar</button></div>' + planBox(c) + '</div>'; }).join('') + '</div></div>' +
+    var A = AB.a ? [byId[AB.a]] : [], B = AB.b.map(function (id) { return byId[id]; }), R = favs.filter(function (id) { return !abOf(id); }).map(function (id) { return byId[id]; });
+    function group(title, sub, list) { return list.length ? '<div class="favgroup"><div class="favgroup-h"><h3>' + title + '</h3>' + (sub ? '<small>' + sub + '</small>' : '') + '</div><div class="stack" style="gap:12px">' + list.map(box).join('') + '</div></div>' : ''; }
+    var hint = !A.length && !B.length ? '<p class="abhint">' + svg(P.info, 18) + 'Marcá una carrera como <b>Plan A</b> (tu primera opción) y otras como <b>Plan B</b> (tus alternativas).</p>' : '';
+    return '<div class="pad"><button type="button" class="resumen-cta" data-go-view="resumen">' + svg(P.doc, 22) + '<span><strong>Resumen para tu orientador/a</strong><small>Tu código Holland, tu Plan A y B y cómo vas</small></span>' + svg(P.chev, 18) + '</button>' + hint +
+      group('Plan A', 'Tu primera opción', A) + group('Plan B', B.length === 1 ? 'Tu alternativa' : 'Tus alternativas', B) +
+      group(A.length || B.length ? 'Otras guardadas' : (favs.length === 1 ? '1 guardada' : favs.length + ' guardadas'), A.length || B.length ? '' : 'Marcá hasta 3 para compararlas', R) + '</div>' +
       (n >= 2 ? '<div class="actionbar" style="grid-template-columns:1fr"><button type="button" class="btn" data-compare>' + svg(P.cols, 20) + 'Comparar ' + n + ' carreras</button></div>' : '');
   }
   function vCompare() {
@@ -1832,14 +1932,14 @@ details.plan[open] summary .down { transform: rotate(180deg); }
   }
 
   /* ---------- Render ---------- */
-  var TITLES = { resumen: 'Resumen', ajustes: 'Ajustes', guia: 'Dudas al elegir', becas: 'Becas y apoyos', inst: 'Institución', career: 'Carrera', search: 'Buscar', test: 'Test vocacional', favs: 'Favoritos', compare: 'Comparar' };
-  var TAB_OF = { resumen: 'favs', ajustes: 'home', guia: 'home', becas: 'home', home: 'home', search: 'search', test: 'test', favs: 'favs', compare: 'favs' };
+  var TITLES = { frena: '¿Qué te frena?', resumen: 'Resumen', ajustes: 'Ajustes', guia: 'Dudas al elegir', becas: 'Becas y apoyos', inst: 'Institución', career: 'Carrera', search: 'Buscar', test: 'Test vocacional', favs: 'Favoritos', compare: 'Comparar' };
+  var TAB_OF = { frena: 'home', resumen: 'favs', ajustes: 'home', guia: 'home', becas: 'home', home: 'home', search: 'search', test: 'test', favs: 'favs', compare: 'favs' };
   function render(keepScroll) {
     var top = document.getElementById('top'), main = document.getElementById('main');
     top.innerHTML = S.view === 'home'
       ? '<div class="logo">' + LOGO + '<b>Orientarte</b><span>UY</span></div><button type="button" class="gear" data-settings aria-label="Ajustes: letra y modo oscuro">' + svg(P.gear, 22) + '</button>'
       : (S.stack.length ? '<button type="button" class="back" data-back aria-label="Volver">' + svg(P.back, 22) + '</button>' : '') + '<h2>' + TITLES[S.view] + '</h2>';
-    var html = { home: vHome, resumen: vResumen, ajustes: vAjustes, guia: vGuia, becas: vBecas, inst: vInst, career: vCareer, search: vSearch, test: vTest, favs: vFavs, compare: vCompare }[S.view]();
+    var html = { home: vHome, frena: vFrena, resumen: vResumen, ajustes: vAjustes, guia: vGuia, becas: vBecas, inst: vInst, career: vCareer, search: vSearch, test: vTest, favs: vFavs, compare: vCompare }[S.view]();
     var y = main.scrollTop;
     main.innerHTML = html;
     main.scrollTop = keepScroll ? y : 0;
@@ -1882,7 +1982,7 @@ details.plan[open] summary .down { transform: rotate(180deg); }
     }
     if (t.hasAttribute('data-filter')) { S[t.getAttribute('data-filter')] = t.getAttribute('data-val'); render(true); return; }
     if (t.hasAttribute('data-gratis')) { S.gratis = !S.gratis; render(true); return; }
-    if (t.hasAttribute('data-clear')) { S.area = 'Todas'; S.zona = 'Todo el país'; S.gratis = false; S.q = ''; S.canOnly = false; S.int = null; render(true); return; }
+    if (t.hasAttribute('data-clear')) { S.area = 'Todas'; S.zona = 'Todo el país'; S.gratis = false; S.q = ''; S.canOnly = false; S.int = null; S.corta = false; render(true); return; }
     if (t.hasAttribute('data-int')) { var ik = t.getAttribute('data-int'); S.int = S.int === ik ? null : ik; buzz(8); render(true); return; }
     if (t.hasAttribute('data-bach-open')) { S.bachOpen = !S.bachOpen; S.draft = S.bach ? { lvl: S.bach.lvl, o: S.bach.o } : {}; render(true); return; }
     if (t.hasAttribute('data-bach-go')) { S.bachOpen = true; S.draft = {}; push({ view: 'search' }); return; }
@@ -1904,10 +2004,27 @@ details.plan[open] summary .down { transform: rotate(180deg); }
     }
     if (t.hasAttribute('data-ab')) {
       var aid = t.getAttribute('data-ab'), av = t.getAttribute('data-v');
+      var prev = abOf(aid);
       if (AB.a === aid) AB.a = null; AB.b = AB.b.filter(function (x) { return x !== aid; });
-      if (av === 'a') { AB.a = aid; toast('Es tu Plan A'); } else if (av === 'b') { AB.b.push(aid); toast('Agregada a tus Planes B'); }
-      saveAB(); buzz(10); render(true); return;
+      if (prev === av) toast('Ya no está marcada');
+      else if (av === 'a') { if (AB.a) toast('Cambiaste tu Plan A'); else toast('Ahora es tu Plan A'); AB.a = aid; }
+      else if (av === 'b') { AB.b.push(aid); toast('Ahora es un Plan B'); }
+      saveAB(); buzz(10); S.flash = aid; render(true);
+      if (S.view === 'favs') { try { var fe = document.getElementById('fav-' + aid); if (fe && fe.scrollIntoView) fe.scrollIntoView({ block: 'center', behavior: 'smooth' }); } catch (e) {} }
+      S.flash = null; return;
     }
+    if (t.hasAttribute('data-freno')) { var fk = t.getAttribute('data-freno'); S.frena = S.frena || []; var fi = S.frena.indexOf(fk); if (fi >= 0) S.frena.splice(fi, 1); else S.frena.push(fk); buzz(8); render(true); return; }
+    if (t.hasAttribute('data-frena-ver')) { if (t.disabled) return; S.frenaRes = true; render(); return; }
+    if (t.hasAttribute('data-frena-otra')) { S.frenaRes = false; render(); return; }
+    if (t.hasAttribute('data-go-search')) {
+      var gs = t.getAttribute('data-go-search');
+      S.area = 'Todas'; S.zona = 'Todo el país'; S.gratis = false; S.q = ''; S.int = null; S.corta = false;
+      if (gs === 'gratis') S.gratis = true; else if (gs === 'interior') S.zona = 'Interior'; else if (gs === 'cortas') S.corta = true;
+      push({ view: 'search' });
+      if (gs === 'int') { toast('Elegí lo que te gusta en «Lo que te gusta»'); }
+      return;
+    }
+    if (t.hasAttribute('data-corta')) { S.corta = !S.corta; render(true); return; }
     if (t.hasAttribute('data-resumen-share')) { shareTextOut(resumenText(), 'Mi resumen de Orientarte UY'); return; }
     if (t.hasAttribute('data-resumen-copy')) {
       var rt = resumenText(), rbox = document.getElementById('sharebox');
